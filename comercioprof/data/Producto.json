@@ -1,0 +1,11 @@
+[{
+  "descripcion": "2",
+  "vencimiento": "2025-05-05",
+  "tipo": "BEBIDAS",
+  "iva": 3800,
+  "valorVenta": 20000,
+  "subtotal": 75000,
+  "id": "EXK18",
+  "valorBase": 15000,
+  "disponible": 5
+}]
