@@ -108,7 +108,12 @@ public final class Producto implements Format {
   }
 
   public void setIva(double iva) {
-    this.iva = iva;
+    if(iva<=40 && iva>=0){
+      this.iva = iva;
+    }else{
+      throw new IllegalArgumentException("El iva generalmente no pasa del 40% y no es menor que 0%");
+    }
+    
   }
 
   public int getDisponible() {
