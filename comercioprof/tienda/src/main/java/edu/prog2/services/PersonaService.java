@@ -15,7 +15,6 @@ public class PersonaService implements Service<Persona> {
   public PersonaService(Class<? extends Persona> clase) throws Exception {
     this.clase = clase;
     fileName = Utils.PATH + clase.getSimpleName() + ".json";
-
     if (Utils.fileExists(fileName)) {
       load();
     } else {

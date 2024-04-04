@@ -14,19 +14,32 @@ public final class Venta extends Transaccion {
   }
 
   public Venta(String id) {
-    // use el constructor por defecto y luego asigne el ID
+    this();
+    setId(id);
   }
 
   public Venta(String id, Cliente cliente, Vendedor vendedor, LocalDateTime fecha) {
     // Use mutadores para asignar los valores recibidos
+    setCliente(cliente);
+    setFechaHora(fecha);
+    setId(id);
+    setVendedor(vendedor);
+
   }
 
   public Venta(Cliente cliente, Vendedor vendedor, LocalDateTime fecha) {
     // use el constructor parametrizado
+    this();
+    setCliente(cliente);
+    setFechaHora(fecha);
+    setVendedor(vendedor);
   }
 
   public Venta(Venta v) {
-    // ...
+    setCliente(v.getCliente());
+    setFechaHora(v.getFechaHora());
+    setId(v.getId());
+    setVendedor(v.getVendedor());
   }
 
   public Venta(JSONObject json) {
@@ -45,16 +58,21 @@ public final class Venta extends Transaccion {
   }
 
   public Vendedor getVendedor() {
-    throw new UnsupportedOperationException("Falta implementar 'getVendedor()'");
+    return this.vendedor;
   }
 
   public void setVendedor(Vendedor vendedor) {
-    // similar a setCliente()
+    this.vendedor=new Vendedor(vendedor);
   }
 
   @Override
   public String toString() {
-    throw new UnsupportedOperationException("Not supported yet.");
+    String str=super.toString();
+    str+=String.format(
+      "Cliente: \n%s\n"+
+      "Vendedor: \n%s\n"
+    , getCliente().toString(),getVendedor().toString());
+    return str;
   }
 
   @Override

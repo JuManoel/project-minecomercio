@@ -1,5 +1,7 @@
 package edu.prog2.model;
 
+import org.json.JSONObject;
+
 public class Vendedor extends Persona{
 
     private boolean admin;
@@ -20,10 +22,24 @@ public class Vendedor extends Persona{
         setAdmin(vendedor.getAdmin());
     }
 
+    public Vendedor(JSONObject json) {
+        super(json);
+        setAdmin(json.getBoolean("administrador"));
+    }
+
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
     public boolean getAdmin(){
         return this.admin;
     }
+
+    @Override
+  public String toString() {
+    String str =super.toString();
+    str =String.format(
+      "admin: %b\n"
+      , getAdmin());
+      return str;
+  }
 }

@@ -1,0 +1,11 @@
+[{
+  "vencimiento": "2024-05-19",
+  "descripcion": "Arroz rePaiza",
+  "tipo": "CEREALES",
+  "iva": 0.19,
+  "valorVenta": 70000,
+  "subtotal": 3500000,
+  "valorBase": 50000,
+  "id": "1KKIW",
+  "disponible": 70
+}]

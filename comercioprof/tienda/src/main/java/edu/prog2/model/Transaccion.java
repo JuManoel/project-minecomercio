@@ -86,7 +86,11 @@ public abstract class Transaccion implements Format {
 
   @Override
   public String toString() {
-    throw new UnsupportedOperationException("Unimplemented method 'toString()'");
+    String str= String.format(
+      "Id: %s\n"+
+      "Fecha: %s\n"
+    , getId(),getFechaHora().toString());
+    return str;
   }
 
   @Override

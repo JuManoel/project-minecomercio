@@ -81,10 +81,10 @@ public final class Pruebas2 {
     String id = Keyboard.readString("ID del producto a actualizar: ");
     JSONObject json = new JSONObject()
       .put("descripcion", Keyboard.readString("Descripción: "))
-      // .put("valorBase", Keyboard.readDouble("Valor base: "))
-      // .put("valorVenta", Keyboard.readDouble("Valor venta: "))
-      // .put("iva", Keyboard.readDouble("IVA: "))
-      // .put("disponible", Keyboard.readInt("Disponibles: "))
+      .put("valorBase", Keyboard.readDouble("Valor base: "))
+      .put("valorVenta", Keyboard.readDouble("Valor venta: "))
+      .put("iva", Keyboard.readDouble("IVA: "))
+      .put("disponible", Keyboard.readInt("Disponibles: "))
       .put("vencimiento", Keyboard.readDate("Vence (AAAA-MM-DD): ").toString());
 
     json = productos.update(id, json.toString());

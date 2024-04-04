@@ -170,7 +170,7 @@ public final class Producto implements Format {
 
   @Override
   public String toString() {
-    return String.format("%-6s%-30s%-20s%10.0f%5d%10.0f%12s", id, descripcion, tipo, valorBase, disponible, getSubtotal(), vencimiento);
+    return String.format("%-6s%-30s%-20s%10.0f%5d%10.0f%12s\n", id, descripcion, tipo, valorBase, disponible, getSubtotal(), vencimiento);
   }
 
   @Override

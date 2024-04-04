@@ -1,5 +1,7 @@
 package edu.prog2.model;
 
+import org.json.JSONObject;
+
 public class Cliente extends Persona{
     private boolean credito;
     
@@ -18,6 +20,10 @@ public class Cliente extends Persona{
         super((Persona) cliente);
         setCredito(cliente.getCredito());
     }
+    public Cliente(JSONObject json) { //hacer ensayos de Json a Java
+        super(json); //transforma de string a localdatetime
+        setCredito(json.getBoolean("credito"));
+      }
 
     public void setCredito(boolean credito) {
         this.credito = credito;
@@ -25,4 +31,13 @@ public class Cliente extends Persona{
     public boolean getCredito(){
         return this.credito;
     }
+
+    @Override
+  public String toString() {
+    String str =super.toString();
+    str =String.format(
+      "credito: %b\n"
+      , getCredito());
+      return str;
+  }
 }

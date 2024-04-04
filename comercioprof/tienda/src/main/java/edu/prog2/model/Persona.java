@@ -47,6 +47,10 @@ public abstract class Persona implements Format {
       super();
   }
 
+  public Persona(JSONObject json){
+    this(json.getString("id"), json.getString("nombre"), json.optString("correo"), json.getString("telefono"), json.getString("password")); //transforma de string a localdatetime
+  }
+
         
   public String getCorreo() {
       return correo;
@@ -105,7 +109,14 @@ public abstract class Persona implements Format {
 
   @Override
   public String toString() {
-    throw new UnsupportedOperationException("Unimplemented method 'toString()'");
+    String str =String.format(
+      "Id: %s\n"+
+      "Nombre: %s\n"+
+      "Correo: %s\n"+
+      "Telefono: %s\n"+
+      "Password: %s\n"
+      , getId(),getNombre(),getCorreo(),getTelefono(),getPassword());
+      return str;
   }
 
   @Override

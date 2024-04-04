@@ -1,5 +1,7 @@
 package edu.prog2.model;
 
+import org.json.JSONObject;
+
 public class Provedor extends Persona{
     public Provedor() {
         super();
@@ -20,4 +22,13 @@ public class Provedor extends Persona{
     public Provedor(Provedor provedor) {
         super((Persona) provedor);
     }
+    public Provedor(JSONObject json) {
+        super(json);
+    }
+
+    @Override
+  public String toString() {
+    String str =super.toString();
+      return str;
+  }
 }
