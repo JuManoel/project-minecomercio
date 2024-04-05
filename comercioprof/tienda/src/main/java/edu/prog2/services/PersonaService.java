@@ -2,8 +2,13 @@ package edu.prog2.services;
 
 import edu.prog2.helpers.Utils;
 import edu.prog2.model.Persona;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PersonaService implements Service<Persona> {
@@ -41,32 +46,46 @@ public class PersonaService implements Service<Persona> {
 
   @Override
   public JSONObject get(int index) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'get'");
+    return list.get(index).toJSONObject();
   }
 
   @Override
-  public JSONObject get(String id) throws Exception {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'get'");
+  public JSONObject get(String id) {
+    
+    int i = list.indexOf(new Persona(id));
+    return i > -1 ? get(i) : null;
   }
 
   @Override
-  public Persona getItem(String id) throws Exception {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getItem'");
+  public Persona getItem(String id) {
+    int i = list.indexOf(new Persona(id));
+    return i > -1 ? list.get(i) : null;
   }
 
   @Override
   public JSONObject getAll() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+    try {
+      JSONArray data = new JSONArray(Utils.readText(fileName));
+      return new JSONObject().put("message", "ok").put("data", data);
+    } catch (IOException | JSONException e) {
+      Utils.printStackTrace(e);
+      return Utils.keyValueToJson("message", "Sin acceso a datos de productos", "error", e.getMessage());
+    }
   }
 
   @Override
   public final List<Persona> load() throws Exception {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'load'");
+    list = new ArrayList<>();
+
+    String data = Utils.readText(fileName);
+    JSONArray jsonArr = new JSONArray(data);
+
+    for (int i = 0; i < jsonArr.length(); i++) {
+      JSONObject jsonObj = jsonArr.getJSONObject(i);
+      list.add(new Persona(jsonObj));
+    }
+
+    return list;
   }
 
   @Override
