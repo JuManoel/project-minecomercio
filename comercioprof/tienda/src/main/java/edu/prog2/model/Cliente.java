@@ -25,6 +25,10 @@ public class Cliente extends Persona{
         setCredito(json.getBoolean("credito"));
       }
 
+    public Cliente(String id) {
+       super(id);
+    }
+      
     public void setCredito(boolean credito) {
         this.credito = credito;
     }

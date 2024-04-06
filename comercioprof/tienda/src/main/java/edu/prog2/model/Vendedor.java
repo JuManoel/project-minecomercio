@@ -27,6 +27,10 @@ public class Vendedor extends Persona{
         setAdmin(json.getBoolean("administrador"));
     }
 
+    public Vendedor(String id) {
+        super(id);
+     }
+
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }

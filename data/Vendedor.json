@@ -1,0 +1,18 @@
+[
+  {
+    "password": "123",
+    "correo": "manoel.mano@gmail.com",
+    "admin": true,
+    "id": "91V8D",
+    "telefono": "3216549870",
+    "nombre": "Manoel"
+  },
+  {
+    "password": "123",
+    "correo": "gomez.miguel@ucaldas.co",
+    "admin": false,
+    "id": "A798M",
+    "telefono": "7894561230",
+    "nombre": "Miguel"
+  }
+]

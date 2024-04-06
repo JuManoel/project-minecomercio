@@ -1,8 +1,18 @@
-[{
-  "password": "123",
-  "correo": "laura.cardona@ucaldas.edu.co",
-  "credito": true,
-  "id": "S8QFR",
-  "telefono": "3218545987",
-  "nombre": "Laura"
-}]
+[
+  {
+    "password": "123",
+    "correo": "laura.cardona@ucaldas.edu.co",
+    "credito": true,
+    "id": "S8QFR",
+    "telefono": "3218545987",
+    "nombre": "Laura"
+  },
+  {
+    "password": "123",
+    "correo": "jdkJava@java.com",
+    "credito": false,
+    "id": "5YQ2D",
+    "telefono": "3579815265",
+    "nombre": "Juan"
+  }
+]

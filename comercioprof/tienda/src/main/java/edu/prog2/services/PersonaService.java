@@ -1,7 +1,10 @@
 package edu.prog2.services;
 
 import edu.prog2.helpers.Utils;
+import edu.prog2.model.Cliente;
 import edu.prog2.model.Persona;
+import edu.prog2.model.Provedor;
+import edu.prog2.model.Vendedor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ public class PersonaService implements Service<Persona> {
   public PersonaService(Class<? extends Persona> clase) throws Exception {
     this.clase = clase;
     fileName = Utils.PATH + clase.getSimpleName() + ".json";
+    System.out.println(clase.getSimpleName());
     if (Utils.fileExists(fileName)) {
       load();
     } else {
@@ -51,15 +55,38 @@ public class PersonaService implements Service<Persona> {
 
   @Override
   public JSONObject get(String id) {
-    
-    int i = list.indexOf(new Persona(id));
+    int i;
+    if(clase.getSimpleName().equals("Cliente")){
+      i = list.indexOf(new Cliente(id));
+
+    }else if(clase.getSimpleName().equals("Provedor")){
+      i = list.indexOf(new Provedor(id));
+
+    }else if(clase.getSimpleName().equals("Vendedor")){
+      i = list.indexOf(new Vendedor(id));
+
+    }else{
+      throw new UnsupportedOperationException("No existe ese tipo de Persona");
+    }
     return i > -1 ? get(i) : null;
   }
 
   @Override
   public Persona getItem(String id) {
-    int i = list.indexOf(new Persona(id));
-    return i > -1 ? list.get(i) : null;
+    JSONObject json= get(id);
+    if(clase.getSimpleName().equals("Cliente")){
+      return new Cliente(json);
+
+    }
+    if(clase.getSimpleName().equals("Provedor")){
+      return new Provedor(json);
+
+    }
+    if(clase.getSimpleName().equals("Vendedor")){
+      return new Vendedor(json);
+    }
+    throw new UnsupportedOperationException("No existe ese tipo de Persona");
+    
   }
 
   @Override
@@ -82,7 +109,19 @@ public class PersonaService implements Service<Persona> {
 
     for (int i = 0; i < jsonArr.length(); i++) {
       JSONObject jsonObj = jsonArr.getJSONObject(i);
-      list.add(new Persona(jsonObj));
+      if(clase.getSimpleName().equals("Cliente")){
+        list.add(new Cliente(jsonObj));
+  
+      }else if(clase.getSimpleName().equals("Provedor")){
+        list.add(new Provedor(jsonObj));
+  
+      }else if(clase.getSimpleName().equals("Vendedor")){
+        list.add(new Vendedor(jsonObj));
+  
+      }else{
+        throw new UnsupportedOperationException("No existe ese tipo de Persona");
+      }
+      
     }
 
     return list;
