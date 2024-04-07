@@ -54,39 +54,16 @@ public class PersonaService implements Service<Persona> {
   }
 
   @Override
-  public JSONObject get(String id) {
-    int i;
-    if(clase.getSimpleName().equals("Cliente")){
-      i = list.indexOf(new Cliente(id));
-
-    }else if(clase.getSimpleName().equals("Provedor")){
-      i = list.indexOf(new Provedor(id));
-
-    }else if(clase.getSimpleName().equals("Vendedor")){
-      i = list.indexOf(new Vendedor(id));
-
-    }else{
-      throw new UnsupportedOperationException("No existe ese tipo de Persona");
-    }
+  public JSONObject get(String id) throws Exception{
+    Persona persona = this.clase.getConstructor(String.class).newInstance(id);
+    int i = list.indexOf(persona);
     return i > -1 ? get(i) : null;
   }
 
   @Override
-  public Persona getItem(String id) {
+  public Persona getItem(String id) throws Exception{
     JSONObject json= get(id);
-    if(clase.getSimpleName().equals("Cliente")){
-      return new Cliente(json);
-
-    }
-    if(clase.getSimpleName().equals("Provedor")){
-      return new Provedor(json);
-
-    }
-    if(clase.getSimpleName().equals("Vendedor")){
-      return new Vendedor(json);
-    }
-    throw new UnsupportedOperationException("No existe ese tipo de Persona");
-    
+    return this.clase.getConstructor(JSONObject.class).newInstance(json);
   }
 
   @Override
@@ -109,19 +86,7 @@ public class PersonaService implements Service<Persona> {
 
     for (int i = 0; i < jsonArr.length(); i++) {
       JSONObject jsonObj = jsonArr.getJSONObject(i);
-      if(clase.getSimpleName().equals("Cliente")){
-        list.add(new Cliente(jsonObj));
-  
-      }else if(clase.getSimpleName().equals("Provedor")){
-        list.add(new Provedor(jsonObj));
-  
-      }else if(clase.getSimpleName().equals("Vendedor")){
-        list.add(new Vendedor(jsonObj));
-  
-      }else{
-        throw new UnsupportedOperationException("No existe ese tipo de Persona");
-      }
-      
+      list.add(this.clase.getConstructor(JSONObject.class).newInstance(jsonObj));
     }
 
     return list;

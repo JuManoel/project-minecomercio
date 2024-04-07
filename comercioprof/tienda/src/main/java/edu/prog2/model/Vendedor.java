@@ -24,7 +24,7 @@ public class Vendedor extends Persona{
 
     public Vendedor(JSONObject json) {
         super(json);
-        setAdmin(json.getBoolean("administrador"));
+        setAdmin(json.getBoolean("admin"));
     }
 
     public Vendedor(String id) {
