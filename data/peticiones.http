@@ -1,0 +1,8 @@
+### probar conexión
+GET http://localhost:7070/
+### Listar todos los productos
+GET http://localhost:7070/listarventas 
+// --------------- PRODUCTOS ---------------
+
+### Listar las categorías de los productos
+GET http://localhost:7070/producto/categorias

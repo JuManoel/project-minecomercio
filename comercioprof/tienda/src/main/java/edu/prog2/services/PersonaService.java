@@ -1,10 +1,7 @@
 package edu.prog2.services;
 
 import edu.prog2.helpers.Utils;
-import edu.prog2.model.Cliente;
 import edu.prog2.model.Persona;
-import edu.prog2.model.Provedor;
-import edu.prog2.model.Vendedor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +34,7 @@ public class PersonaService implements Service<Persona> {
 
     json.put("id", Utils.getRandomKey(5));
     Persona p = clase.getConstructor(JSONObject.class).newInstance(json);
-
+    p.setPassword(Utils.MD5(p.getPassword()));
     if (list.contains(p)) {
       throw new ArrayStoreException(String.format("El %s con ID %s ya existe", clase.getSimpleName(), p.getId()));
     }

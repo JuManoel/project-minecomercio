@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Pruebas1",
+            "request": "launch",
+            "mainClass": "edu.prog2.Pruebas1",
+            "projectName": "tienda"
+        },
+        {
+            "type": "java",
+            "name": "Pruebas2",
+            "request": "launch",
+            "mainClass": "edu.prog2.Pruebas2",
+            "projectName": "tienda"
+        },
+        {
+            "name": "Launch",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "edu.prog2.App",
+            "args": "true"
+        }
+    ]
+  }

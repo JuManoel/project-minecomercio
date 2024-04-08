@@ -1,11 +1,24 @@
-[{
-  "vencimiento": "2024-05-19",
-  "descripcion": "Arroz rePaiza",
-  "tipo": "CEREALES",
-  "iva": 0.19,
-  "valorVenta": 70000,
-  "subtotal": 3500000,
-  "valorBase": 50000,
-  "id": "1KKIW",
-  "disponible": 70
-}]
+[
+  {
+    "descripcion": "Arroz rePaiza",
+    "vencimiento": "2024-05-19",
+    "tipo": "CEREALES",
+    "iva": 0.19,
+    "valorVenta": 70000,
+    "subtotal": 3500000,
+    "id": "1KKIW",
+    "valorBase": 50000,
+    "disponible": 70
+  },
+  {
+    "descripcion": "Queso",
+    "vencimiento": "2024-11-01",
+    "tipo": "LACTEOS",
+    "iva": 19,
+    "valorVenta": 9000,
+    "subtotal": 140000,
+    "id": "HYTLX",
+    "valorBase": 7000,
+    "disponible": 20
+  }
+]
