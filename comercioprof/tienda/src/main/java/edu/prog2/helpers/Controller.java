@@ -16,9 +16,9 @@ public class Controller<T> {
 
   public Controller(final Service<T> service) {
     path(
-      getClassName(service),
+      service.endPoint(),//isso permite pegar acessar as classes
       () -> {
-        get("", (ctx) -> response(ctx, service.getAll()));
+        get("", (ctx) -> response(ctx, service.getAll()));//controla as solicitações de HTTP
 
         get(
           "/{param}",

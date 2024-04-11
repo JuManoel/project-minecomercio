@@ -1,5 +1,6 @@
 package edu.prog2;
 
+import edu.prog2.helpers.Controller;
 import edu.prog2.helpers.Utils;
 import edu.prog2.model.*;
 import edu.prog2.services.*;
@@ -15,7 +16,9 @@ public final class App {
   public static void main(String[] args) throws Exception {
     Locale.setDefault(Locale.of("es_CO"));
     Service<Producto> productoService = new ProductoService();
-
+    Service<Persona> clienteService = new PersonaService(Cliente.class);
+    Service<Persona> provedorService = new PersonaService(Provedor.class);
+    Service<Persona> vendedorService = new PersonaService(Vendedor.class);
     String message = String.format(
        "%sIniciando la API Rest de Ventas. Use Ctrl+C para detener la ejecución%s",
        Utils.CYAN, Utils.RESET
@@ -50,7 +53,10 @@ public final class App {
    
    
       config.router.apiBuilder(() -> {
-          // ... pendiente de implementar ...
+          new Controller<>(productoService);
+          new Controller<>(clienteService);
+          new Controller<>(vendedorService);
+          new Controller<>(provedorService);
       });
    }  )
     .start(7070)

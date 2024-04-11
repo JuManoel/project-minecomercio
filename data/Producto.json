@@ -1,24 +1,35 @@
 [
   {
-    "descripcion": "Arroz rePaiza",
-    "vencimiento": "2024-05-19",
-    "tipo": "CEREALES",
-    "iva": 0.19,
-    "valorVenta": 70000,
-    "subtotal": 3500000,
-    "id": "1KKIW",
-    "valorBase": 50000,
-    "disponible": 70
-  },
-  {
     "descripcion": "Queso",
     "vencimiento": "2024-11-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "valorVenta": 9000,
     "subtotal": 140000,
+    "valorVenta": 9000,
     "id": "HYTLX",
     "valorBase": 7000,
     "disponible": 20
+  },
+  {
+    "descripcion": "Chokis por 38 gramos",
+    "vencimiento": "2024-12-15",
+    "tipo": "GOLOSINAS",
+    "iva": 19,
+    "subtotal": 20000,
+    "valorVenta": 2600,
+    "id": "739BW",
+    "valorBase": 2000,
+    "disponible": 10
+  },
+  {
+    "descripcion": "Pollo",
+    "vencimiento": "2024-08-23",
+    "tipo": "CARNICOS",
+    "iva": 19,
+    "subtotal": 450000,
+    "valorVenta": 20000,
+    "id": "LQN3B",
+    "valorBase": 15000,
+    "disponible": 30
   }
 ]

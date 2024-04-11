@@ -132,6 +132,17 @@ public class ProductoService implements Service<Producto> {
 
   @Override
   public JSONObject remove(String id) throws Exception {
-    throw new UnsupportedOperationException("Unimplemented method 'ProductoService.remove()'");
+    Producto producto = getItem(id);
+    if(this.list.remove(producto)){
+      Utils.writeJSON(list, fileName);
+    // devolver la instancia con los cambios realizados
+      return new JSONObject().put("message", "ok").put("data", producto.toJSONObject());
+    }
+    throw new Exception("No se pudo remover la persona con el ID:"+id);  }
+
+  @Override
+  public String endPoint() {
+    return "producto";
   }
+
 }

@@ -9,10 +9,18 @@
   },
   {
     "password": "123",
-    "correo": "jdkJava@java.com",
+    "correo": "Juan.juan@juan.com",
     "credito": false,
     "id": "5YQ2D",
     "telefono": "3579815265",
     "nombre": "Juan"
+  },
+  {
+    "password": "fb7b9ffa5462084c5f4e7e85a093e6d7",
+    "correo": "loko@gmail.com",
+    "credito": true,
+    "id": "RKYK6",
+    "telefono": "3694578125",
+    "nombre": "Looooko"
   }
 ]

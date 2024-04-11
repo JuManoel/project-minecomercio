@@ -90,20 +90,66 @@ public class PersonaService implements Service<Persona> {
   }
 
   @Override
-  public JSONObject update(String id, String json) throws Exception {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
+  public JSONObject update(String id, String strJson) throws Exception {
+    // buscar la persona que se debe actualizar
+    Persona persona = getItem(id);
+    int i = list.indexOf(persona);
+
+    if (persona == null) {
+      String mensaje = String.format("No existe un %s con la identificación %s", clase.getSimpleName(), id);
+      throw new NullPointerException(mensaje);
+    }
+
+    // crear un objeto JSON con las propiedades del objeto a actualizar
+    JSONObject aux = persona.toJSONObject();
+    // iterar sobre las propiedades del objeto json recibido como argumento
+    JSONObject json = new JSONObject(strJson);
+    if (json.has("password")) {
+      // sólo asignar la contraseña entrante si es distinta a la actual
+      String newPassword = json.getString("password");
+      if (!aux.getString("password").equals(newPassword)) {
+        json.put("password", Utils.MD5(newPassword));
+      }
+    }
+
+    JSONArray propiedades = json.names();
+    for (int k = 0; k < propiedades.length(); k++) {
+      // asignar a aux los nuevos valores de las propiedades dadas
+      String propiedad = propiedades.getString(k);
+      Object valor = json.get(propiedad);
+      aux.put(propiedad, valor);
+    }
+
+    // utilizar aux para actualizar la persona
+    Persona p = clase.getConstructor(JSONObject.class).newInstance(aux);
+    list.set(i, p);
+    // actualizar el archivo
+    Utils.writeJSON(list, fileName);
+    // devolver la instancia con los cambios realizados
+    return new JSONObject().put("message", "ok").put("data", p.toJSONObject());
   }
 
   @Override
   public void refreshAll() throws Exception {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'refreshAll'");
+    list = new ArrayList<>();
+    load();
   }
 
   @Override
   public JSONObject remove(String id) throws Exception {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'remove'");
+    Persona persona = getItem(id);
+    if(this.list.remove(persona)){
+      Utils.writeJSON(list, fileName);
+    // devolver la instancia con los cambios realizados
+      return new JSONObject().put("message", "ok").put("data", persona.toJSONObject());
+    }
+    throw new Exception("No se pudo remover la persona con el ID:"+id);
+
   }
+
+  @Override
+  public String endPoint() {
+    return this.clase.getSimpleName().toLowerCase();
+  }
+
 }

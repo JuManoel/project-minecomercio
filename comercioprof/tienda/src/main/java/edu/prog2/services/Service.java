@@ -21,4 +21,7 @@ public interface Service<T> {
   public void refreshAll() throws Exception;
 
   public JSONObject remove(String id) throws Exception;
+
+  public String endPoint();
+
 }

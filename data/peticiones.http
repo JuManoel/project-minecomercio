@@ -6,3 +6,155 @@ GET http://localhost:7070/listarventas
 
 ### Listar las categorías de los productos
 GET http://localhost:7070/producto/categorias
+
+### Listar todos los productos
+GET http://localhost:7070/producto 
+
+### Buscar un producto dado su índice
+GET http://localhost:7070/producto/1 
+
+### Buscar un producto dado su ID
+GET http://localhost:7070/producto/NN 
+
+### agregar un producto
+POST http://localhost:7070/producto 
+Content-Type: application/json; charset=utf-8
+
+{
+    "descripcion": "Pollo",
+    "tipo": "CARNICOS",
+    "valorBase": 15000,
+    "valorVenta": 20000,
+    "iva": 19,
+    "disponible": 30,
+    "vencimiento": "2024-08-23"
+}
+
+### actualizar los datos de un producto (buscar por ID y modificar algunos o todos los datos)
+PATCH http://localhost:7070/producto/NN 
+Content-Type: application/json; charset=utf-8
+
+{
+    "descripcion": "Colombiana x 300 c. c.",
+    "tipo": "BEBIDAS",
+    "precio": 1000,
+    "disponible": 15,
+    "vence": "2024-11-26"
+}
+
+### Eliminar un producto dado su ID
+DELETE http://localhost:7070/producto/1KKIW
+
+// --------------- CLIENTES ---------------
+
+### Listar todos los clientes
+GET http://localhost:7070/cliente 
+
+### Buscar un cliente dado su índice
+GET http://localhost:7070/cliente/0 
+
+### Buscar un cliente dado su ID
+GET http://localhost:7070/cliente/1 
+
+### agregar un cliente (crear al menos 5)
+POST http://localhost:7070/cliente 
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "password",
+    "correo": "jojo@dio.com",
+    "credito": true,
+    "telefono": "3579824695",
+    "nombre": "Joseh Joestar"
+  }
+
+### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
+PATCH http://localhost:7070/cliente/5YQ2D
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "123",
+    "correo": "Juan.juan@juan.com",
+    "credito": false,
+    "telefono": "3579815265",
+    "nombre": "Juan"
+  }
+
+### Eliminar un cliente dado su ID
+DELETE http://localhost:7070/cliente/Y2R2J
+
+// --------------- Provedor ---------------
+
+### Listar todos los clientes
+GET http://localhost:7070/provedor 
+
+### Buscar un cliente dado su índice
+GET http://localhost:7070/provedor/0 
+
+### Buscar un cliente dado su ID
+GET http://localhost:7070/provedor/1 
+
+### agregar un cliente (crear al menos 5)
+POST http://localhost:7070/provedor 
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "password123",
+    "correo": "parte6@naoebom.com",
+    "intermediario": false,
+    "telefono": "1234567890",
+    "nombre": "machismo"
+  }
+
+### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
+PATCH http://localhost:7070/provedor/0IKPB
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "passZaWarudo",
+    "correo": "gio@jojo.parte3.com",
+    "intermediario": true,
+    "telefono": "3579815265",
+    "nombre": "Diorno Giovanna"
+  }
+
+### Eliminar un provedor dado su ID
+DELETE http://localhost:7070/provedor/AEU1X
+
+// --------------- vendedor ---------------
+
+### Listar todos los clientes
+GET http://localhost:7070/vendedor 
+
+### Buscar un cliente dado su índice
+GET http://localhost:7070/vendedor/0 
+
+### Buscar un cliente dado su ID
+GET http://localhost:7070/vendedor/1 
+
+### agregar un cliente (crear al menos 5)
+POST http://localhost:7070/vendedor 
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "password",
+    "correo": "jojo@dio.com",
+    "admin": true,
+    "telefono": "3579824695",
+    "nombre": "Joseh Joestar"
+  }
+
+### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
+PATCH http://localhost:7070/vendedor/B9A01
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "123",
+    "correo": "Juan.juan@juan.com",
+    "admin": false,
+    "telefono": "3579815265",
+    "nombre": "machismo"
+  }
+
+### Eliminar un cliente dado su ID
+DELETE http://localhost:7070/vendedor/B9A01
