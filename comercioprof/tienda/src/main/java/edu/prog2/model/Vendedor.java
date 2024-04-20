@@ -1,5 +1,6 @@
 package edu.prog2.model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Vendedor extends Persona{
@@ -9,25 +10,25 @@ public class Vendedor extends Persona{
     public Vendedor() {
         super();
     }
-    public Vendedor(String id, String nombre, String telefono, String correo, String password, boolean admin) {
+    public Vendedor(String id, String nombre, String telefono, String correo, String password, boolean admin) throws Exception {
         super(id, nombre, telefono, correo, password);
         setAdmin(admin);
     }
-    public Vendedor(String id, String nombre, String telefono, String correo, boolean admin) {
+    public Vendedor(String id, String nombre, String telefono, String correo, boolean admin) throws Exception {
         super(id, nombre, telefono, correo);
         setAdmin(admin);
     }
-    public Vendedor(Vendedor vendedor) {
+    public Vendedor(Vendedor vendedor) throws Exception {
         super((Persona) vendedor);
         setAdmin(vendedor.getAdmin());
     }
 
-    public Vendedor(JSONObject json) {
+    public Vendedor(JSONObject json) throws JSONException, Exception {
         super(json);
         setAdmin(json.getBoolean("admin"));
     }
 
-    public Vendedor(String id) {
+    public Vendedor(String id) throws Exception {
         super(id);
      }
 

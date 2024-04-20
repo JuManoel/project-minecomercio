@@ -1,5 +1,6 @@
 package edu.prog2.model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.prog2.helpers.Utils;
@@ -14,7 +15,7 @@ public abstract class Persona implements Format {
 
 
 
-  public Persona(String id, String nombre, String correo, String telefono, String password) {
+  public Persona(String id, String nombre, String correo, String telefono, String password) throws Exception {
     setCorreo(correo);
     setId(id);
     setNombre(nombre);
@@ -22,11 +23,11 @@ public abstract class Persona implements Format {
     setTelefono(telefono);
   }
 
-  public Persona(String id) {
+  public Persona(String id) throws Exception {
     this(id, "NN", "", "", "");
   }
 
-  public Persona(String nombre, String correo, String telefono, String password) {
+  public Persona(String nombre, String correo, String telefono, String password) throws Exception {
     setCorreo(correo);
     setId(Utils.getRandomKey(5));
     setNombre(nombre);
@@ -34,7 +35,7 @@ public abstract class Persona implements Format {
     setTelefono(telefono);
   }
 
-  public Persona(Persona persona) {
+  public Persona(Persona persona) throws Exception {
     setCorreo(persona.getCorreo());
     setId(persona.getId());
     setNombre(persona.getNombre());
@@ -47,7 +48,7 @@ public abstract class Persona implements Format {
       super();
   }
 
-  public Persona(JSONObject json){
+  public Persona(JSONObject json) throws JSONException, Exception{
     this(json.getString("id"), json.getString("nombre"), json.optString("correo"), json.getString("telefono"), json.getString("password")); //transforma de string a localdatetime
   }
 
@@ -61,7 +62,10 @@ public abstract class Persona implements Format {
   public String getId() {
       return id;
   }
-  public void setId(String id) {
+  public void setId(String id) throws Exception {
+    if(id == null || id.isBlank()){
+      throw new Exception("El ID tiene q tener algo");
+    }
       this.id = id;
   }
   public String getNombre() {
@@ -73,7 +77,10 @@ public abstract class Persona implements Format {
   public String getPassword() {
       return password;
   }
-  public void setPassword(String password) {
+  public void setPassword(String password) throws Exception {
+    if(password.length()<5){
+      throw new Exception("Tiene q tener mas de 5 caracteres");
+    }
       this.password = password;
   }
   public String getTelefono() {

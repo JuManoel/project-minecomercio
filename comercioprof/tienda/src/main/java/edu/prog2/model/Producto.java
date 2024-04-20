@@ -2,6 +2,8 @@ package edu.prog2.model;
 
 import edu.prog2.helpers.Utils;
 import java.time.LocalDate;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public final class Producto implements Format {
@@ -15,16 +17,16 @@ public final class Producto implements Format {
   private int disponible;
   private LocalDate vencimiento;
 
-  public Producto() {
+  public Producto() throws Exception {
     this(Utils.getRandomKey(5), "Producto sin descripcion", TipoProducto.OTROS, Double.MAX_VALUE, Double.MAX_VALUE, Double.MIN_VALUE, Integer.MAX_VALUE, LocalDate.now());
   }
 
-  public Producto(String id) { //nuevo constructor
+  public Producto(String id) throws Exception { //nuevo constructor
     this();
     setId(id);
   }
 
-  public Producto(String id, String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva, int disponible, LocalDate vencimiento) {
+  public Producto(String id, String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva, int disponible, LocalDate vencimiento) throws Exception {
     setId(id);
     setDescripcion(descripcion);
     setTipo(tipo);
@@ -35,15 +37,15 @@ public final class Producto implements Format {
     setVencimiento(vencimiento);
   }
 
-  public Producto(String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva, int disponible, LocalDate vencimiento) {
+  public Producto(String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva, int disponible, LocalDate vencimiento) throws Exception {
     this(Utils.getRandomKey(5), descripcion, tipo, valorBase, valorVenta, iva, disponible, vencimiento);
   }
 
-  public Producto(Producto p) {
+  public Producto(Producto p) throws Exception {
     this(p.id, p.descripcion, p.tipo, p.valorBase, p.valorVenta, p.iva, p.disponible, p.vencimiento);
   }
 
-  public Producto(JSONObject json) { //hacer ensayos de Json a Java
+  public Producto(JSONObject json) throws JSONException, Exception { //hacer ensayos de Json a Java
     this(json.getString("id"), json.getString("descripcion"), TipoProducto.valueOf(json.optString("tipo")), json.getDouble("valorBase"), json.getDouble("valorVenta"), json.getDouble("iva"), json.getInt("disponible"), LocalDate.parse(json.getString("vencimiento"))); //transforma de string a localdatetime
   }
 
@@ -51,7 +53,7 @@ public final class Producto implements Format {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(String id) throws Exception {
     if (id == null || id.isBlank()) {
       throw new NullPointerException("El ID de un producto no puede ser un valor nulo, vacío o en blanco");
     }

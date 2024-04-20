@@ -1,5 +1,6 @@
 package edu.prog2.model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Provedor extends Persona{
@@ -8,25 +9,25 @@ public class Provedor extends Persona{
         super();
     }
 
-    public Provedor(String id, String nombre, String correo, String telefono, String password, boolean intermediario) {
+    public Provedor(String id, String nombre, String correo, String telefono, String password, boolean intermediario) throws Exception {
         super(id, nombre, correo, telefono, password);
         setIntermediario(intermediario);
     }
 
-    public Provedor(String id) {
+    public Provedor(String id) throws Exception {
         super(id);
     }
 
-    public Provedor(String nombre, String correo, String telefono, String password, boolean intermediario) {
+    public Provedor(String nombre, String correo, String telefono, String password, boolean intermediario) throws Exception {
         super(nombre, correo, telefono, password);
         setIntermediario(intermediario);
     }
 
-    public Provedor(Provedor provedor) {
+    public Provedor(Provedor provedor) throws Exception {
         super((Persona) provedor);
         setIntermediario(provedor.getIntermediario());
     }
-    public Provedor(JSONObject json) {
+    public Provedor(JSONObject json) throws JSONException, Exception {
         super(json);
         setIntermediario(json.getBoolean("intermediario"));
     }

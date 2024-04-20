@@ -2,6 +2,9 @@ package edu.prog2.model;
 
 import edu.prog2.helpers.Utils;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public abstract class Transaccion implements Format {

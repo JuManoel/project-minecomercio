@@ -2,19 +2,19 @@ package edu.prog2.services;
 
 import edu.prog2.helpers.Utils;
 import edu.prog2.model.Producto;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ProductoService implements Service<Producto> {
+public class ProductoService implements IService<Producto> {
 
   private List<Producto> list;
   private final String fileName;
 
-  public ProductoService() throws IOException {
+  public ProductoService() throws JSONException, Exception {
     fileName = Utils.PATH + "Producto.json";
 
     if (Utils.fileExists(fileName)) {
@@ -45,13 +45,13 @@ public class ProductoService implements Service<Producto> {
   }
 
   @Override
-  public JSONObject get(String id) {
+  public JSONObject get(String id) throws Exception {
     int i = list.indexOf(new Producto(id));
     return i > -1 ? get(i) : null;
   }
 
   @Override
-  public Producto getItem(String id) {
+  public Producto getItem(String id) throws Exception {
     int i = list.indexOf(new Producto(id));
     return i > -1 ? list.get(i) : null;
   }
@@ -61,14 +61,14 @@ public class ProductoService implements Service<Producto> {
     try {
       JSONArray data = new JSONArray(Utils.readText(fileName));
       return new JSONObject().put("message", "ok").put("data", data);
-    } catch (IOException | JSONException e) {
+    } catch (Exception e) {
       Utils.printStackTrace(e);
       return Utils.keyValueToJson("message", "Sin acceso a datos de productos", "error", e.getMessage());
     }
   }
 
   @Override
-  public final List<Producto> load() throws IOException {
+  public final List<Producto> load() throws JSONException, Exception {
     list = new ArrayList<>();
 
     String data = Utils.readText(fileName);
@@ -125,7 +125,7 @@ public class ProductoService implements Service<Producto> {
   }
 
   @Override
-  public void refreshAll() throws IOException {
+  public void refreshAll() throws JSONException, Exception {
     list = new ArrayList<>();
     load();
   }
@@ -140,9 +140,9 @@ public class ProductoService implements Service<Producto> {
     }
     throw new Exception("No se pudo remover la persona con el ID:"+id);  }
 
-  @Override
-  public String endPoint() {
-    return "producto";
-  }
+    @Override
+    public Class<Producto> getDataType() {
+      return Producto.class;
+    }
 
 }

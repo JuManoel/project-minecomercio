@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PersonaService implements Service<Persona> {
+public class PersonaService implements IService<Persona> {
 
   private List<Persona> list;
   private final String fileName;
@@ -148,8 +148,8 @@ public class PersonaService implements Service<Persona> {
   }
 
   @Override
-  public String endPoint() {
-    return this.clase.getSimpleName().toLowerCase();
+  public Class<Persona> getDataType() {
+    return (Class<Persona>) this.clase;
   }
 
 }

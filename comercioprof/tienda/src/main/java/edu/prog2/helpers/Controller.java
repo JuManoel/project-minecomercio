@@ -7,16 +7,17 @@ import static io.javalin.apibuilder.ApiBuilder.path;
 import static io.javalin.apibuilder.ApiBuilder.post;
 
 import edu.prog2.model.TipoProducto;
-import edu.prog2.services.Service;
+import edu.prog2.services.IService;
 import io.javalin.http.Context;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 public class Controller<T> {
 
-  public Controller(final Service<T> service) {
+  public Controller(final IService<T> service) {
+    String currentPath=service.getDataType().getSimpleName().toLowerCase();
     path(
-      service.endPoint(),//isso permite pegar acessar as classes
+      currentPath,//isso permite pegar acessar as classes
       () -> {
         get("", (ctx) -> response(ctx, service.getAll()));//controla as solicitações de HTTP
 
@@ -69,7 +70,8 @@ public class Controller<T> {
    * @param service
    * @return
    */
-  private String getClassName(final Service<T> service) {
+  private String getClassName(final IService<T> service) {
+    //no voy deletar eso, sospechoso
     String serviceName = service.getClass().getSimpleName();
     int fin = serviceName.length() - 7;
     String className = serviceName.substring(0, fin).toLowerCase();

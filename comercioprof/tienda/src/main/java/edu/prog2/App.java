@@ -15,10 +15,10 @@ public final class App {
 
   public static void main(String[] args) throws Exception {
     Locale.setDefault(Locale.of("es_CO"));
-    Service<Producto> productoService = new ProductoService();
-    Service<Persona> clienteService = new PersonaService(Cliente.class);
-    Service<Persona> provedorService = new PersonaService(Provedor.class);
-    Service<Persona> vendedorService = new PersonaService(Vendedor.class);
+    IService<Producto> productoService = new ProductoService();
+    IService<Persona> clienteService = new PersonaService(Cliente.class);
+    IService<Persona> provedorService = new PersonaService(Provedor.class);
+    IService<Persona> vendedorService = new PersonaService(Vendedor.class);
     String message = String.format(
        "%sIniciando la API Rest de Ventas. Use Ctrl+C para detener la ejecución%s",
        Utils.CYAN, Utils.RESET
