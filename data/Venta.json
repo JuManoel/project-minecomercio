@@ -1,0 +1,38 @@
+[
+  {
+    "cliente": "5YQ2D",
+    "vendedor": "A798M",
+    "fechaHora": "2024-05-05T00:00",
+    "id": "DMNQC",
+    "detalle": [{
+      "producto": "LCB2M",
+      "cantidad": 1
+    }]
+  },
+  {
+    "cliente": "S8QFR",
+    "vendedor": "91V8D",
+    "fechaHora": "2024-05-05T00:00",
+    "id": "J1ZD6",
+    "detalle": [{
+      "producto": "6NTFM",
+      "cantidad": 1
+    }]
+  },
+  {
+    "cliente": "5YQ2D",
+    "vendedor": "A798M",
+    "fechaHora": "2024-05-05T00:00",
+    "id": "DJPY3",
+    "detalle": [
+      {
+        "producto": "LCB2M",
+        "cantidad": 10
+      },
+      {
+        "producto": "PVEPR",
+        "cantidad": 10
+      }
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 [
   {
-    "password": "123",
+    "password": "123456",
     "correo": "manoel.mano@gmail.com",
     "admin": true,
     "id": "91V8D",
@@ -8,7 +8,7 @@
     "nombre": "Manoel"
   },
   {
-    "password": "123",
+    "password": "123456",
     "correo": "gomez.miguel@ucaldas.co",
     "admin": false,
     "id": "A798M",

@@ -77,11 +77,8 @@ public abstract class Persona implements Format {
   public String getPassword() {
       return password;
   }
-  public void setPassword(String password) throws Exception {
-    if(password.length()<5){
-      throw new Exception("Tiene q tener mas de 5 caracteres");
-    }
-      this.password = password;
+  public void setPassword(String password){
+    this.password = password;
   }
   public String getTelefono() {
       return telefono;

@@ -1,6 +1,6 @@
 [
   {
-    "password": "123",
+    "password": "123456",
     "correo": "laura.cardona@ucaldas.edu.co",
     "credito": true,
     "id": "S8QFR",
@@ -8,9 +8,9 @@
     "nombre": "Laura"
   },
   {
-    "password": "123",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
     "correo": "Juan.juan@juan.com",
-    "credito": false,
+    "credito": true,
     "id": "5YQ2D",
     "telefono": "3579815265",
     "nombre": "Juan"
@@ -22,5 +22,13 @@
     "id": "RKYK6",
     "telefono": "3694578125",
     "nombre": "Looooko"
+  },
+  {
+    "password": "fbe1da9b434cde542bbcd768b11d628a",
+    "correo": "CarlosCuesta@ucaldas.edu.co",
+    "credito": true,
+    "id": "PI6KK",
+    "telefono": "3579824695",
+    "nombre": "Carlitos Cuesta"
   }
 ]

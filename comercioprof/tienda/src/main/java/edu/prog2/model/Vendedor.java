@@ -42,7 +42,7 @@ public class Vendedor extends Persona{
     @Override
   public String toString() {
     String str =super.toString();
-    str =String.format(
+    str+=String.format(
       "admin: %b\n"
       , getAdmin());
       return str;

@@ -1,35 +1,68 @@
 [
   {
-    "descripcion": "Queso",
-    "vencimiento": "2024-11-01",
-    "tipo": "LACTEOS",
-    "iva": 19,
-    "subtotal": 140000,
-    "valorVenta": 9000,
-    "id": "HYTLX",
-    "valorBase": 7000,
-    "disponible": 20
-  },
-  {
-    "descripcion": "Chokis por 38 gramos",
-    "vencimiento": "2024-12-15",
+    "descripcion": "Chocolatina Jet Mani Jumbo",
+    "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 20000,
-    "valorVenta": 2600,
-    "id": "739BW",
-    "valorBase": 2000,
+    "subtotal": 2.9925E7,
+    "valorVenta": 4000,
+    "valorBase": 3000,
+    "id": "PVEPR",
+    "disponible": 9975
+  },
+  {
+    "descripcion": "Boliqueso",
+    "vencimiento": "2024-12-10",
+    "tipo": "GOLOSINAS",
+    "iva": 19,
+    "subtotal": 9942000,
+    "valorVenta": 1100,
+    "valorBase": 1000,
+    "id": "LCB2M",
+    "disponible": 9942
+  },
+  {
+    "descripcion": "Queso parmesano Alpina",
+    "vencimiento": "2024-10-01",
+    "tipo": "LACTEOS",
+    "iva": 19,
+    "subtotal": 100000,
+    "valorVenta": 12000,
+    "valorBase": 10000,
+    "id": "CU12G",
     "disponible": 10
   },
   {
-    "descripcion": "Pollo",
-    "vencimiento": "2024-08-23",
-    "tipo": "CARNICOS",
+    "descripcion": "Yogurt natural vaso x 120 ml.",
+    "vencimiento": "2024-08-01",
+    "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 450000,
-    "valorVenta": 20000,
-    "id": "LQN3B",
-    "valorBase": 15000,
-    "disponible": 30
+    "subtotal": 40000,
+    "valorVenta": 5000,
+    "valorBase": 4000,
+    "id": "35G6E",
+    "disponible": 10
+  },
+  {
+    "descripcion": "Yogurt piña vaso x 120 c.c.",
+    "vencimiento": "2024-03-26",
+    "tipo": "LACTEOS",
+    "iva": 19,
+    "subtotal": 40000,
+    "valorVenta": 5000,
+    "valorBase": 4000,
+    "id": "X1SC9",
+    "disponible": 10
+  },
+  {
+    "descripcion": "Arroz Diana x libra",
+    "vencimiento": "2024-03-26",
+    "tipo": "CEREALES",
+    "iva": 19,
+    "subtotal": 8997,
+    "valorVenta": 3999,
+    "valorBase": 2999,
+    "id": "6NTFM",
+    "disponible": 3
   }
 ]

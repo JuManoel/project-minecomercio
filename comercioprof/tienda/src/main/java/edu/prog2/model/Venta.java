@@ -43,7 +43,7 @@ public final class Venta extends CompraVenta {
 
   public Venta(JSONObject json) throws JSONException, Exception {
     super(json);
-    this.cliente=new Cliente(json.getJSONObject("cliente"));
+    this.cliente=new Cliente(json.getString("cliente"));
   }
 
   public Cliente getCliente() {
@@ -59,16 +59,15 @@ public final class Venta extends CompraVenta {
 
   @Override
   public String toString() {
-    String str=super.toString();
-    str+=String.format(
-      "Cliente: \n%s\n"+
-      "Vendedor: \n%s\n"
-    , getCliente().toString(),getVendedor().toString());
-    return str;
+    JSONObject json=this.toJSONObject();
+    json.put("vendedor", this.getVendedor().getId());
+    return json.toString();
   }
 
   @Override
   public JSONObject toJSONObject() {
-    return new JSONObject(this);
+    JSONObject json=super.toJSONObject();
+    json.put("cliente", this.cliente.getId());
+    return json;
   }
 }

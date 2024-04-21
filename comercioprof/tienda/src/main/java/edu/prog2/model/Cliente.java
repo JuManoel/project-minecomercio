@@ -40,7 +40,7 @@ public class Cliente extends Persona{
     @Override
   public String toString() {
     String str =super.toString();
-    str =String.format(
+    str+=String.format(
       "credito: %b\n"
       , getCredito());
       return str;

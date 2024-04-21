@@ -132,6 +132,9 @@ public class Utils {
   }
 
   public static void writeJSON(List<?> list, String fileName) throws IOException {
+    for (Object object : list) {
+      System.out.println(object.toString());
+    }
     JSONArray jsonArray = new JSONArray(list);
     writeText(jsonArray.toString(2), fileName);
   }

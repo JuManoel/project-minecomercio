@@ -75,7 +75,14 @@ public class Detalle implements Format{
     }
     @Override   
     public JSONObject toJSONObject() {
-        return new JSONObject(this);
+        String json="""
+                {
+                    producto: %s,
+                    cantidad: %d
+                }
+                """;
+        json=json.format(json, this.producto.getId(),this.getCantidad());
+        return new JSONObject(json);
     }
 
     

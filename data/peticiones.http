@@ -21,25 +21,27 @@ POST http://localhost:7070/producto
 Content-Type: application/json; charset=utf-8
 
 {
-    "descripcion": "Pollo",
-    "tipo": "CARNICOS",
-    "valorBase": 15000,
-    "valorVenta": 20000,
+    "descripcion": "Salsa Rozada",
+    "tipo": "CONDIMENTOS",
+    "valorBase": 10000,
+    "valorVenta": 12500,
     "iva": 19,
-    "disponible": 30,
-    "vencimiento": "2024-08-23"
+    "disponible": 50,
+    "vencimiento": "2025-04-23"
 }
 
 ### actualizar los datos de un producto (buscar por ID y modificar algunos o todos los datos)
-PATCH http://localhost:7070/producto/NN 
+PATCH http://localhost:7070/producto/J2IZ9 
 Content-Type: application/json; charset=utf-8
 
 {
-    "descripcion": "Colombiana x 300 c. c.",
-    "tipo": "BEBIDAS",
-    "precio": 1000,
-    "disponible": 15,
-    "vence": "2024-11-26"
+    "descripcion": "Salsa Rozada",
+    "tipo": "CONDIMENTOS",
+    "valorBase": 10000,
+    "valorVenta": 13000,
+    "iva": 19,
+    "disponible": 50,
+    "vencimiento": "2025-04-23"
 }
 
 ### Eliminar un producto dado su ID
@@ -61,11 +63,11 @@ POST http://localhost:7070/cliente
 Content-Type: application/json; charset=utf-8
 
 {
-    "password": "password",
-    "correo": "jojo@dio.com",
+    "password": "senha Segura",
+    "correo": "CarlosCuesta@ucaldas.edu.co",
     "credito": true,
     "telefono": "3579824695",
-    "nombre": "Joseh Joestar"
+    "nombre": "Carlitos Cuesta"
   }
 
 ### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
@@ -73,12 +75,12 @@ PATCH http://localhost:7070/cliente/5YQ2D
 Content-Type: application/json; charset=utf-8
 
 {
-    "password": "123",
-    "correo": "Juan.juan@juan.com",
-    "credito": false,
-    "telefono": "3579815265",
-    "nombre": "Juan"
-  }
+      "password": "123456",
+      "correo": "Juan.juan@juan.com",
+      "credito": true,
+      "telefono": "3579815265",
+      "nombre": "Juan"
+    }
 
 ### Eliminar un cliente dado su ID
 DELETE http://localhost:7070/cliente/Y2R2J
@@ -107,15 +109,15 @@ Content-Type: application/json; charset=utf-8
   }
 
 ### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
-PATCH http://localhost:7070/provedor/0IKPB
+PATCH http://localhost:7070/provedor/PV204
 Content-Type: application/json; charset=utf-8
 
 {
-    "password": "passZaWarudo",
-    "correo": "gio@jojo.parte3.com",
-    "intermediario": true,
+    "password": "loko123",
+    "correo": "lokolokoloko",
+    "intermediario": false,
     "telefono": "3579815265",
-    "nombre": "Diorno Giovanna"
+    "nombre": "Loko de Loko"
   }
 
 ### Eliminar un provedor dado su ID
@@ -158,3 +160,43 @@ Content-Type: application/json; charset=utf-8
 
 ### Eliminar un cliente dado su ID
 DELETE http://localhost:7070/vendedor/B9A01
+
+
+
+#-----------------Venta-------------------
+
+### Listar todos los clientes
+GET http://localhost:7070/venta 
+
+### Buscar un cliente dado su índice
+GET http://localhost:7070/venta/0 
+
+### Buscar un cliente dado su ID
+GET http://localhost:7070/venta/1 
+
+### agregar un cliente (crear al menos 5)
+POST http://localhost:7070/venta 
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "password",
+    "correo": "jojo@dio.com",
+    "admin": true,
+    "telefono": "3579824695",
+    "nombre": "Joseh Joestar"
+  }
+
+### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
+PATCH http://localhost:7070/venta/B9A01
+Content-Type: application/json; charset=utf-8
+
+{
+    "password": "123",
+    "correo": "Juan.juan@juan.com",
+    "admin": false,
+    "telefono": "3579815265",
+    "nombre": "machismo"
+  }
+
+### Eliminar un cliente dado su ID
+DELETE http://localhost:7070/venta/B9A01

@@ -31,7 +31,6 @@ public class PersonaService implements IService<Persona> {
   @Override
   public JSONObject add(String strJson) throws Exception {
     JSONObject json = new JSONObject(strJson);
-
     json.put("id", Utils.getRandomKey(5));
     Persona p = clase.getConstructor(JSONObject.class).newInstance(json);
     p.setPassword(Utils.MD5(p.getPassword()));

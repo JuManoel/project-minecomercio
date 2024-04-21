@@ -13,7 +13,15 @@ public abstract class CompraVenta extends Transaccion{
 
     public CompraVenta() {
         super();
+        detalles=new ArrayList<>();
     }
+
+    public CompraVenta(String id, Vendedor vendedor, LocalDateTime fechaHora) throws Exception {
+        super(id,fechaHora);
+        this.setVendedor(vendedor);
+        setDetalles(detalles);
+    }
+
 
     public CompraVenta(String id, Vendedor vendedor, LocalDateTime fechaHora, ArrayList<Detalle> detalles) throws Exception {
         super(id,fechaHora);
@@ -25,17 +33,22 @@ public abstract class CompraVenta extends Transaccion{
         super();
         setVendedor(vendedor);
         setFechaHora(localDateTime);
+        detalles=new ArrayList<>();
     }
 
     public CompraVenta(JSONObject json) throws JSONException, Exception {
-        super(json);
-        JSONArray jsonArray= json.optJSONArray("detalles");
+        setId(json.getString("id"));
+        setVendedor(new Vendedor(json.getString("vendedor")));
+        setFechaHora(LocalDateTime.parse(json.getString("fechaHora")));
+        detalles=new ArrayList<>();
+        JSONArray jsonArray= json.optJSONArray("detalle");
         for (int i = 0; i < jsonArray.length(); i++) {
-            Detalle detalle=new Detalle(jsonArray.getJSONObject(i));
-            detalles.add(detalle);
+            Detalle detalle=new Detalle();
+            detalle.setCantidad(jsonArray.getJSONObject(i).getInt("cantidad"));
+            detalle.setProducto(new Producto(jsonArray.getJSONObject(i).getString("producto")));
+            this.detalles.add(detalle);
         }
-
-        setVendedor(new Vendedor(json.getJSONObject("vendedor")));
+        
     }
 
     public ArrayList<Detalle> getDetalles() {
@@ -67,6 +80,21 @@ public abstract class CompraVenta extends Transaccion{
         }
         return total;
     }
-
-
+    @Override
+    public JSONObject toJSONObject() {
+        JSONObject json=super.toJSONObject();
+        json.put("vendedor", this.vendedor.getId());
+        String detalles="[";
+        for (Detalle detalle : this.detalles) {
+            detalles+=detalle.toJSONObject().toString();
+        }
+        detalles+="]";
+        json.put("detalle", detalles);
+        return json;
+    }
+    @Override
+    public String toString() {
+        String str=this.toJSONObject().toString();
+        return str;
+    }
 }

@@ -43,6 +43,7 @@ public class Provedor extends Persona{
     @Override
   public String toString() {
     String str =super.toString();
+    str+="intermediario: "+this.intermediario+"\n";
       return str;
   }
 }

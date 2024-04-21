@@ -40,10 +40,10 @@ public abstract class Transaccion implements Format {
     return fechaHora;
   }
   public final void setFechaHora(LocalDateTime fechaHora) {
-    LocalDateTime aux = LocalDateTime.parse("2024-01-01T00:00:00");
+    LocalDateTime aux = LocalDateTime.parse("2024-01-01T00:00:00");/*
     if (fechaHora.isBefore(aux)) {
       throw new IllegalArgumentException("Fecha inferior a 2024-01-01 00:00");
-    }
+    }*/
     this.fechaHora = fechaHora;
   }
   public String getId() {
@@ -98,6 +98,15 @@ public abstract class Transaccion implements Format {
 
   @Override
   public JSONObject toJSONObject() {
-    return new JSONObject(this);
+    String strJson;
+    strJson="""
+      {
+        id:"%s",
+        fecha: "%s"
+      }
+        """;
+      strJson=String.format(strJson, this.id,this.fechaHora.toString());
+      System.out.println(strJson);
+      return new JSONObject(strJson);
   }
 }
