@@ -34,5 +34,33 @@
         "cantidad": 10
       }
     ]
+  },
+  {
+    "cliente": "PI6KK",
+    "vendedor": "A798M",
+    "fechaHora": "2024-05-05T00:00",
+    "id": "4HTZQ",
+    "detalle": [
+      {
+        "producto": "LCB2M",
+        "cantidad": 1
+      },
+      {
+        "producto": "CU12G",
+        "cantidad": 2
+      },
+      {
+        "producto": "35G6E",
+        "cantidad": 3
+      },
+      {
+        "producto": "X1SC9",
+        "cantidad": 4
+      },
+      {
+        "producto": "6NTFM",
+        "cantidad": 3
+      }
+    ]
   }
 ]

@@ -23,7 +23,7 @@ import edu.prog2.model.Vendedor;
 
 public class CompraVentaService implements IService{
 
-    private List<CompraVenta> list;
+    private List<JSONObject> list;
     private final String fileName;
     private final Class<? extends CompraVenta> clase;
 
@@ -42,7 +42,14 @@ public class CompraVentaService implements IService{
         JSONObject json = new JSONObject(strJson);
         json.put("id", Utils.getRandomKey(5));
         CompraVenta p = clase.getConstructor(JSONObject.class).newInstance(json);
-        System.out.println(json.toString());
+        for (JSONObject jsonObject : list) {
+            if(jsonObject.getString("id").equals(json.getString("id"))){
+                throw new Exception("Ya existe elemento con el ID");
+            }
+        }
+        list.add(json);
+        Utils.writeJSON(list, fileName);
+        /*
         try {
             // Ler o conteúdo atual do arquivo JSON
             FileReader fileReader = new FileReader(fileName);
@@ -60,17 +67,15 @@ public class CompraVentaService implements IService{
             fileWriter.write(jsonArray.toString(2)); // O segundo argumento (2) é para a formatação de espaços
             fileWriter.close();
 
-            System.out.println("String JSON adicionada com sucesso ao arquivo JSON.");
-
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         return new JSONObject().put("message", "ok").put("data", p.toJSONObject());
     }
 
     @Override
     public JSONObject get(int index) {
-        return list.get(index).toJSONObject();
+        return list.get(index);
     }
 
     @Override
@@ -98,14 +103,14 @@ public class CompraVentaService implements IService{
     }
 
     @Override
-    public List<CompraVenta> load() throws Exception {
+    public List<JSONObject> load() throws Exception {
         list = new ArrayList<>();
         String data = Utils.readText(fileName);
         JSONArray jsonArr = new JSONArray(data);
 
         for (int i = 0; i < jsonArr.length(); i++) {
-        JSONObject jsonObj = jsonArr.getJSONObject(i);
-        list.add(this.clase.getConstructor(JSONObject.class).newInstance(jsonObj));
+            JSONObject jsonObj = jsonArr.getJSONObject(i);
+            list.add(jsonObj);
         }
 
         return list;
@@ -115,9 +120,10 @@ public class CompraVentaService implements IService{
     public JSONObject update(String id, String strJson) throws Exception {
        // buscar la persona que se debe actualizar
         CompraVenta compraVenta =getItem(id);
-        int i = list.indexOf(compraVenta);
+        JSONObject jsonR=compraVenta.toJSONObject();
+        int i = list.indexOf(jsonR);
 
-        if (compraVenta == null) {
+        if (jsonR == null) {
             String mensaje = String.format("No existe un %s con la identificación %s", clase.getSimpleName(), id);
             throw new NullPointerException(mensaje);
         }
@@ -137,7 +143,7 @@ public class CompraVentaService implements IService{
 
         // utilizar aux para actualizar la persona
         CompraVenta cv = clase.getConstructor(JSONObject.class).newInstance(aux);
-        list.set(i, cv);
+        list.set(i, cv.toJSONObject());
         // actualizar el archivo
         Utils.writeJSON(list, fileName);
         // devolver la instancia con los cambios realizados
@@ -153,7 +159,8 @@ public class CompraVentaService implements IService{
     @Override
     public JSONObject remove(String id) throws Exception {
         CompraVenta compraVenta = getItem(id);
-        if(this.list.remove(compraVenta)){
+        JSONObject json=compraVenta.toJSONObject();
+        if(this.list.remove(json)){
           Utils.writeJSON(list, fileName);
         // devolver la instancia con los cambios realizados
           return new JSONObject().put("message", "ok").put("data", compraVenta.toJSONObject());

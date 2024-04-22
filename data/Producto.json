@@ -4,8 +4,8 @@
     "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 2.9925E7,
     "valorVenta": 4000,
+    "subtotal": 2.9925E7,
     "valorBase": 3000,
     "id": "PVEPR",
     "disponible": 9975
@@ -15,54 +15,54 @@
     "vencimiento": "2024-12-10",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 9942000,
     "valorVenta": 1100,
+    "subtotal": 9941000,
     "valorBase": 1000,
     "id": "LCB2M",
-    "disponible": 9942
+    "disponible": 9941
   },
   {
     "descripcion": "Queso parmesano Alpina",
     "vencimiento": "2024-10-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 100000,
     "valorVenta": 12000,
+    "subtotal": 80000,
     "valorBase": 10000,
     "id": "CU12G",
-    "disponible": 10
+    "disponible": 8
   },
   {
     "descripcion": "Yogurt natural vaso x 120 ml.",
     "vencimiento": "2024-08-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 40000,
     "valorVenta": 5000,
+    "subtotal": 28000,
     "valorBase": 4000,
     "id": "35G6E",
-    "disponible": 10
+    "disponible": 7
   },
   {
     "descripcion": "Yogurt piña vaso x 120 c.c.",
     "vencimiento": "2024-03-26",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 40000,
     "valorVenta": 5000,
+    "subtotal": 24000,
     "valorBase": 4000,
     "id": "X1SC9",
-    "disponible": 10
+    "disponible": 6
   },
   {
     "descripcion": "Arroz Diana x libra",
     "vencimiento": "2024-03-26",
     "tipo": "CEREALES",
     "iva": 19,
-    "subtotal": 8997,
     "valorVenta": 3999,
+    "subtotal": 0,
     "valorBase": 2999,
     "id": "6NTFM",
-    "disponible": 3
+    "disponible": 0
   }
 ]
