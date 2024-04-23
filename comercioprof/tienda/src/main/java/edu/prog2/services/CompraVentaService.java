@@ -1,82 +1,62 @@
 package edu.prog2.services;
 
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jetty.util.ssl.SslContextFactory.Client;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
+
 
 import edu.prog2.helpers.Utils;
-import edu.prog2.model.Cliente;
-import edu.prog2.model.CompraVenta;
-import edu.prog2.model.Detalle;
-import edu.prog2.model.Producto;
-import edu.prog2.model.Vendedor;
+import edu.prog2.model.*;
 
-public class CompraVentaService implements IService{
 
-    private List<JSONObject> list;
+public class CompraVentaService extends TransaccionService{
+
+    private Class<? extends Persona> receptor;
+    private Class<? extends Persona> vendedor;
+    private PersonaService serV;
+    private PersonaService serR;
     private final String fileName;
     private final Class<? extends CompraVenta> clase;
+    private String compraVenta;
 
-    public CompraVentaService(Class<? extends CompraVenta> clase) throws Exception {
-        this.clase = clase;
-        fileName = Utils.PATH + clase.getSimpleName() + ".json";
+    public CompraVentaService(Class<? extends Persona> receptor, Class<? extends Persona> vendedor) throws Exception {
+        this.vendedor=vendedor;
+        this.receptor=receptor;
+        this.productoService=new ProductoService();
+        serV=new PersonaService(Vendedor.class);
+        if(this.receptor.equals(Cliente.class)){
+            compraVenta="venta";
+            this.clase=Venta.class;
+            serR=new PersonaService(Cliente.class);
+        }else if(this.receptor.equals(Provedor.class)){
+            compraVenta="compra";
+            this.clase=Compra.class;
+            serR=new PersonaService(Provedor.class);
+        }else{
+            throw new Exception("Intentas crear una cosa que no existe");
+        }
+        fileName = Utils.PATH + compraVenta + ".json";
         if (Utils.fileExists(fileName)) {
             load();
         } else {
             list = new ArrayList<>();
         }
     }
-
     @Override
     public JSONObject add(String strJson) throws Exception {
-        JSONObject json = new JSONObject(strJson);
-        json.put("id", Utils.getRandomKey(5));
-        CompraVenta p = clase.getConstructor(JSONObject.class).newInstance(json);
-        for (JSONObject jsonObject : list) {
-            if(jsonObject.getString("id").equals(json.getString("id"))){
-                throw new Exception("Ya existe elemento con el ID");
-            }
-        }
-        list.add(json);
+        CompraVenta cv=creatCompraVenta(strJson);
+        list.add(cv);
         Utils.writeJSON(list, fileName);
-        /*
-        try {
-            // Ler o conteúdo atual do arquivo JSON
-            FileReader fileReader = new FileReader(fileName);
-            JSONTokener tokener = new JSONTokener(fileReader);
-            JSONArray jsonArray = new JSONArray(tokener);
-            fileReader.close();
-
-            // Converter a string JSON para um objeto JSON
-
-            // Adicionar o novo objeto JSON ao array existente
-            jsonArray.put(json);
-
-            // Escrever o conteúdo atualizado de volta no arquivo JSON
-            FileWriter fileWriter = new FileWriter(fileName);
-            fileWriter.write(jsonArray.toString(2)); // O segundo argumento (2) é para a formatação de espaços
-            fileWriter.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        return new JSONObject().put("message", "ok").put("data", p.toJSONObject());
+        return new JSONObject().put("message", "ok").put("data", cv.toJSONObject());
     }
 
-    @Override
-    public JSONObject get(int index) {
-        return list.get(index);
-    }
 
     @Override
     public JSONObject get(String id) throws Exception {
@@ -88,7 +68,8 @@ public class CompraVentaService implements IService{
     @Override
     public CompraVenta getItem(String id) throws Exception {
         JSONObject json= get(id);
-        return this.clase.getConstructor(JSONObject.class).newInstance(json);
+        CompraVenta cv=creatCompraVenta(json.toString());
+        return cv;
     }
 
     @Override
@@ -103,51 +84,93 @@ public class CompraVentaService implements IService{
     }
 
     @Override
-    public List<JSONObject> load() throws Exception {
+    public List<Transaccion> load() throws Exception {
+        this.productoService=new ProductoService();
         list = new ArrayList<>();
         String data = Utils.readText(fileName);
         JSONArray jsonArr = new JSONArray(data);
-
+        CompraVenta cv;
         for (int i = 0; i < jsonArr.length(); i++) {
             JSONObject jsonObj = jsonArr.getJSONObject(i);
-            list.add(jsonObj);
+            if(compraVenta.equals("compra")){
+                String id=jsonObj.getString("id");
+                Vendedor v=new Vendedor(serV.get(jsonObj.getString("vendedor")));
+                Provedor pro = new Provedor(serR.get(jsonObj.getString("provedor")));
+                LocalDateTime fecha = LocalDateTime.parse(jsonObj.getString("fechaHora"));
+                JSONArray de=jsonObj.getJSONArray("detalle");
+                ArrayList<Detalle> d=new ArrayList<>();
+                for (int j = 0; j < de.length(); j++) {
+                    JSONObject jsonObject=de.getJSONObject(j);
+                    Producto p=productoService.getItem(jsonObject.getString("producto"));
+                    d.add(new Detalle(p,jsonObject.getInt("cantidad")));
+                }
+
+                cv=new Compra(id,pro,v,fecha,d);
+            }else{
+                String id=jsonObj.getString("id");
+                Vendedor v=new Vendedor(serV.get(jsonObj.getJSONObject("vendedor").getString("id")));
+                Cliente c = new Cliente(serR.get(jsonObj.getJSONObject("cliente").getString("id")));
+                LocalDateTime fecha = LocalDateTime.parse(jsonObj.getString("fechaHora"));
+                JSONArray de=jsonObj.getJSONArray("detalle");
+                ArrayList<Detalle> d=new ArrayList<>();
+                for (int j = 0; j < de.length(); j++) {
+                    JSONObject jsonObject=de.getJSONObject(j);
+                    Producto p=productoService.getItem(jsonObject.getString("producto"));
+                    d.add(new Detalle(p,jsonObject.getInt("cantidad")));
+                }
+                cv=new Venta(id,c,v,fecha,d);
+
+            }
+            list.add(cv);
         }
 
         return list;
     }
-
+    
     @Override
     public JSONObject update(String id, String strJson) throws Exception {
-       // buscar la persona que se debe actualizar
-        CompraVenta compraVenta =getItem(id);
-        JSONObject jsonR=compraVenta.toJSONObject();
-        int i = list.indexOf(jsonR);
-
-        if (jsonR == null) {
-            String mensaje = String.format("No existe un %s con la identificación %s", clase.getSimpleName(), id);
-            throw new NullPointerException(mensaje);
-        }
-
-        // crear un objeto JSON con las propiedades del objeto a actualizar
-        JSONObject aux = compraVenta.toJSONObject();
-        // iterar sobre las propiedades del objeto json recibido como argumento
-        JSONObject json = new JSONObject(strJson);
-
-        JSONArray propiedades = json.names();
-        for (int k = 0; k < propiedades.length(); k++) {
-            // asignar a aux los nuevos valores de las propiedades dadas
-            String propiedad = propiedades.getString(k);
-            Object valor = json.get(propiedad);
-            aux.put(propiedad, valor);
-        }
-
-        // utilizar aux para actualizar la persona
-        CompraVenta cv = clase.getConstructor(JSONObject.class).newInstance(aux);
-        list.set(i, cv.toJSONObject());
+        CompraVenta cv = creatCompraVenta(strJson);
+        int i = list.indexOf(cv);
+        list.set(i, cv);
         // actualizar el archivo
         Utils.writeJSON(list, fileName);
         // devolver la instancia con los cambios realizados
         return new JSONObject().put("message", "ok").put("data", cv.toJSONObject());
+    }
+    private CompraVenta creatCompraVenta(String strJson) throws Exception {
+        CompraVenta cv;
+        JSONObject json = new JSONObject(strJson);
+        json.put("id", Utils.getRandomKey(5));
+        ArrayList<Detalle> detalles=new ArrayList<>();
+        JSONArray jsonArray=json.getJSONArray("detalle");
+        Producto p;
+        System.out.println(jsonArray.toString());
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject=jsonArray.getJSONObject(i);
+            p=this.productoService.getItem(jsonObject.getString("producto"));
+            detalles.add(new Detalle(p,jsonObject.getInt("cantidad")));
+            
+        }
+        if(compraVenta.equals("venta")){
+            cv=new Venta(new Cliente(this.serR.get(json.getString("cliente"))),new Vendedor(serV.get(json.getString("vendedor"))),LocalDateTime.parse(json.getString("fechaHora")),detalles);            
+        }else if(compraVenta.equals("compra")){
+            cv=new Compra(new Provedor(this.serR.get(json.getString("provedor"))),new Vendedor(serV.get(json.getString("vendedor"))),LocalDateTime.parse(json.getString("fechaHora")),detalles);
+        }else{
+            throw new Exception("No existe ese tipo de transacion");
+        }
+        for (int i = 0; i < cv.getDetalles().size(); i++) {
+            Producto pro = cv.getDetalles().get(i).getProducto();
+            productoService.update(pro.getId(), pro.toJSONObject().toString());
+            System.out.println(json.toString());
+            if(compraVenta.equals("compra")){
+                pro.setDisponible(pro.getDisponible()+cv.getDetalles().get(i).getCantidad());
+            }else{
+                pro.setDisponible(pro.getDisponible()-cv.getDetalles().get(i).getCantidad());
+            }
+            productoService.update(pro.getId(), pro.toJSONObject().toString());
+        }
+        cv.setId(json.getString("id"));
+        return cv;
     }
 
     @Override
@@ -159,8 +182,7 @@ public class CompraVentaService implements IService{
     @Override
     public JSONObject remove(String id) throws Exception {
         CompraVenta compraVenta = getItem(id);
-        JSONObject json=compraVenta.toJSONObject();
-        if(this.list.remove(json)){
+        if(this.list.remove(compraVenta)){
           Utils.writeJSON(list, fileName);
         // devolver la instancia con los cambios realizados
           return new JSONObject().put("message", "ok").put("data", compraVenta.toJSONObject());

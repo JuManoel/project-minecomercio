@@ -1,66 +1,53 @@
-[
-  {
-    "cliente": "5YQ2D",
-    "vendedor": "A798M",
-    "fechaHora": "2024-05-05T00:00",
-    "id": "DMNQC",
-    "detalle": [{
-      "producto": "LCB2M",
+[{
+  "cliente": {
+    "password": "fbe1da9b434cde542bbcd768b11d628a",
+    "correo": "CarlosCuesta@ucaldas.edu.co",
+    "credito": true,
+    "id": "PI6KK",
+    "telefono": "3579824695",
+    "nombre": "Carlitos Cuesta"
+  },
+  "vendedor": {
+    "password": "123456",
+    "correo": "manoel.mano@gmail.com",
+    "admin": true,
+    "id": "91V8D",
+    "telefono": "3216549870",
+    "nombre": "Manoel"
+  },
+  "total": 13000,
+  "fechaHora": "2024-04-23T00:00",
+  "detalles": [
+    {
+      "producto": {
+        "descripcion": "Yogurt piña vaso x 120 c.c.",
+        "vencimiento": "2024-03-26",
+        "tipo": "LACTEOS",
+        "iva": 19,
+        "valorVenta": 5000,
+        "subtotal": 56000,
+        "id": "X1SC9",
+        "valorBase": 4000,
+        "disponible": 14
+      },
+      "subTotal": 5000,
       "cantidad": 1
-    }]
-  },
-  {
-    "cliente": "S8QFR",
-    "vendedor": "91V8D",
-    "fechaHora": "2024-05-05T00:00",
-    "id": "J1ZD6",
-    "detalle": [{
-      "producto": "6NTFM",
-      "cantidad": 1
-    }]
-  },
-  {
-    "cliente": "5YQ2D",
-    "vendedor": "A798M",
-    "fechaHora": "2024-05-05T00:00",
-    "id": "DJPY3",
-    "detalle": [
-      {
-        "producto": "LCB2M",
-        "cantidad": 10
+    },
+    {
+      "producto": {
+        "descripcion": "Chocolatina Jet Mani Jumbo",
+        "vencimiento": "2024-12-12",
+        "tipo": "GOLOSINAS",
+        "iva": 19,
+        "valorVenta": 4000,
+        "subtotal": 141000,
+        "id": "PVEPR",
+        "valorBase": 3000,
+        "disponible": 47
       },
-      {
-        "producto": "PVEPR",
-        "cantidad": 10
-      }
-    ]
-  },
-  {
-    "cliente": "PI6KK",
-    "vendedor": "A798M",
-    "fechaHora": "2024-05-05T00:00",
-    "id": "4HTZQ",
-    "detalle": [
-      {
-        "producto": "LCB2M",
-        "cantidad": 1
-      },
-      {
-        "producto": "CU12G",
-        "cantidad": 2
-      },
-      {
-        "producto": "35G6E",
-        "cantidad": 3
-      },
-      {
-        "producto": "X1SC9",
-        "cantidad": 4
-      },
-      {
-        "producto": "6NTFM",
-        "cantidad": 3
-      }
-    ]
-  }
-]
+      "subTotal": 8000,
+      "cantidad": 2
+    }
+  ],
+  "id": "U1NON"
+}]

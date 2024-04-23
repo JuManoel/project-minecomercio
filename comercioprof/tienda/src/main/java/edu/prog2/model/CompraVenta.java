@@ -61,6 +61,7 @@ public abstract class CompraVenta extends Transaccion{
     }
 
     public void setDetalles(ArrayList<Detalle> detalles) {
+        this.detalles=new ArrayList<>();
         for (Detalle detalle : detalles) {
             this.detalles.add(detalle);
         }

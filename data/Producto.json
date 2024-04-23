@@ -5,10 +5,10 @@
     "tipo": "GOLOSINAS",
     "iva": 19,
     "valorVenta": 4000,
-    "subtotal": 2.9925E7,
-    "valorBase": 3000,
+    "subtotal": 141000,
     "id": "PVEPR",
-    "disponible": 9975
+    "valorBase": 3000,
+    "disponible": 47
   },
   {
     "descripcion": "Boliqueso",
@@ -16,10 +16,10 @@
     "tipo": "GOLOSINAS",
     "iva": 19,
     "valorVenta": 1100,
-    "subtotal": 9941000,
-    "valorBase": 1000,
+    "subtotal": 29000,
     "id": "LCB2M",
-    "disponible": 9941
+    "valorBase": 1000,
+    "disponible": 29
   },
   {
     "descripcion": "Queso parmesano Alpina",
@@ -27,10 +27,10 @@
     "tipo": "LACTEOS",
     "iva": 19,
     "valorVenta": 12000,
-    "subtotal": 80000,
-    "valorBase": 10000,
+    "subtotal": 480000,
     "id": "CU12G",
-    "disponible": 8
+    "valorBase": 10000,
+    "disponible": 48
   },
   {
     "descripcion": "Yogurt natural vaso x 120 ml.",
@@ -38,10 +38,10 @@
     "tipo": "LACTEOS",
     "iva": 19,
     "valorVenta": 5000,
-    "subtotal": 28000,
-    "valorBase": 4000,
+    "subtotal": 40000,
     "id": "35G6E",
-    "disponible": 7
+    "valorBase": 4000,
+    "disponible": 10
   },
   {
     "descripcion": "Yogurt piña vaso x 120 c.c.",
@@ -49,10 +49,10 @@
     "tipo": "LACTEOS",
     "iva": 19,
     "valorVenta": 5000,
-    "subtotal": 24000,
-    "valorBase": 4000,
+    "subtotal": 56000,
     "id": "X1SC9",
-    "disponible": 6
+    "valorBase": 4000,
+    "disponible": 14
   },
   {
     "descripcion": "Arroz Diana x libra",
@@ -60,9 +60,9 @@
     "tipo": "CEREALES",
     "iva": 19,
     "valorVenta": 3999,
-    "subtotal": 0,
-    "valorBase": 2999,
+    "subtotal": 38987,
     "id": "6NTFM",
-    "disponible": 0
+    "valorBase": 2999,
+    "disponible": 13
   }
 ]

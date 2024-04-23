@@ -19,8 +19,10 @@ public final class App {
     IService<Persona> clienteService = new PersonaService(Cliente.class);
     IService<Persona> provedorService = new PersonaService(Provedor.class);
     IService<Persona> vendedorService = new PersonaService(Vendedor.class);
+    /*
     IService<CompraVenta> ventaService = new CompraVentaService(Venta.class);
     IService<CompraVenta> compraService = new CompraVentaService(Compra.class);
+    */
     String message = String.format(
        "%sIniciando la API Rest de Ventas. Use Ctrl+C para detener la ejecución%s",
        Utils.CYAN, Utils.RESET
@@ -58,9 +60,9 @@ public final class App {
           new Controller<>(productoService);
           new Controller<>(clienteService);
           new Controller<>(vendedorService);
-          new Controller<>(provedorService);
+          new Controller<>(provedorService);/*
           new Controller<>(compraService);
-          new Controller<>(ventaService);
+          new Controller<>(ventaService);*/
       });
    }  )
     .start(7070)

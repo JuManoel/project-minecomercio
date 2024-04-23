@@ -71,7 +71,6 @@ public final class Pruebas2 {
     clientes = new PersonaService(Cliente.class);
     vendedores = new PersonaService(Vendedor.class);
     proveedores=new PersonaService(Provedor.class);
-    ventas = new CompraVentaService(Venta.class);
     System.out.println("Inicializadas las instancias xService");
   }
 
@@ -157,6 +156,7 @@ public final class Pruebas2 {
       System.out.println(listV.get(i));
     }
     vendedor=(Vendedor)listV.get(Keyboard.readInt("Selecione el Vendedor (Index) "));
+    ventas = new CompraVentaService(Cliente.class,Vendedor.class);
     auxFor=Keyboard.readInt("Cuantos Productos vas a Compra r");
     for (int i = 0; i < auxFor; i++) {
       for(int j=0;j<listP.size();j++){
