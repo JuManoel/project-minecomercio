@@ -145,7 +145,6 @@ public class PersonaService implements IService<Persona> {
     throw new Exception("No se pudo remover la persona con el ID:"+id);
 
   }
-
   @Override
   public Class<Persona> getDataType() {
     return (Class<Persona>) this.clase;

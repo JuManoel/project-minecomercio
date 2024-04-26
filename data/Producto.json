@@ -5,10 +5,10 @@
     "tipo": "GOLOSINAS",
     "iva": 19,
     "valorVenta": 4000,
-    "subtotal": 141000,
+    "subtotal": 135000,
     "id": "PVEPR",
     "valorBase": 3000,
-    "disponible": 47
+    "disponible": 45
   },
   {
     "descripcion": "Boliqueso",
@@ -49,10 +49,10 @@
     "tipo": "LACTEOS",
     "iva": 19,
     "valorVenta": 5000,
-    "subtotal": 56000,
+    "subtotal": 52000,
     "id": "X1SC9",
     "valorBase": 4000,
-    "disponible": 14
+    "disponible": 13
   },
   {
     "descripcion": "Arroz Diana x libra",

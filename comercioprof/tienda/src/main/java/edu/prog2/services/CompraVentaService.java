@@ -44,6 +44,7 @@ public class CompraVentaService extends TransaccionService{
         }
         fileName = Utils.PATH + compraVenta + ".json";
         if (Utils.fileExists(fileName)) {
+            System.out.println(fileName);
             load();
         } else {
             list = new ArrayList<>();
@@ -108,14 +109,15 @@ public class CompraVentaService extends TransaccionService{
                 cv=new Compra(id,pro,v,fecha,d);
             }else{
                 String id=jsonObj.getString("id");
-                Vendedor v=new Vendedor(serV.get(jsonObj.getJSONObject("vendedor").getString("id")));
-                Cliente c = new Cliente(serR.get(jsonObj.getJSONObject("cliente").getString("id")));
+                Vendedor v=new Vendedor(jsonObj.getJSONObject("vendedor"));
+                System.out.println(jsonObj.toString());
+                Cliente c = new Cliente(jsonObj.getJSONObject("cliente"));
                 LocalDateTime fecha = LocalDateTime.parse(jsonObj.getString("fechaHora"));
-                JSONArray de=jsonObj.getJSONArray("detalle");
+                JSONArray de=jsonObj.getJSONArray("detalles");
                 ArrayList<Detalle> d=new ArrayList<>();
                 for (int j = 0; j < de.length(); j++) {
                     JSONObject jsonObject=de.getJSONObject(j);
-                    Producto p=productoService.getItem(jsonObject.getString("producto"));
+                    Producto p=productoService.getItem(jsonObject.getJSONObject("producto").getString("id"));
                     d.add(new Detalle(p,jsonObject.getInt("cantidad")));
                 }
                 cv=new Venta(id,c,v,fecha,d);

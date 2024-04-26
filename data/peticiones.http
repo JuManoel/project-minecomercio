@@ -179,13 +179,21 @@ POST http://localhost:7070/venta
 Content-Type: application/json; charset=utf-8
 
 {
-    "password": "password",
-    "correo": "jojo@dio.com",
-    "admin": true,
-    "telefono": "3579824695",
-    "nombre": "Joseh Joestar"
-  }
-
+      "cliente":"PI6KK",
+      "vendedor":"91V8D" ,
+      "total": 13000,
+      "fechaHora": "2024-04-23T00:00",
+      "detalle": [
+        {
+          "producto": "X1SC9",
+          "cantidad": 1
+        },
+        {
+          "producto":"PVEPR",
+          "cantidad": 2
+        }
+      ]
+    }
 ### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
 PATCH http://localhost:7070/venta/B9A01
 Content-Type: application/json; charset=utf-8

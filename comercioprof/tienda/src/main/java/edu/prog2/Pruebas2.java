@@ -8,18 +8,15 @@ import edu.prog2.model.Producto;
 import edu.prog2.model.Provedor;
 import edu.prog2.model.TipoProducto;
 import edu.prog2.model.Vendedor;
-import edu.prog2.model.Venta;
 import edu.prog2.services.PersonaService;
 import edu.prog2.services.ProductoService;
 import edu.prog2.services.CompraVentaService;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Scanner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
