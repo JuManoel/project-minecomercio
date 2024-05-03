@@ -51,7 +51,6 @@ public enum TipoProducto {
    * @return La constante enumerada
    */
   public static TipoProducto getEnum(String value) {
-    System.out.println(value);
     if (value == null) {
       throw new IllegalArgumentException();
     }

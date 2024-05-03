@@ -106,7 +106,6 @@ public abstract class Transaccion implements Format {
       }
         """;
       strJson=String.format(strJson, this.id,this.fechaHora.toString());
-      System.out.println(strJson);
       return new JSONObject(strJson);
   }
 }

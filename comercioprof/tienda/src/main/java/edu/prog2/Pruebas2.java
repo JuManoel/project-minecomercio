@@ -154,7 +154,7 @@ public final class Pruebas2 {
     }
     vendedor=(Vendedor)listV.get(Keyboard.readInt("Selecione el Vendedor (Index) "));
     ventas = new CompraVentaService(Cliente.class,Vendedor.class);
-    auxFor=Keyboard.readInt("Cuantos Productos vas a Compra r");
+    auxFor=Keyboard.readInt("Cuantos Productos vas a Compra? ");
     for (int i = 0; i < auxFor; i++) {
       for(int j=0;j<listP.size();j++){
         System.out.println("------"+j+"-----");
@@ -202,35 +202,73 @@ public final class Pruebas2 {
   private static void agregarCompras() throws Exception {
     // *** por supuesto los datos de prueba deben estar disponibles ***
     //imagino q vendedor y provedor sean solo los IDs
-    String compra =
+    List<Persona> listPro = proveedores.load();
+    List<Persona> listV = vendedores.load();
+    List<Producto> listP = productos.load();
+    Provedor provedor;
+    Vendedor vendedor;
+    Producto producto;
+    ArrayList<Detalle> detalle=new ArrayList<>();
+    int auxFor=0;
+    int cantidad=0;
+    LocalDate fecha;
+    for (int i = 0; i < listPro.size(); i++) {
+      System.out.println("------"+i+"-----");
+      System.out.println(listPro.get(i));
+    }
+    provedor=(Provedor)listPro.get(Keyboard.readInt("Selecione el Provedor (Index) "));
+    for (int i = 0; i < listV.size(); i++) {
+      System.out.println("------"+i+"-----");
+      System.out.println(listV.get(i));
+    }
+    vendedor=(Vendedor)listV.get(Keyboard.readInt("Selecione el Vendedor (Index) "));
+    ventas = new CompraVentaService(Cliente.class,Vendedor.class);
+    auxFor=Keyboard.readInt("Cuantos Productos vas a Compra: ");
+    for (int i = 0; i < auxFor; i++) {
+      if(Keyboard.readBoolean("Va a adicionar un nuevo producto?")){
+        //crear un producto
+      }else if(Keyboard.readBoolean("Va a Llenar el estoque de un producto?")){
+        for(int j=0;j<listP.size();j++){
+          System.out.println("------"+j+"-----");
+          System.out.println(listP.get(j));
+        }
+        producto=listP.get(Keyboard.readInt("Selecione El Index "));
+        cantidad=Keyboard.readInt("Cuantos vas a Comprar? ");
+        detalle.add(new Detalle(producto, cantidad));
+        producto.setDisponible(producto.getDisponible()+cantidad);
+        productos.update(producto.getId(), producto.toJSONObject().toString());
+      listP=productos.load();
+      }else{
+        throw new Exception("No sabe que hacer?");
+      }
+      
+      
+
+    }
+    fecha=Keyboard.readDate("Comprarste en (AAAA-MM-DD): ");
+    String arrayJson="";
+    for (int i = 0; i < detalle.size(); i++) {
+      if(i==detalle.size()-1){
+        arrayJson+=detalle.get(i).toJSONObject().toString();
+      }else{
+        arrayJson+=detalle.get(i).toJSONObject().toString()+",";
+      }
+    }
+    String venta =
       """
         {
             "fechaHora": "%s",
-            "proveedor": "%s",
+            "provedor": "%s",
             "vendedor": "%s",
             "detalle": [
-                {
-                    "producto": "PVEPR",
-                    "cantidad": 3
-                },
-                {
-                    "producto": "LCB2M",
-                    "cantidad": 0
-                },
-                {
-                    "producto": "CU12G",
-                    "cantidad": 2
-                }
-            ]
+              %s
+              ]
         }
         """;
-    String fecha = LocalDateTime.now().toString();
-    String jsonCompra = String.format(compra, fecha, "7OQ4C", "VPIR6");
-
-    JSONObject json = new JSONObject(jsonCompra);
-
-    // json = compras.add(json.toString()); // <--- Pendiente
-    System.out.println("Compra agregada a la lista ./data/Compra.json:\n");
+    String jsonVenta = String.format(venta, fecha.atStartOfDay().toString(), provedor.getId(), vendedor.getId(),arrayJson);
+    JSONObject json = new JSONObject(jsonVenta);
+    json = ventas.add(json.toString());
+    System.out.println("Venta agregada a la lista ./data/Compra.json:\n");
     System.out.println(json.toString(2));
   }
 

@@ -20,7 +20,6 @@ public class PersonaService implements IService<Persona> {
   public PersonaService(Class<? extends Persona> clase) throws Exception {
     this.clase = clase;
     fileName = Utils.PATH + clase.getSimpleName() + ".json";
-    System.out.println(clase.getSimpleName());
     if (Utils.fileExists(fileName)) {
       load();
     } else {

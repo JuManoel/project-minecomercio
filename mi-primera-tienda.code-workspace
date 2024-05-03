@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Arastrar esa carpeta en la semana 7 dento del visual/ventas"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ventas"
+	}
+}
