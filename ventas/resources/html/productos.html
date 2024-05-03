@@ -1,0 +1,63 @@
+<!-- 
+    Formulario para la adición y edición de productos
+    Note que cada <input> tiene un ID que lo identifica de manera única.
+    Consulte en https://www.w3schools.com/html/html_form_input_types.asp los tipos de cada <input>
+    Consulte también en https://www.w3schools.com/html/html_form_attributes.asp los atributos utlizados aquí
+    Con base en este formulario puede implementar los demás que se requieren
+ -->
+<form id="form-productos">
+  <fieldset>
+    <!-- IMPORTANTE: no es necesario mostrar el ID de los productos, por eso type="hidden"  -->
+    <input type="hidden" id="id" name="id" />
+
+    <div class="form-group mx-2">
+      <label for="descripcion" class="form-label mt-0">Descripción</label>
+      <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Nombre del producto" required />
+    </div>
+
+    <div class="row mx-0">
+      <div class="col">
+        <div class="form-group">
+          <label for="disponible" class="form-label mt-2">Cantidad disponible</label>
+          <input type="number" class="form-control" id="disponible" name="disponibles" min="0" max="1000" required />
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="vencimiento" class="form-label mt-2">Fecha de vencimiento</label>
+          <input type="date" class="form-control" id="vencimiento" name="vencimiento" min="2022-01-01" required />
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="iva" class="form-label mt-2">IVA</label>
+          <input type="number" class="form-control" id="iva" name="iva" min="0" max="50" value="19" required />
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-0">
+      <div class="col-5">
+        <div class="form-group">
+          <label for="tipo" class="form-label mt-2">Tipo</label>
+          <select class="form-select" id="tipo" name="tipo"></select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group"></div>
+        <label for="valor-base" class="form-label mt-2">Valor base</label>
+        <input type="number" class="form-control" id="valor-base" name="valor-base" min="50" max="10000000" required />
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="valor-venta" class="form-label mt-2">Precio de venta</label>
+          <input type="number" class="form-control" id="valor-venta" name="valor-venta" min="50" max="10000000" required />
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>

@@ -1,0 +1,42 @@
+<!-- 
+    Formulario para la adición y edición de productos
+    Note que cada <input> tiene un ID que lo identifica de manera única.
+    Consulte en https://www.w3schools.com/html/html_form_input_types.asp los tipos de cada <input>
+    Consulte también en https://www.w3schools.com/html/html_form_attributes.asp los atributos utlizados aquí
+    Con base en este formulario puede implementar los demás que se requieren
+ -->
+ <form id="form-vendedor">
+    <fieldset>
+      <!-- IMPORTANTE: no es necesario mostrar el ID de los productos, por eso type="hidden"  -->
+      <input type="hidden" id="id" name="id" />
+  
+      <div class="form-group mx-2">
+        <label for="nombre" class="form-label mt-0">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombres" placeholder="Nombre del cliente" required />
+      </div>
+  
+      <div class="row mx-0">
+        <div class="col">
+            <label for="telefono" class="form-label mt-0">Telefono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="12345678" required />
+        </div>
+  
+        <div class="col">
+            <label for="correo" class="form-label mt-0">Correo</label>
+            <input type="text" class="form-control" id="correo" name="correo" placeholder="correo@correo.com" required />
+        </div>
+  
+        <div class="col"><!-- quizas debia ser un check box, seria mas sencillo-->
+            <label for="admin" class="form-label mt-0">Admin</label>
+            <input type="text" class="form-control" id="admin" name="admin" placeholder="SI" required />
+          </div>
+      </div>
+
+      <div class="form-group mx-2">
+        <label for="contrasena" class="form-label mt-0">Contraseña</label>
+        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Seña123" required />
+      </div>
+  
+    </fieldset>
+  </form>
+  

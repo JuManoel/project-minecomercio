@@ -1,0 +1,60 @@
+@import '../utils/tabulator-6.2/css/tabulator.min.css';
+
+/* 
+En ../utils/bootstrap-5.3.3/css, además de flatly, encuentra otros temas como cerulean, cosmo, cyborg, ...  
+Use ../utils/bootstrap-5.3.3/css/TEMA/bootstrap.min.css, siendo TEMA el nombre de la carpeta correspondiente al tema
+*/
+@import '../utils/bootstrap-5.3.3/css/flatly/bootstrap.min.css';
+@import 'toast.css';
+
+.dialog {
+  background-color: #fff;
+  /* 
+      El primer caso sólo fija el color, el segundo es un atajo para especificar varias propiedades
+      background-color: rgba(0, 0, 0, 0.05); 
+      background: url("image.jpg") #00D repeat-y fixed;
+    */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  /* width: 700px; */
+  max-width: 80%;
+  max-height: 100vh;
+  /* juegue con la posición requerida: */
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.dialog header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog #_close {
+  font-size: 1rem;
+  border: 1.5px solid #b6b6b6;
+  border-radius: 5px;
+  margin: 0;
+  background: rgb(230, 230, 230);
+}
+
+.dialog #_close:hover {
+  color: rgb(202, 0, 0);
+  border: 1.5px solid rgb(202, 0, 0);
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dialog footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dialog section {
+  overflow: auto;
+  max-height: 80vh;
+}

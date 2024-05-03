@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ventas</title>
+    <link rel="stylesheet" href="./resources/css/styles.css" />
+    <script defer type="module" src="./resources/js/index.mjs"></script>
+  </head>
+
+  <body class="d-flex flex-column h-100 bg-light">
+    <header>
+      <!-- reemplace el <div> siguiente por la barra de navegación, respetando el tema de la página -->
+      <nav id="main-menu" class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a id="app-logo" class="navbar-brand" href=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <!-- quité el active y el span -->
+                <a class="nav-link" href="">Inicio </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Ventas</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="">Action</a>
+                  <a class="dropdown-item" href="">Another action</a>
+                  <a class="dropdown-item" href="">Something else here</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="">Separated link</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Compras</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Salidas de inventario</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="">Devoluciones por compra</a>
+                  <a class="dropdown-item" href="">Devoluciones por venta</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="">Bajas</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Clientes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Proveedores</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Vendedores</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Acerca de...</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+                  <div class="dropdown-menu" style="position: absolute; left: -90px">
+                    <a class="dropdown-item" href="">Action</a>
+                    <a class="dropdown-item" href="">Another action</a>
+                    <a class="dropdown-item" href="">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="">Separated link</a>
+                  </div>
+                </li>
+              </ul>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main role="main" class="flex-shrink-0 pt-1"></main>
+
+    <footer class="fixed-bottom">
+      <div class="container-fluid bg-dark">
+        <!-- reemplace el <p> siguiente por un pie de página de su agrado, respetando el tema de la página -->
+        <p class="text-center mb-0 py-3">© 2024 Sistema de Ventas</p>
+      </div>
+    </footer>
+  </body>
+</html>
