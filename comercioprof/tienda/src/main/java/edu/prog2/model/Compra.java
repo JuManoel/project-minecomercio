@@ -28,7 +28,7 @@ public class Compra extends CompraVenta{
   
     }
   
-    public Compra(Provedor cliente, Vendedor vendedor, LocalDateTime fecha, ArrayList<Detalle> detalles) throws Exception {
+    public Compra(Provedor provedor, Vendedor vendedor, LocalDateTime fecha, ArrayList<Detalle> detalles) throws Exception {
       // use el constructor parametrizado
       super(vendedor,fecha);
       setProvedor(provedor);

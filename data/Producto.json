@@ -4,65 +4,87 @@
     "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
+    "subtotal": 144000,
     "valorVenta": 4000,
-    "subtotal": 135000,
-    "id": "PVEPR",
     "valorBase": 3000,
-    "disponible": 45
+    "id": "PVEPR",
+    "disponible": 48
   },
   {
     "descripcion": "Boliqueso",
     "vencimiento": "2024-12-10",
     "tipo": "GOLOSINAS",
     "iva": 19,
+    "subtotal": 60000,
     "valorVenta": 1100,
-    "subtotal": 29000,
-    "id": "LCB2M",
     "valorBase": 1000,
-    "disponible": 29
+    "id": "LCB2M",
+    "disponible": 60
   },
   {
     "descripcion": "Queso parmesano Alpina",
     "vencimiento": "2024-10-01",
     "tipo": "LACTEOS",
     "iva": 19,
+    "subtotal": 600000,
     "valorVenta": 12000,
-    "subtotal": 480000,
-    "id": "CU12G",
     "valorBase": 10000,
-    "disponible": 48
+    "id": "CU12G",
+    "disponible": 60
   },
   {
     "descripcion": "Yogurt natural vaso x 120 ml.",
     "vencimiento": "2024-08-01",
     "tipo": "LACTEOS",
     "iva": 19,
+    "subtotal": 200000,
     "valorVenta": 5000,
-    "subtotal": 40000,
-    "id": "35G6E",
     "valorBase": 4000,
-    "disponible": 10
+    "id": "35G6E",
+    "disponible": 50
   },
   {
     "descripcion": "Yogurt piña vaso x 120 c.c.",
     "vencimiento": "2024-03-26",
     "tipo": "LACTEOS",
     "iva": 19,
+    "subtotal": 196000,
     "valorVenta": 5000,
-    "subtotal": 52000,
-    "id": "X1SC9",
     "valorBase": 4000,
-    "disponible": 13
+    "id": "X1SC9",
+    "disponible": 49
   },
   {
     "descripcion": "Arroz Diana x libra",
     "vencimiento": "2024-03-26",
     "tipo": "CEREALES",
     "iva": 19,
+    "subtotal": 149950,
     "valorVenta": 3999,
-    "subtotal": 38987,
-    "id": "6NTFM",
     "valorBase": 2999,
-    "disponible": 13
+    "id": "6NTFM",
+    "disponible": 50
+  },
+  {
+    "descripcion": "pollos apanados",
+    "vencimiento": "2025-01-01",
+    "tipo": "CARNICOS",
+    "iva": 19,
+    "subtotal": 200000,
+    "valorVenta": 15000,
+    "valorBase": 10000,
+    "id": "EIV7B",
+    "disponible": 20
+  },
+  {
+    "descripcion": "Pizza conjelada",
+    "vencimiento": "2025-12-31",
+    "tipo": "OTROS",
+    "iva": 19,
+    "subtotal": 300000,
+    "valorVenta": 20000,
+    "valorBase": 15000,
+    "id": "PHAKQ",
+    "disponible": 20
   }
 ]

@@ -94,14 +94,14 @@ public class CompraVentaService extends TransaccionService{
             JSONObject jsonObj = jsonArr.getJSONObject(i);
             if(compraVenta.equals("compra")){
                 String id=jsonObj.getString("id");
-                Vendedor v=new Vendedor(serV.get(jsonObj.getString("vendedor")));
-                Provedor pro = new Provedor(serR.get(jsonObj.getString("provedor")));
+                Vendedor v=new Vendedor(jsonObj.getJSONObject("vendedor"));
+                Provedor pro = new Provedor(jsonObj.getJSONObject("provedor"));
                 LocalDateTime fecha = LocalDateTime.parse(jsonObj.getString("fechaHora"));
-                JSONArray de=jsonObj.getJSONArray("detalle");
+                JSONArray de=jsonObj.getJSONArray("detalles");
                 ArrayList<Detalle> d=new ArrayList<>();
                 for (int j = 0; j < de.length(); j++) {
                     JSONObject jsonObject=de.getJSONObject(j);
-                    Producto p=productoService.getItem(jsonObject.getString("producto"));
+                    Producto p=new Producto(jsonObject.getJSONObject("producto"));
                     d.add(new Detalle(p,jsonObject.getInt("cantidad")));
                 }
 
@@ -138,6 +138,7 @@ public class CompraVentaService extends TransaccionService{
         return new JSONObject().put("message", "ok").put("data", cv.toJSONObject());
     }
     private CompraVenta creatCompraVenta(String strJson) throws Exception {
+        productoService=new ProductoService();//actualiza los productos
         CompraVenta cv;
         JSONObject json = new JSONObject(strJson);
         json.put("id", Utils.getRandomKey(5));
@@ -146,21 +147,26 @@ public class CompraVentaService extends TransaccionService{
         Producto p;
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject=jsonArray.getJSONObject(i);
-            p=this.productoService.getItem(jsonObject.getString("producto"));
+            System.out.println(jsonObject.getString("producto"));
+            p=new Producto(this.productoService.get(jsonObject.getString("producto")));
+            System.out.println(p.getDisponible());
             detalles.add(new Detalle(p,jsonObject.getInt("cantidad")));
             
         }
         if(compraVenta.equals("venta")){
             cv=new Venta(new Cliente(this.serR.get(json.getString("cliente"))),new Vendedor(serV.get(json.getString("vendedor"))),LocalDateTime.parse(json.getString("fechaHora")),detalles);            
         }else if(compraVenta.equals("compra")){
-            cv=new Compra(new Provedor(this.serR.get(json.getString("provedor"))),new Vendedor(serV.get(json.getString("vendedor"))),LocalDateTime.parse(json.getString("fechaHora")),detalles);
+            Provedor prov=new Provedor(this.serR.get(json.getString("provedor")));
+            cv=new Compra(prov,new Vendedor(serV.get(json.getString("vendedor"))),LocalDateTime.parse(json.getString("fechaHora")),detalles);
         }else{
             throw new Exception("No existe ese tipo de transacion");
         }
         for (int i = 0; i < cv.getDetalles().size(); i++) {
             Producto pro = cv.getDetalles().get(i).getProducto();
-            productoService.update(pro.getId(), pro.toJSONObject().toString());
+            //productoService.update(pro.getId(), pro.toJSONObject().toString());
             if(compraVenta.equals("compra")){
+                System.out.println(pro.toString());
+                System.out.println(cv.getDetalles().get(i).getCantidad());
                 pro.setDisponible(pro.getDisponible()+cv.getDetalles().get(i).getCantidad());
             }else{
                 pro.setDisponible(pro.getDisponible()-cv.getDetalles().get(i).getCantidad());

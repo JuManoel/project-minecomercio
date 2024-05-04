@@ -69,7 +69,7 @@ public class Detalle implements Format{
 
     @Override
     public String toString() {
-        String str=producto.toString()+
+        String str="producto:"+producto.getId()+"\n"+
         "Cantidad: "+this.cantidad+"\n";
         return str;
     }

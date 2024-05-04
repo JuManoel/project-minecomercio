@@ -33,6 +33,7 @@ public final class Pruebas2 {
   static PersonaService vendedores;
   static PersonaService proveedores;
   static CompraVentaService ventas;
+  static CompraVentaService compras;
 
   public static void main(String[] args) throws Exception {
     inicializar();
@@ -212,6 +213,7 @@ public final class Pruebas2 {
     int auxFor=0;
     int cantidad=0;
     LocalDate fecha;
+    int index=0;//caso yo adicione productos nuevos, voy cojer ellos en el final de mi json
     for (int i = 0; i < listPro.size(); i++) {
       System.out.println("------"+i+"-----");
       System.out.println(listPro.get(i));
@@ -222,21 +224,25 @@ public final class Pruebas2 {
       System.out.println(listV.get(i));
     }
     vendedor=(Vendedor)listV.get(Keyboard.readInt("Selecione el Vendedor (Index) "));
-    ventas = new CompraVentaService(Cliente.class,Vendedor.class);
+    compras = new CompraVentaService(Provedor.class,Vendedor.class);
     auxFor=Keyboard.readInt("Cuantos Productos vas a Compra: ");
     for (int i = 0; i < auxFor; i++) {
       if(Keyboard.readBoolean("Va a adicionar un nuevo producto?")){
-        //crear un producto
+        agregarProducto();
+        Producto p= new Producto(productos.get(productos.load().size()-1));
+        int tot=p.getDisponible();
+        p.setDisponible(0);
+        productos.update(p.getId(), p.toJSONObject().toString());
+        detalle.add(new Detalle(p,tot));
+        index++;
       }else if(Keyboard.readBoolean("Va a Llenar el estoque de un producto?")){
-        for(int j=0;j<listP.size();j++){
+        for(int j=0;j<listP.size()-index;j++){
           System.out.println("------"+j+"-----");
           System.out.println(listP.get(j));
         }
         producto=listP.get(Keyboard.readInt("Selecione El Index "));
-        cantidad=Keyboard.readInt("Cuantos vas a Comprar? ");
+        cantidad=Keyboard.readInt(1,Integer.MAX_VALUE,"Cuantos vas a Comprar? ");
         detalle.add(new Detalle(producto, cantidad));
-        producto.setDisponible(producto.getDisponible()+cantidad);
-        productos.update(producto.getId(), producto.toJSONObject().toString());
       listP=productos.load();
       }else{
         throw new Exception("No sabe que hacer?");
@@ -267,8 +273,8 @@ public final class Pruebas2 {
         """;
     String jsonVenta = String.format(venta, fecha.atStartOfDay().toString(), provedor.getId(), vendedor.getId(),arrayJson);
     JSONObject json = new JSONObject(jsonVenta);
-    json = ventas.add(json.toString());
-    System.out.println("Venta agregada a la lista ./data/Compra.json:\n");
+    json = compras.add(json.toString());
+    System.out.println("compra agregada a la lista ./data/Compra.json:\n");
     System.out.println(json.toString(2));
   }
 
