@@ -4,8 +4,8 @@
     "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 144000,
     "valorVenta": 4000,
+    "subtotal": 144000,
     "valorBase": 3000,
     "id": "PVEPR",
     "disponible": 48
@@ -15,8 +15,8 @@
     "vencimiento": "2024-12-10",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 60000,
     "valorVenta": 1100,
+    "subtotal": 60000,
     "valorBase": 1000,
     "id": "LCB2M",
     "disponible": 60
@@ -26,19 +26,19 @@
     "vencimiento": "2024-10-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 600000,
     "valorVenta": 12000,
+    "subtotal": 200000,
     "valorBase": 10000,
     "id": "CU12G",
-    "disponible": 60
+    "disponible": 20
   },
   {
     "descripcion": "Yogurt natural vaso x 120 ml.",
     "vencimiento": "2024-08-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 200000,
     "valorVenta": 5000,
+    "subtotal": 200000,
     "valorBase": 4000,
     "id": "35G6E",
     "disponible": 50
@@ -48,8 +48,8 @@
     "vencimiento": "2024-03-26",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 196000,
     "valorVenta": 5000,
+    "subtotal": 196000,
     "valorBase": 4000,
     "id": "X1SC9",
     "disponible": 49
@@ -59,8 +59,8 @@
     "vencimiento": "2024-03-26",
     "tipo": "CEREALES",
     "iva": 19,
-    "subtotal": 149950,
     "valorVenta": 3999,
+    "subtotal": 149950,
     "valorBase": 2999,
     "id": "6NTFM",
     "disponible": 50
@@ -70,8 +70,8 @@
     "vencimiento": "2025-01-01",
     "tipo": "CARNICOS",
     "iva": 19,
-    "subtotal": 200000,
     "valorVenta": 15000,
+    "subtotal": 200000,
     "valorBase": 10000,
     "id": "EIV7B",
     "disponible": 20
@@ -81,10 +81,43 @@
     "vencimiento": "2025-12-31",
     "tipo": "OTROS",
     "iva": 19,
-    "subtotal": 300000,
     "valorVenta": 20000,
+    "subtotal": 195000,
     "valorBase": 15000,
     "id": "PHAKQ",
-    "disponible": 20
+    "disponible": 13
+  },
+  {
+    "descripcion": "cafe",
+    "vencimiento": "2026-05-05",
+    "tipo": "BEBIDAS",
+    "iva": 19,
+    "valorVenta": 1000,
+    "subtotal": 0,
+    "valorBase": 800,
+    "id": "3S67B",
+    "disponible": 0
+  },
+  {
+    "descripcion": "Azucar",
+    "vencimiento": "2024-05-06",
+    "tipo": "OTROS",
+    "iva": 19,
+    "valorVenta": 14000,
+    "subtotal": 100010,
+    "valorBase": 10001,
+    "id": "LV8GI",
+    "disponible": 10
+  },
+  {
+    "descripcion": "SSD",
+    "vencimiento": "2024-05-07",
+    "tipo": "OTROS",
+    "iva": 19,
+    "valorVenta": 750000,
+    "subtotal": 5000000,
+    "valorBase": 500000,
+    "id": "30JT7",
+    "disponible": 10
   }
 ]

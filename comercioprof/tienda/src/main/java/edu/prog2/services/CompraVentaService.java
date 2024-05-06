@@ -22,7 +22,6 @@ public class CompraVentaService extends TransaccionService{
     private Class<? extends Persona> vendedor;
     private PersonaService serV;
     private PersonaService serR;
-    private final String fileName;
     private final Class<? extends CompraVenta> clase;
     private String compraVenta;
 
@@ -123,7 +122,7 @@ public class CompraVentaService extends TransaccionService{
             }
             list.add(cv);
         }
-
+        /* */
         return list;
     }
     
@@ -147,9 +146,7 @@ public class CompraVentaService extends TransaccionService{
         Producto p;
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject=jsonArray.getJSONObject(i);
-            System.out.println(jsonObject.getString("producto"));
             p=new Producto(this.productoService.get(jsonObject.getString("producto")));
-            System.out.println(p.getDisponible());
             detalles.add(new Detalle(p,jsonObject.getInt("cantidad")));
             
         }
@@ -165,8 +162,6 @@ public class CompraVentaService extends TransaccionService{
             Producto pro = cv.getDetalles().get(i).getProducto();
             //productoService.update(pro.getId(), pro.toJSONObject().toString());
             if(compraVenta.equals("compra")){
-                System.out.println(pro.toString());
-                System.out.println(cv.getDetalles().get(i).getCantidad());
                 pro.setDisponible(pro.getDisponible()+cv.getDetalles().get(i).getCantidad());
             }else{
                 pro.setDisponible(pro.getDisponible()-cv.getDetalles().get(i).getCantidad());
@@ -175,23 +170,6 @@ public class CompraVentaService extends TransaccionService{
         }
         cv.setId(json.getString("id"));
         return cv;
-    }
-
-    @Override
-    public void refreshAll() throws Exception {
-        list = new ArrayList<>();
-        load();
-    }
-
-    @Override
-    public JSONObject remove(String id) throws Exception {
-        CompraVenta compraVenta = getItem(id);
-        if(this.list.remove(compraVenta)){
-          Utils.writeJSON(list, fileName);
-        // devolver la instancia con los cambios realizados
-          return new JSONObject().put("message", "ok").put("data", compraVenta.toJSONObject());
-        }
-        throw new Exception("No se pudo remover la compraVenta con el ID:"+id);
     }
 
     @Override

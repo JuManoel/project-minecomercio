@@ -91,7 +91,7 @@ class App {
         Toast.show({ message: `No implementada la opción de ${option}`, mode: 'warning' })
         break
       default:
-        new Toast({ content: `La opción ${option} no ha sido implementada`, mode: 'warning', delay: 3000, close: false })
+        Toast({ content: `La opción ${option} no ha sido implementada`, mode: 'warning', delay: 3000, close: false })
         console.warn('Fallo en ', e.target)
     }
   }

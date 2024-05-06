@@ -71,7 +71,7 @@ export default class Persona {
             Persona.add()
         }
       } catch (e) {
-        new Toast({ content: `Problemas al agregar el ${ this.nombreClase}`, mode: 'danger', error: e })
+        Toast({ message: `Problemas al agregar el ${ this.nombreClase}`, mode: 'danger', error: e })
       }
     }
   
@@ -102,7 +102,7 @@ export default class Persona {
             Persona.edit(cell)
         }
       } catch (e) {
-        new Toast({ content: `Problemas al modificar el ${ this.nombreClase}`, mode: 'danger', error: e })
+        Toast({ content: `Problemas al modificar el ${ this.nombreClase}`, mode: 'danger', error: e })
     }
     }
   
@@ -137,7 +137,7 @@ export default class Persona {
             Persona.delete(cell)
         }
       } catch (e) {
-        new Toast({ content: `Problemas al deletar el ${ this.nombreClase}`, mode: 'danger', error: e })
+        Toast({ message: `Problemas al deletar el ${ this.nombreClase}`, mode: 'danger', error: e })
     }
     }
     static delete(cell) {

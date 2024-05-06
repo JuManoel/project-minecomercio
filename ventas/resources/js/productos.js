@@ -86,14 +86,35 @@ export default class Productos {
         Productos.#add()
       }
     } catch (e) {
-      new Toast({ content: 'Problemas al agregar el producto', mode: 'danger', error: e })
+      Toast({ message: 'Problemas al agregar el producto', mode: 'danger', error: e })
     }
   }
 
   static async #add() {
-    //await Helpers.fetchData(`${urlAPI}/producto/categorias`,{})
-    Toast.show({ title: 'Productos', message: 'Falta implementar la adición de productos', mode: 'warning' })
-    Productos.#modal.close()
+    // verificar si los datos cumplen con las restricciones indicadas en el formulario
+    if (!Helpers.okForm('#form-productos')) {
+      return
+    }
+  
+    // obtener del formulario el objeto con los datos que se envían a la solicitud POST
+    const body = Productos.#getFormData()
+  
+    // enviar la solicitud de creación con los datos del formulario
+    let response = await Helpers.fetchData(`${urlAPI}/producto`, {
+      method: 'POST',
+      body,
+    })
+  
+    if (response.message === 'ok') {
+      // utilizar la data de la respuesta HTTT para agregar el producto a la tabla
+      Productos.#table.addRow(response.data)
+      Productos.#modal.close()
+      Toast.show({ message: 'Producto agregado exitosamente' })
+    } else {
+      Toast.show(
+        { message: 'No se pudo agregar el producto', mode: 'danger', error: response 
+      })
+    }
   }
 
   static #editRowClick = async (e, cell) => {//cell es la celda que lo llamo
@@ -115,15 +136,39 @@ export default class Productos {
         Productos.#modal.close()
       } else if (option === 'Actualizar') {
         Productos.#edit(cell)
+        
       }
     } catch (e) {
-      new Toast({ content: 'Problemas al modificar el producto', mode: 'danger', error: e })
+      Toast({ message: 'Problemas al modificar el producto', mode: 'danger', error: e })
     }
   }
 
-  static #edit(cell) {
-    console.log(cell.getRow().getData())
-    Toast.show({ title: 'Productos', message: 'Falta implementar la actualización de productos', mode: 'warning' })
+  static async #edit(cell) {
+    // verificar si los datos cumplen con las restricciones indicadas en el formulario
+    console.log("loko")
+    if (!Helpers.okForm('#form-productos')) {
+      return
+    }
+  
+    // // obtener el objeto con los datos que se envían a la solicitud PATCH
+    const body = Productos.#getFormData()
+  
+    // configurar la url para enviar la solicitud PATCH
+    const url = `${urlAPI}/producto/${cell.getRow().getData().id}`
+  
+    // intentar enviar la solicitud de actualización
+    let response = await Helpers.fetchData(url, {
+      method: 'PATCH',
+      body
+    })
+  
+    if (response.message === 'ok') {
+      Toast.show({ message: 'Producto actualizado exitosamente' })
+      cell.getRow().update(response.data)
+      Productos.#modal.close()
+    } else {
+      Toast.show({ message: 'No se pudo actualizar el producto', mode: 'danger', error: response })
+    }
   }
 
   static #deleteRowClick = async (e, cell) => {
@@ -146,19 +191,34 @@ export default class Productos {
   
     try {
       const option = await Productos.#modal.show()
+      console.log(option)
       if (option === 'Cancelar' || option === '✖') {
         Productos.#modal.close()
-      } else if (option === 'Eliminar') {
+      } else if (option == 'Eliminar') {
         Productos.#delete(cell)
       }
     } catch (e) {
-      new Toast({ content: 'Problemas al deletar el producto', mode: 'danger', error: e })
+      Toast({ message: 'Problemas al deletar el producto', mode: 'danger', error: e })
     }
   }
   static #delete(cell) {
     console.log(cell.getRow().getData())
-    Toast.show({ title: 'Productos', message: 'Falta implementar la eliminación de productos', mode: 'warning' })
+
   }
+
+  static #getFormData(){
+    const id= document.querySelector(`#${Productos.#modal.id} #id`).value
+    const descripcion= document.querySelector(`#${Productos.#modal.id} #descripcion`).value
+    const disponible= document.querySelector(`#${Productos.#modal.id} #disponible`).value
+    const vencimiento= document.querySelector(`#${Productos.#modal.id} #vencimiento`).value
+    const valorBase= document.querySelector(`#${Productos.#modal.id} #valor-base`).value
+    const valorVenta= document.querySelector(`#${Productos.#modal.id} #valor-venta`).value
+    const tipo= document.querySelector(`#${Productos.#modal.id} #tipo`).value
+    const iva= document.querySelector(`#${Productos.#modal.id} #iva`).value
+    
+    return { id, descripcion, tipo, valorBase, valorVenta, iva, disponible, vencimiento}
+  }
+
 
   static #toComplete(idModal, rowData) {
     // crear una lista de opciones a partir del enum TipoProducto

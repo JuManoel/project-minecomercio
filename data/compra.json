@@ -25,8 +25,8 @@
           "vencimiento": "2025-01-01",
           "tipo": "CARNICOS",
           "iva": 19,
-          "subtotal": 100000,
           "valorVenta": 15000,
+          "subtotal": 100000,
           "valorBase": 10000,
           "id": "EIV7B",
           "disponible": 10
@@ -40,8 +40,8 @@
           "vencimiento": "2025-12-31",
           "tipo": "OTROS",
           "iva": 19,
-          "subtotal": 300000,
           "valorVenta": 20000,
+          "subtotal": 300000,
           "valorBase": 15000,
           "id": "PHAKQ",
           "disponible": 20
@@ -55,8 +55,8 @@
           "vencimiento": "2024-12-12",
           "tipo": "GOLOSINAS",
           "iva": 19,
-          "subtotal": 210000,
           "valorVenta": 4000,
+          "subtotal": 210000,
           "valorBase": 3000,
           "id": "PVEPR",
           "disponible": 70
@@ -92,8 +92,8 @@
         "vencimiento": "2025-01-01",
         "tipo": "CARNICOS",
         "iva": 19,
-        "subtotal": 200000,
         "valorVenta": 15000,
+        "subtotal": 200000,
         "valorBase": 10000,
         "id": "EIV7B",
         "disponible": 20
@@ -129,8 +129,8 @@
           "vencimiento": "2024-12-10",
           "tipo": "GOLOSINAS",
           "iva": 19,
-          "subtotal": 60000,
           "valorVenta": 1100,
+          "subtotal": 60000,
           "valorBase": 1000,
           "id": "LCB2M",
           "disponible": 60
@@ -144,8 +144,8 @@
           "vencimiento": "2024-10-01",
           "tipo": "LACTEOS",
           "iva": 19,
-          "subtotal": 600000,
           "valorVenta": 12000,
+          "subtotal": 600000,
           "valorBase": 10000,
           "id": "CU12G",
           "disponible": 60
@@ -155,5 +155,58 @@
       }
     ],
     "id": "ANC0O"
+  },
+  {
+    "vendedor": {
+      "password": "123456",
+      "correo": "manoel.mano@gmail.com",
+      "admin": true,
+      "id": "91V8D",
+      "telefono": "3216549870",
+      "nombre": "Manoel"
+    },
+    "total": 410000,
+    "fechaHora": "2024-05-06T00:00",
+    "provedor": {
+      "password": "482c811da5d5b4bc6d497ffa98491e38",
+      "intermediario": true,
+      "correo": "jojo@dio.com",
+      "id": "SBSDT",
+      "telefono": "3579824695",
+      "nombre": "Joseh Joestar"
+    },
+    "detalles": [
+      {
+        "producto": {
+          "descripcion": "cafe",
+          "vencimiento": "2026-05-05",
+          "tipo": "BEBIDAS",
+          "iva": 19,
+          "valorVenta": 1000,
+          "subtotal": 8000,
+          "valorBase": 800,
+          "id": "3S67B",
+          "disponible": 10
+        },
+        "cantidad": 10,
+        "subTotal": 10000
+      },
+      {
+        "producto": {
+          "descripcion": "Pizza conjelada",
+          "vencimiento": "2025-12-31",
+          "tipo": "OTROS",
+          "iva": 19,
+          "valorVenta": 20000,
+          "subtotal": 300000,
+          "valorBase": 15000,
+          "id": "PHAKQ",
+          "disponible": 20
+        },
+        "cantidad": 20,
+        "subTotal": 400000
+      }
+    ],
+    "id": "30XPC"
   }
 ]

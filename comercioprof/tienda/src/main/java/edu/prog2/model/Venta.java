@@ -23,8 +23,7 @@ public final class Venta extends CompraVenta {
   public Venta(String id, Cliente cliente, Vendedor vendedor, LocalDateTime fecha, ArrayList<Detalle> detalles) throws Exception {
     // Use mutadores para asignar los valores recibidos
     super(id,vendedor,fecha,detalles);
-    
-
+    setCliente(cliente);
   }
 
   public Venta(Cliente cliente, Vendedor vendedor, LocalDateTime fecha, ArrayList<Detalle> detalles) throws Exception {
@@ -43,7 +42,7 @@ public final class Venta extends CompraVenta {
 
   public Venta(JSONObject json) throws JSONException, Exception {
     super(json);
-    this.cliente=new Cliente(json.getString("cliente"));
+    setCliente(new Cliente(json.getString("cliente")));
   }
 
   public Cliente getCliente() {

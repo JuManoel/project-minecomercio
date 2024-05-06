@@ -1,5 +1,13 @@
 [
   {
+    "cliente": {
+      "password": "fb7b9ffa5462084c5f4e7e85a093e6d7",
+      "correo": "loko@gmail.com",
+      "credito": true,
+      "id": "RKYK6",
+      "telefono": "3694578125",
+      "nombre": "Looooko"
+    },
     "vendedor": {
       "password": "123456",
       "correo": "manoel.mano@gmail.com",
@@ -12,20 +20,126 @@
     "fechaHora": "2024-05-04T00:00",
     "detalles": [{
       "producto": {
-        "descripcion": "Chocolatina Jet Mani Jumbo",
         "vencimiento": "2024-12-12",
+        "descripcion": "Chocolatina Jet Mani Jumbo",
         "tipo": "GOLOSINAS",
         "iva": 19,
-        "subtotal": 150000,
         "valorVenta": 4000,
-        "valorBase": 3000,
+        "subtotal": 144000,
         "id": "PVEPR",
-        "disponible": 50
+        "valorBase": 3000,
+        "disponible": 48
       },
       "cantidad": 10,
       "subTotal": 40000
     }],
     "id": "9CW3A"
+  },
+  {
+    "cliente": {
+      "password": "fb7b9ffa5462084c5f4e7e85a093e6d7",
+      "correo": "loko@gmail.com",
+      "credito": true,
+      "id": "RKYK6",
+      "telefono": "3694578125",
+      "nombre": "Looooko"
+    },
+    "vendedor": {
+      "password": "123456",
+      "correo": "manoel.mano@gmail.com",
+      "admin": true,
+      "id": "91V8D",
+      "telefono": "3216549870",
+      "nombre": "Manoel"
+    },
+    "total": 13000,
+    "fechaHora": "2024-04-23T00:00",
+    "detalles": [
+      {
+        "producto": {
+          "vencimiento": "2024-03-26",
+          "descripcion": "Yogurt piña vaso x 120 c.c.",
+          "tipo": "LACTEOS",
+          "iva": 19,
+          "valorVenta": 5000,
+          "subtotal": 196000,
+          "id": "X1SC9",
+          "valorBase": 4000,
+          "disponible": 49
+        },
+        "cantidad": 1,
+        "subTotal": 5000
+      },
+      {
+        "producto": {
+          "vencimiento": "2024-12-12",
+          "descripcion": "Chocolatina Jet Mani Jumbo",
+          "tipo": "GOLOSINAS",
+          "iva": 19,
+          "valorVenta": 4000,
+          "subtotal": 144000,
+          "id": "PVEPR",
+          "valorBase": 3000,
+          "disponible": 48
+        },
+        "cantidad": 2,
+        "subTotal": 8000
+      }
+    ],
+    "id": "DYT3G"
+  },
+  {
+    "cliente": {
+      "password": "fb7b9ffa5462084c5f4e7e85a093e6d7",
+      "correo": "loko@gmail.com",
+      "credito": true,
+      "id": "RKYK6",
+      "telefono": "3694578125",
+      "nombre": "Looooko"
+    },
+    "vendedor": {
+      "password": "123456",
+      "correo": "manoel.mano@gmail.com",
+      "admin": true,
+      "id": "91V8D",
+      "telefono": "3216549870",
+      "nombre": "Manoel"
+    },
+    "total": 440000,
+    "fechaHora": "2024-05-06T00:00",
+    "detalles": [
+      {
+        "producto": {
+          "vencimiento": "2025-12-31",
+          "descripcion": "Pizza conjelada",
+          "tipo": "OTROS",
+          "iva": 19,
+          "valorVenta": 20000,
+          "subtotal": 225000,
+          "id": "PHAKQ",
+          "valorBase": 15000,
+          "disponible": 15
+        },
+        "cantidad": 10,
+        "subTotal": 200000
+      },
+      {
+        "producto": {
+          "vencimiento": "2024-10-01",
+          "descripcion": "Queso parmesano Alpina",
+          "tipo": "LACTEOS",
+          "iva": 19,
+          "valorVenta": 12000,
+          "subtotal": 200000,
+          "id": "CU12G",
+          "valorBase": 10000,
+          "disponible": 20
+        },
+        "cantidad": 20,
+        "subTotal": 240000
+      }
+    ],
+    "id": "GAEVZ"
   },
   {
     "cliente": {
@@ -44,40 +158,59 @@
       "telefono": "3216549870",
       "nombre": "Manoel"
     },
-    "total": 13000,
-    "fechaHora": "2024-04-23T00:00",
-    "detalles": [
-      {
-        "producto": {
-          "descripcion": "Yogurt piña vaso x 120 c.c.",
-          "vencimiento": "2024-03-26",
-          "tipo": "LACTEOS",
-          "iva": 19,
-          "subtotal": 196000,
-          "valorVenta": 5000,
-          "valorBase": 4000,
-          "id": "X1SC9",
-          "disponible": 49
-        },
-        "cantidad": 1,
-        "subTotal": 5000
+    "total": 20000,
+    "fechaHora": "2024-05-05T00:00",
+    "detalles": [{
+      "producto": {
+        "vencimiento": "2025-12-31",
+        "descripcion": "Pizza conjelada",
+        "tipo": "OTROS",
+        "iva": 19,
+        "valorVenta": 20000,
+        "subtotal": 225000,
+        "id": "PHAKQ",
+        "valorBase": 15000,
+        "disponible": 15
       },
-      {
-        "producto": {
-          "descripcion": "Chocolatina Jet Mani Jumbo",
-          "vencimiento": "2024-12-12",
-          "tipo": "GOLOSINAS",
-          "iva": 19,
-          "subtotal": 144000,
-          "valorVenta": 4000,
-          "valorBase": 3000,
-          "id": "PVEPR",
-          "disponible": 48
-        },
-        "cantidad": 2,
-        "subTotal": 8000
-      }
-    ],
-    "id": "DYT3G"
+      "cantidad": 1,
+      "subTotal": 20000
+    }],
+    "id": "YWRQM"
+  },
+  {
+    "cliente": {
+      "password": "fbe1da9b434cde542bbcd768b11d628a",
+      "correo": "CarlosCuesta@ucaldas.edu.co",
+      "credito": true,
+      "id": "PI6KK",
+      "telefono": "3579824695",
+      "nombre": "Carlitos Cuesta"
+    },
+    "vendedor": {
+      "password": "123456",
+      "correo": "gomez.miguel@ucaldas.co",
+      "admin": false,
+      "id": "A798M",
+      "telefono": "7894561230",
+      "nombre": "Miguel"
+    },
+    "total": 40000,
+    "fechaHora": "2024-05-05T00:00",
+    "detalles": [{
+      "producto": {
+        "vencimiento": "2025-12-31",
+        "descripcion": "Pizza conjelada",
+        "tipo": "OTROS",
+        "iva": 19,
+        "valorVenta": 20000,
+        "subtotal": 195000,
+        "id": "PHAKQ",
+        "valorBase": 15000,
+        "disponible": 13
+      },
+      "cantidad": 2,
+      "subTotal": 40000
+    }],
+    "id": "W9WEM"
   }
 ]

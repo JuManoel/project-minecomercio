@@ -144,6 +144,7 @@ public final class Pruebas2 {
     int auxFor=0;
     int cantidad=0;
     LocalDate fecha;
+    ventas = new CompraVentaService(Cliente.class,Vendedor.class);
     for (int i = 0; i < listC.size(); i++) {
       System.out.println("------"+i+"-----");
       System.out.println(listC.get(i));
@@ -167,7 +168,7 @@ public final class Pruebas2 {
         throw new Exception("Quieres comprar mas de lo q puedes ");
       }
       detalle.add(new Detalle(producto, cantidad));
-      producto.setDisponible(producto.getDisponible()-cantidad);
+      //producto.setDisponible(producto.getDisponible()-cantidad);
       productos.update(producto.getId(), producto.toJSONObject().toString());
       listP=productos.load();
 
@@ -278,7 +279,7 @@ public final class Pruebas2 {
     System.out.println(json.toString(2));
   }
 
-  static int leerOpcion() {
+  static int leerOpcion() throws Exception {
     String opciones = """
             Men\u00fa de opciones:
              1 - Agregar un producto
