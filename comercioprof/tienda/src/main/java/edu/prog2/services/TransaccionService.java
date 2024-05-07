@@ -62,6 +62,9 @@ public abstract class TransaccionService implements IService{
     @Override
     public JSONObject remove(String id) throws Exception {
         Transaccion transaccion = (Transaccion)getItem(id);
+        if(transaccion == null){
+            throw new IllegalArgumentException("No existe esa transacion");
+        }
         if(this.list.remove(transaccion)){
           Utils.writeJSON(list, fileName);
         // devolver la instancia con los cambios realizados

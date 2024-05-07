@@ -14,5 +14,13 @@
     "id": "A798M",
     "telefono": "7894561230",
     "nombre": "Miguel"
+  },
+  {
+    "password": "6a414d4ee646a3b53d6db30c1cb08c8",
+    "correo": "ferfer@gmail.com",
+    "admin": true,
+    "id": "75H1I",
+    "telefono": "1234567890",
+    "nombre": "Fernanda Cristina de Miranda"
   }
 ]

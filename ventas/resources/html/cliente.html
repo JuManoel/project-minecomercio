@@ -25,11 +25,13 @@
             <label for="correo" class="form-label mt-0">Correo</label>
             <input type="text" class="form-control" id="correo" name="correo" placeholder="correo@correo.com" required />
         </div>
-  
+        
         <div class="col"><!-- quizas debia ser un check box, seria mas sencillo-->
-            <label for="credito" class="form-label mt-0">Credito</label>
-            <input type="text" class="form-control" id="credito" name="credito" placeholder="SI" required />
-          </div>
+            <label class="form-label mt-0" for="credito">Tienes credito?</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="credito" name="credito">
+            </div>
+        </div>
       </div>
 
       <div class="form-group mx-2">

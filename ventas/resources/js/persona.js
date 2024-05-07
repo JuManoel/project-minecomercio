@@ -10,16 +10,14 @@ export default class Persona {
       throw new Error('No utilice el constructor. Use el .init()')
     }
   
-    static async init(nombreClasse) {
-        this.nombreClase=nombreClasse
+    static async init() {
       try {
   
         // intentar cargar el formulario de edición de productos
-        Persona.form = await Helpers.loadPage(`./resources/html/${nombreClasse}.html`)
+        Persona.form = await Helpers.loadPage(`./resources/html/${this.nombreClase}.html`)
   
         // intentar cargar los datos de los productos
-        const response = await Helpers.fetchData(`${urlAPI}/${nombreClasse}`)
-        console.log(response.data)
+        const response = await Helpers.fetchData(`${urlAPI}/${this.nombreClase}`)
         if (response.message !== 'ok') {
           throw new Error(response.message)
         }
@@ -41,44 +39,11 @@ export default class Persona {
         })
   
         // agregar un gestor de eventos al botón 'add-row' para mostrar el formulario en donde se ingresarán productos
-        Persona.table.on('tableBuilt', () => document.querySelector('#add-row').addEventListener('click', Persona.addRow))
+        Persona.table.on('tableBuilt', () => document.querySelector('#add-row').addEventListener('click', this.addRow))
       } catch (e) {
         Toast.show({ title: 'Ventas', message: e.message, mode: 'danger', error: e })
       }
-  
       return this
-    }
-  
-    static async addRow() {
-        Persona.currentOption = 'add'
-        Persona.modal = new Modal({
-        classes: 'col-12 col-sm-10 col-md-9 col-lg-8 col-xl-7',
-        title: `<h5>Ingreso de ${this.nombreClase}</h5>`,
-        content: Persona.form,
-        buttons: [
-          { caption: addButton, classes: 'btn btn-primary me-2' },
-          { caption: cancelButton, classes: 'btn btn-secondary' },
-        ],
-        doSomething: Persona.toComplete,
-      })
-  
-      // mostrar el cuadro de diálogo y gestionar las opciones de agregar y cancelar
-      try {
-        const option = await Persona.modal.show()
-        if (option === 'Cancelar' || option === '✖') {
-            Persona.modal.close()
-        } else if (option === 'Agregar') {
-            Persona.add()
-        }
-      } catch (e) {
-        Toast({ message: `Problemas al agregar el ${ this.nombreClase}`, mode: 'danger', error: e })
-      }
-    }
-  
-    static async add() {
-      //await Helpers.fetchData(`${urlAPI}/${this.nombreClase}/categorias`,{})
-      Toast.show({ title: this.nombreClase, message: `Falta implementar la adición de ${this.nombreClase}`, mode: 'warning' })
-      Persona.modal.close()
     }
   
     static editRowClick = async (e, cell) => {//cell es la celda que lo llamo
@@ -88,8 +53,8 @@ export default class Persona {
         title: `<h5>Actualización de ${this.nombreClase}</h5>`,
         content:Persona.form,
         buttons: [
-          { caption: editButton, classes: 'btn btn-primary me-2' },
-          { caption: cancelButton, classes: 'btn btn-secondary' },
+          { caption: editButton, classes: 'btn btn-primary me-2' , action: ()=> Persona.edit(cell) },
+          { caption: cancelButton, classes: 'btn btn-secondary',action: ()=> Persona.modal.close() },
         ],
         doSomething: idModal => Persona.toComplete(idModal, cell.getRow().getData()),
       })
@@ -107,7 +72,6 @@ export default class Persona {
     }
   
     static edit(cell) {
-      console.log(cell.getRow().getData())
       Toast.show({ title: this.nombreClase, message: `Falta edicion la adición de ${ this.nombreClase}`, mode: 'warning' })
     }
   
@@ -123,8 +87,8 @@ export default class Persona {
              Valor venta $${cell.getRow().getData().valorVenta}<br>
           </span>`, 
         buttons: [
-          { caption: deleteButton, classes: 'btn btn-primary me-2' },
-          { caption: cancelButton, classes:'btn btn-secondary' },
+          { caption: deleteButton, classes: 'btn btn-primary me-2', action:()=> Persona.delete(cell) },
+          { caption: cancelButton, classes:'btn btn-secondary',action: ()=> Persona.modal.close() },
         ],
         // no requiere doSomething
       })
@@ -141,10 +105,18 @@ export default class Persona {
     }
     }
     static delete(cell) {
-      console.log(cell.getRow().getData())
       Toast.show({ title:  this.nombreClase, message: `Falta implementar la eliminacion de ${ this.nombreClase}`, mode: 'warning' })
     }
   
+    static getFormData(){
+      const id= document.querySelector(`#${Persona.modal.id} #id`).value
+      const nombre= document.querySelector(`#${Persona.modal.id} #nombre`).value
+      const telefono= document.querySelector(`#${Persona.modal.id} #telefono`).value
+      const correo= document.querySelector(`#${Persona.modal.id} #correo`).value
+      const password= document.querySelector(`#${Persona.modal.id} #contrasena`).value
+      return { id, nombre, nombre, telefono, correo, password}
+    }
+
     static toComplete(idModal, rowData) {
     
       if (Persona.currentOption === 'edit') {
@@ -153,7 +125,9 @@ export default class Persona {
         document.querySelector(`#${idModal} #nombre`).value = rowData.nombre
         document.querySelector(`#${idModal} #correo`).value = rowData.correo
         document.querySelector(`#${idModal} #telefono`).value = rowData.telefono
+        document.querySelector(`#${idModal} #contrasena`).value = rowData.contrasena 
       }
     }
+
   }
   

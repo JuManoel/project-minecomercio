@@ -30,5 +30,21 @@
     "id": "PI6KK",
     "telefono": "3579824695",
     "nombre": "Carlitos Cuesta"
+  },
+  {
+    "password": "e4fd5f2e6de9c916100c492374a7faf8",
+    "correo": "juan.miranda41303@ucaldas.edu.co",
+    "credito": true,
+    "id": "9RDGO",
+    "telefono": "3004121952",
+    "nombre": "Juan Manoel Miranda Gómez"
+  },
+  {
+    "password": "87dad2ebf3a718da150b0d8c85d5732d",
+    "correo": "miranda.M@ucaldas.edu.co",
+    "credito": false,
+    "id": "L8KNJ",
+    "telefono": "304431958",
+    "nombre": "Miguel Miranda Gómez"
   }
 ]

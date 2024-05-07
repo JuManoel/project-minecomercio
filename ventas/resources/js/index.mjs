@@ -77,15 +77,15 @@ class App {
         break
       case 'Clientes':
         const { default: clientes } = await import('./cliente.js')
-        clientes.init('cliente')
+        clientes.init()
         break
       case 'Proveedores':
         const { default: provedor } = await import('./provedor.js')
-        provedor.init('provedor')
+        provedor.init()
         break
       case 'Vendedores':
         const { default: vendedor } = await import('./vendedor.js')
-        vendedor.init('vendedor')
+        vendedor.init()
         break
       case 'Acerca de...':
         Toast.show({ message: `No implementada la opción de ${option}`, mode: 'warning' })
