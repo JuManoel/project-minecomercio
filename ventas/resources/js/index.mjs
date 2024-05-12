@@ -41,7 +41,7 @@ class App {
       // confirmación de acceso a la API REST
       const response = await Helpers.fetchData(`${urlAPI}/`)
       if (response.message === 'ok') {
-        Toast.show({ title: 'Hola', message: response.data })
+        Toast.show({ title: 'Hola', message: response.data, duration: 2000 })
       } else {
         Toast.show({ message: 'Problemas con el servidor de datos', mode: 'danger', error: response })
       }
@@ -52,6 +52,11 @@ class App {
     // acceder a las opciones del menú
     const listOptions = document.querySelectorAll('#main-menu a')
     listOptions.forEach(item => item.addEventListener('click', App.#mainMenu))
+
+    // ///////////////////////
+    // const { default: Ventas } = await import('./ventas.js')
+    // Ventas.init()
+    // ///////////////////////
   }
 
   /**
@@ -72,26 +77,33 @@ class App {
       case 'Productos':
         const { default: Productos } = await import('./productos.js')
         Productos.init()
-      case 'Ventas':
-        console.info('Submenú ventas')
         break
+
       case 'Clientes':
-        const { default: clientes } = await import('./cliente.js')
-        clientes.init()
+        const { default: Clientes } = await import('./usuarios.js')
+        Clientes.init('cliente')
         break
       case 'Proveedores':
-        const { default: provedor } = await import('./provedor.js')
-        provedor.init()
+        const { default: Proveedores } = await import('./usuarios.js')
+        Proveedores.init('provedor')
         break
       case 'Vendedores':
-        const { default: vendedor } = await import('./vendedor.js')
-        vendedor.init()
+        const { default: Vendedores } = await import('./usuarios.js')
+        Vendedores.init('vendedor')
+        break
+
+      case 'Ventas':
+        // ...
+        break
+      case 'Registrar ventas':
+        const { default: Ventas } = await import('./ventas.js')
+        Ventas.init()
         break
       case 'Acerca de...':
         Toast.show({ message: `No implementada la opción de ${option}`, mode: 'warning' })
         break
       default:
-        Toast({ content: `La opción ${option} no ha sido implementada`, mode: 'warning', delay: 3000, close: false })
+        Toast.show({ message: `La opción ${option} no ha sido implementada`, mode: 'warning', delay: 3000, close: false })
         console.warn('Fallo en ', e.target)
     }
   }

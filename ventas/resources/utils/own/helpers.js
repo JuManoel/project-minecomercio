@@ -29,7 +29,7 @@ export default class Helpers {
   }
 
   /**
-   * Retorna el recurso que se encuentra en la URL dada
+   * Hace una petición HTTP y retorna la respuesta obtenida
    * @param {String} url La dirección donde se encuentra el recurso
    * @param {Object} data Un objecto con metadatos de la petición
    * @returns Un objeto JSON con el recurso solicitado

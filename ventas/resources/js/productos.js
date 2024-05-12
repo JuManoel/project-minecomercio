@@ -22,6 +22,7 @@ export default class Productos {
 
       // intentar cargar los datos de los productos
       const response = await Helpers.fetchData(`${urlAPI}/producto`)
+      console.log(response.data)
       if (response.message !== 'ok') {
         throw new Error(response.message)
       }
@@ -87,7 +88,7 @@ export default class Productos {
       }
       // obtener del formulario el objeto con los datos que se envían a la solicitud POST
       const body = Productos.#getFormData()
-      console.log(body)
+
       // enviar la solicitud de creación con los datos del formulario
       let response = await Helpers.fetchData(`${urlAPI}/producto`, {
         method: 'POST',

@@ -4,7 +4,7 @@
 En ../utils/bootstrap-5.3.3/css, además de flatly, encuentra otros temas como cerulean, cosmo, cyborg, ...  
 Use ../utils/bootstrap-5.3.3/css/TEMA/bootstrap.min.css, siendo TEMA el nombre de la carpeta correspondiente al tema
 */
-@import '../utils/bootstrap-5.3.3/css/flatly/bootstrap.min.css';
+@import '../utils/bootstrap-5.3.3/css/Slate/bootstrap.min.css';
 @import 'toast.css';
 
 .dialog {

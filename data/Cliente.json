@@ -16,14 +16,6 @@
     "nombre": "Juan"
   },
   {
-    "password": "fb7b9ffa5462084c5f4e7e85a093e6d7",
-    "correo": "loko@gmail.com",
-    "credito": true,
-    "id": "RKYK6",
-    "telefono": "3694578125",
-    "nombre": "Looooko"
-  },
-  {
     "password": "fbe1da9b434cde542bbcd768b11d628a",
     "correo": "CarlosCuesta@ucaldas.edu.co",
     "credito": true,
@@ -46,5 +38,13 @@
     "id": "L8KNJ",
     "telefono": "304431958",
     "nombre": "Miguel Miranda Gómez"
+  },
+  {
+    "password": "2311e6168d44dfc1087a4cd59a14080d",
+    "correo": "carlos.cuesta@ucaldas.edu.co",
+    "credito": true,
+    "id": "WNRNB",
+    "telefono": "3004121952",
+    "nombre": "Carlos Alberto Cuesta Iglesias"
   }
 ]
