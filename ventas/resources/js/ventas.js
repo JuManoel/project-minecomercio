@@ -47,7 +47,7 @@ export default class Ventas {
 
       // asignar a Ventas.#salesTable la instancia de Tabulator
       Ventas.#salesTable = new Tabulator('main #ventas > #table-container', {
-        height: 'calc(100vh - 500px)', // establecer la altura de la tabla, esto habilita el DOM virtual y mejora drásticamente la velocidad de procesamiento
+        height: 'calc(1% - 500px)', // establecer la altura de la tabla, esto habilita el DOM virtual y mejora drásticamente la velocidad de procesamiento
         data: [{ cantidad: null, producto: null, valorUnitario: null, iva: null, valorTotal: null }],
         layout: 'fitColumns', // ajustar columnas al ancho de la tabla (opcional)
         columns: [
@@ -184,44 +184,72 @@ export default class Ventas {
    * Verifica que los datos del formulario y de la tabla sean correctos y envía una solicitud POST con dichos datos
    */
   static async #saveSale() {
-    Toast.show({ message: 'Falta implementar el registro de ventas' })
-    return
-
-    // verificar que hay un cliente seleccionado y salir si no es así
-    // ...
-
-    // verificar que hay un vendedor seleccionado y salir si no es así
-    // ...
-
-    // verificar que haya líneas de venta y salir si no es así
-    // ...
-
-    // si todas las líneas de venta tienen todos los datos...
-    //    referencia en la variable local salesLines las líneas de venta
-    //    cambiar en el array salesLines los nombres de los productos por los ID de los productos
-
-    // estructura un objeto local data así: body = { fecha: f, cliente: c, vendedor: f, detalle: salesLines }
-    const body = {
-      // ...
+    const fechaHora = document.querySelector(`#form-ventas #fecha`).value
+    let json = {
+      cliente: null,
+      vendedor: null,
+      detalle: null,
+      fechaHora: fechaHora,
     }
-
+    const idc = document.querySelector(`#form-ventas #cliente`).value
+    const idv = document.querySelector(`#form-ventas #vendedor`).value
+    if (idc == '') {
+      Toast.show({ message: 'Ingrese el Cliente' })
+      return
+    }
+    json.cliente = idc
+    if (idv == '') {
+      Toast.show({ message: 'Ingrese el Vendedor' })
+      return
+    }
+    json.vendedor = idv
+    json.detalle = []
+    let i = 0
+    const response = await Helpers.fetchData(`${urlAPI}/producto`)
+    let productos = response.data
+    let id
+    Ventas.#salesTable.getData().forEach(detalle => {
+      id = null
+      if (detalle.cantidad == '' || detalle.cantidad === null) {
+        Toast.show({ message: 'Ingrese la Cantidad' })
+        return
+      }
+      if (detalle.producto == '' || detalle.producto == null) {
+        Toast.show({ message: 'Ingrese el Producto' })
+        return
+      }
+      productos.forEach(element => {
+        if (element.descripcion == detalle.producto) {
+          id = element.id
+        }
+      })
+      if (id === null) {
+        Toast.show({ message: 'Ingrese un Producto que exista' })
+        return
+      }
+      json.detalle[i] = {
+        cantidad: detalle.cantidad,
+        producto: id,
+      }
+      i++
+    })
+    const body = json
     try {
-      // intenta enviar la solicitud POST de la venta incluyendo en el body los datos de la venta
-      // ...
-
-      // avisa del éxito o del fracaso de la petición
+      let response = await Helpers.fetchData(`${urlAPI}/venta`, {
+        method: 'POST',
+        body,
+      })
       if (response.message === 'ok') {
         Ventas.#salesTable.getColumnDefinitions()[1].editorParams.values = await Ventas.#getProducts()
-
-        // limpia el formulario
-        // actualizar la fecha y la hora
         Toast.show({ message: 'Venta registrada exitosamente' })
+        Ventas.clearForm()
       } else {
         Toast.show({ message: 'No se pudo agregar la venta', mode: 'danger', error: response })
       }
     } catch (e) {
       Toast.show({ message: 'Sin acceso al registro de ventas', mode: 'danger', error: e })
     }
+    return
   }
 
   /**
@@ -258,5 +286,59 @@ export default class Ventas {
     const salesLines = Ventas.#salesTable.getData()
     // verificar si todas las filas tienen la cantidad y el producto
     return salesLines.some(row => row.cantidad > 0 && row.producto)
+  }
+
+  static async #registroVentas() {
+    const response = await Helpers.fetchData(`${urlAPI}/venta`)
+    let ventas = response.data
+    this.table(ventas)
+  }
+
+  static table(nestedData) {
+    //define table
+    var table = new Tabulator('#example-table', {
+      height: '311px',
+      layout: 'fitColumns',
+      columnDefaults: {
+        resizable: true,
+      },
+      data: nestedData,
+      columns: [
+        { title: 'Nor.', field: 'id' },
+        { title: 'Fecha', field: 'fechaHora' },
+        { title: 'Cliente', field: 'cliente' },
+        { title: 'Vendedor', field: 'vendedor' },
+        {title: 'Total', field: 'total'},
+        {title: '',field:deleteRowButton}
+      ],
+      rowFormatter: function (row) {
+        //create and style holder elements
+        var holderEl = document.createElement('div')
+        var tableEl = document.createElement('div')
+
+        holderEl.style.boxSizing = 'border-box'
+        holderEl.style.padding = '10px 30px 10px 10px'
+        holderEl.style.borderTop = '1px solid #333'
+        holderEl.style.borderBotom = '1px solid #333'
+
+        tableEl.style.border = '1px solid #333'
+
+        holderEl.appendChild(tableEl)
+
+        row.getElement().appendChild(holderEl)
+
+        var subTable = new Tabulator(tableEl, {
+          layout: 'fitColumns',
+          data: row.getData().serviceHistory,
+          columns: [
+            { title: 'Cant.', field: 'cantidad'},
+            { title: 'Nombre', field: 'descripcion' },
+            { title: 'Valor', field: 'valorVenta' },
+            { title: 'IVA', field: 'iva' },
+            { title: 'SubTotal', field: 'subTotal' },
+          ],
+        })
+      },
+    })
   }
 }

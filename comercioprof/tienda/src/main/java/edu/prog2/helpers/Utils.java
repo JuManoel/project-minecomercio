@@ -35,13 +35,16 @@ public class Utils {
   public static final String PATH = "./data/";
   public static boolean trace = false;
 
-  private Utils() {} // lo mismo en Keyboard
+  private Utils() {
+  } // lo mismo en Keyboard
 
   public static void printStackTrace(Exception e) {
     if (Utils.trace) {
-      System.out.printf("%s%s%s%s%s%n", Utils.RED, "-".repeat(30), " Reporte de excepciones ", "-".repeat(30), Utils.RESET);
+      System.out.printf("%s%s%s%s%s%n", Utils.RED, "-".repeat(30), " Reporte de excepciones ", "-".repeat(30),
+          Utils.RESET);
       e.printStackTrace(System.out);
-      System.out.printf("%s%s%s%s%s%n", Utils.RED, "-".repeat(30), " Fin del reporte de excepciones ", "-".repeat(30), Utils.RESET);
+      System.out.printf("%s%s%s%s%s%n", Utils.RED, "-".repeat(30), " Fin del reporte de excepciones ", "-".repeat(30),
+          Utils.RESET);
     }
   }
 
@@ -51,11 +54,11 @@ public class Utils {
     Random random = new Random();
 
     String generatedString = random
-      .ints(leftLimit, rightLimit + 1)
-      .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-      .limit(stringLength)
-      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-      .toString();
+        .ints(leftLimit, rightLimit + 1)
+        .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+        .limit(stringLength)
+        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+        .toString();
 
     return generatedString;
   }
@@ -90,6 +93,7 @@ public class Utils {
 
   /**
    * Crea la ruta padre indicada en el argumento recibido si no existe
+   * 
    * @param filePath Un String que representa una ruta válida
    * @return Una instancia de Path con la ruta original
    * @throws IOException
@@ -107,7 +111,8 @@ public class Utils {
 
   public static void _writeText(List<?> list, String fileName) throws Exception {
     initPath(fileName);
-    try (FileWriter fw = new FileWriter(new File(fileName), StandardCharsets.UTF_8); BufferedWriter writer = new BufferedWriter(fw)) {
+    try (FileWriter fw = new FileWriter(new File(fileName), StandardCharsets.UTF_8);
+        BufferedWriter writer = new BufferedWriter(fw)) {
       for (int i = 0; i < list.size(); i++) {
         writer.append(list.get(i).toString());
         writer.newLine();
@@ -126,6 +131,7 @@ public class Utils {
     }
   }
 
+
   public static void writeText(String content, String fileName) throws IOException {
     Path path = initPath(fileName);
     Files.write(path, content.getBytes(StandardCharsets.UTF_8));
@@ -138,6 +144,7 @@ public class Utils {
 
   /**
    * Convierte parámetros de una URL en una representación JSON
+   * 
    * @param s Algo así como param1=value1&param2=value2...
    * @return Un String JSON con los pares paramX=valueX de s
    * @throws IOException
@@ -151,7 +158,9 @@ public class Utils {
   }
 
   /**
-   * Convierte un número par de strings en una representación json {key:value, ...}
+   * Convierte un número par de strings en una representación json {key:value,
+   * ...}
+   * 
    * @param strings los strings (en número par) que se convierten a json
    * @return Un String JSON con los pares key=value de strings
    */
@@ -168,11 +177,15 @@ public class Utils {
   }
 
   /**
-   * Verifica en cualquier archivo de tipo JSON si un objeto está contenido en uno de los objetos
+   * Verifica en cualquier archivo de tipo JSON si un objeto está contenido en uno
+   * de los objetos
    * JSON que conforman el array de objetos JSON contenido en el archivo.
-   * @param fileName El nombre del archivo sin extensión, que contiene el array de objetos JSON
-   * @param key La clave o atributo que identifica el objeto JSON a buscar dentro de cada objeto
-   * @param search El objeto JSON a buscar
+   * 
+   * @param fileName El nombre del archivo sin extensión, que contiene el array de
+   *                 objetos JSON
+   * @param key      La clave o atributo que identifica el objeto JSON a buscar
+   *                 dentro de cada objeto
+   * @param search   El objeto JSON a buscar
    * @return True si se encuentra que search alguno de los objetos del array
    * @throws Exception
    */
@@ -201,12 +214,18 @@ public class Utils {
   }
 
   /**
-   * Verifica en cualquier archivo de tipo JSON si un objeto con una propiedad determinada, está
-   *  contenido en uno de los objetos JSON que conforman el array de objetos JSON contenido en el archivo.
-   * @param fileName El nombre del archivo sin extensión, que contiene el array de objetos JSON
-   * @param key La clave o atributo que identifica el objeto JSON a buscar dentro de cada objeto
-   * @param search El objeto JSON a buscar
-   * @param property La clave del objeto que se usa para hacer la comparación. Ej.: "id"
+   * Verifica en cualquier archivo de tipo JSON si un objeto con una propiedad
+   * determinada, está
+   * contenido en uno de los objetos JSON que conforman el array de objetos JSON
+   * contenido en el archivo.
+   * 
+   * @param fileName El nombre del archivo sin extensión, que contiene el array de
+   *                 objetos JSON
+   * @param key      La clave o atributo que identifica el objeto JSON a buscar
+   *                 dentro de cada objeto
+   * @param search   El objeto JSON a buscar
+   * @param property La clave del objeto que se usa para hacer la comparación.
+   *                 Ej.: "id"
    * @return True si se encuentra que search alguno de los objetos del array
    * @throws Exception
    */
@@ -224,7 +243,8 @@ public class Utils {
       if (jsonObj.has(key)) {
         // De la instancia actual obtener el objeto JSON que se requiere verificar
         jsonObj = jsonObj.getJSONObject(key);
-        // OJO >>> utilizar una de las propiedades de los objetos para hacer la comparación
+        // OJO >>> utilizar una de las propiedades de los objetos para hacer la
+        // comparación
         if (jsonObj.optString(property).equals(search.optString(property))) {
           return true;
         }

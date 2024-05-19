@@ -46,5 +46,13 @@
     "id": "WNRNB",
     "telefono": "3004121952",
     "nombre": "Carlos Alberto Cuesta Iglesias"
+  },
+  {
+    "password": "5a4629189a54ce51bd2018227e923bbc",
+    "correo": "karen.bustamante.45789@ucaldas.edu.co",
+    "credito": false,
+    "id": "L8RV2",
+    "telefono": "4567898741",
+    "nombre": "Karen"
   }
 ]

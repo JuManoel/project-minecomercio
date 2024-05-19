@@ -13,8 +13,6 @@ public abstract class Persona implements Format {
   protected String telefono;
   protected String password; // anglicismo
 
-
-
   public Persona(String id, String nombre, String correo, String telefono, String password) throws Exception {
     setCorreo(correo);
     setId(id);
@@ -43,48 +41,56 @@ public abstract class Persona implements Format {
     setTelefono(persona.getTelefono());
   }
 
-
   public Persona() {
-      super();
+    super();
   }
 
-  public Persona(JSONObject json) throws JSONException, Exception{
-    this(json.getString("id"), json.getString("nombre"), json.optString("correo"), json.getString("telefono"), json.getString("password")); //transforma de string a localdatetime
+  public Persona(JSONObject json) throws JSONException, Exception {
+    this(json.getString("id"), json.getString("nombre"), json.optString("correo"), json.getString("telefono"),
+        json.getString("password")); // transforma de string a localdatetime
   }
 
-        
   public String getCorreo() {
-      return correo;
+    return correo;
   }
+
   public void setCorreo(String correo) {
-      this.correo = correo;
+    this.correo = correo;
   }
+
   public String getId() {
-      return id;
+    return id;
   }
+
   public void setId(String id) throws Exception {
-    if(id == null || id.isBlank()){
+    if (id == null || id.isBlank()) {
       throw new Exception("El ID tiene q tener algo");
     }
-      this.id = id;
+    this.id = id;
   }
+
   public String getNombre() {
-      return nombre;
+    return nombre;
   }
+
   public void setNombre(String nombre) {
-      this.nombre = nombre;
+    this.nombre = nombre;
   }
+
   public String getPassword() {
-      return password;
+    return password;
   }
-  public void setPassword(String password){
+
+  public void setPassword(String password) {
     this.password = password;
   }
+
   public String getTelefono() {
-      return telefono;
+    return telefono;
   }
+
   public void setTelefono(String telefono) {
-      this.telefono = telefono;
+    this.telefono = telefono;
   }
 
   @Override
@@ -113,14 +119,14 @@ public abstract class Persona implements Format {
 
   @Override
   public String toString() {
-    String str =String.format(
-      "Id: %s\n"+
-      "Nombre: %s\n"+
-      "Correo: %s\n"+
-      "Telefono: %s\n"+
-      "Password: %s\n"
-      , getId(),getNombre(),getCorreo(),getTelefono(),getPassword());
-      return str;
+    String str = String.format(
+        "Id: %s\n" +
+            "Nombre: %s\n" +
+            "Correo: %s\n" +
+            "Telefono: %s\n" +
+            "Password: %s\n",
+        getId(), getNombre(), getCorreo(), getTelefono(), getPassword());
+    return str;
   }
 
   @Override

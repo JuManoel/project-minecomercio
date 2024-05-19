@@ -4,41 +4,41 @@
     "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
+    "subtotal": 78000,
     "valorVenta": 4000,
-    "subtotal": 150000,
     "valorBase": 3000,
     "id": "PVEPR",
-    "disponible": 50
+    "disponible": 26
   },
   {
     "descripcion": "Boliqueso",
     "vencimiento": "2024-12-10",
     "tipo": "GOLOSINAS",
     "iva": 19,
+    "subtotal": 105000,
     "valorVenta": 1100,
-    "subtotal": 60000,
     "valorBase": 1000,
     "id": "LCB2M",
-    "disponible": 60
+    "disponible": 105
   },
   {
     "descripcion": "Queso parmesano Alpina",
     "vencimiento": "2024-10-01",
     "tipo": "LACTEOS",
     "iva": 19,
+    "subtotal": 670000,
     "valorVenta": 12000,
-    "subtotal": 200000,
     "valorBase": 10000,
     "id": "CU12G",
-    "disponible": 20
+    "disponible": 67
   },
   {
     "descripcion": "Yogurt natural vaso x 120 ml.",
     "vencimiento": "2024-08-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "valorVenta": 5000,
     "subtotal": 200000,
+    "valorVenta": 5000,
     "valorBase": 4000,
     "id": "35G6E",
     "disponible": 50
@@ -48,19 +48,19 @@
     "vencimiento": "2024-03-26",
     "tipo": "LACTEOS",
     "iva": 19,
+    "subtotal": 172000,
     "valorVenta": 5000,
-    "subtotal": 200000,
     "valorBase": 4000,
     "id": "X1SC9",
-    "disponible": 50
+    "disponible": 43
   },
   {
     "descripcion": "Arroz Diana x libra",
     "vencimiento": "2024-03-26",
     "tipo": "CEREALES",
     "iva": 19,
-    "valorVenta": 3999,
     "subtotal": 149950,
+    "valorVenta": 3999,
     "valorBase": 2999,
     "id": "6NTFM",
     "disponible": 50
@@ -70,54 +70,76 @@
     "vencimiento": "2025-01-01",
     "tipo": "CARNICOS",
     "iva": 19,
+    "subtotal": 160000,
     "valorVenta": 15000,
-    "subtotal": 200000,
     "valorBase": 10000,
     "id": "EIV7B",
-    "disponible": 20
+    "disponible": 16
   },
   {
     "descripcion": "Pizza conjelada Peperoni",
     "vencimiento": "2026-02-28",
     "tipo": "HARINAS",
     "iva": 20,
+    "subtotal": 805000,
     "valorVenta": 25000,
-    "subtotal": 875000,
     "valorBase": 17500,
     "id": "PHAKQ",
-    "disponible": 50
+    "disponible": 46
   },
   {
     "descripcion": "cafe",
     "vencimiento": "2026-05-05",
     "tipo": "BEBIDAS",
     "iva": 19,
+    "subtotal": 77600,
     "valorVenta": 1000,
-    "subtotal": 80000,
     "valorBase": 800,
     "id": "3S67B",
-    "disponible": 100
+    "disponible": 97
   },
   {
     "descripcion": "Pollitos",
     "vencimiento": "2024-05-31",
     "tipo": "CARNICOS",
     "iva": 16,
+    "subtotal": 900000,
     "valorVenta": 30000,
-    "subtotal": 1000000,
     "valorBase": 20000,
     "id": "30JT7",
-    "disponible": 50
+    "disponible": 45
   },
   {
     "descripcion": "For Loko",
     "vencimiento": "2028-01-01",
     "tipo": "BEBIDAS",
     "iva": 19,
+    "subtotal": 100000,
     "valorVenta": 3500,
-    "subtotal": 20000,
     "valorBase": 2000,
     "id": "X1EK9",
-    "disponible": 10
+    "disponible": 50
+  },
+  {
+    "descripcion": "Peperoni",
+    "vencimiento": "2024-05-16",
+    "tipo": "CARNICOS",
+    "iva": 19,
+    "subtotal": 300000,
+    "valorVenta": 15000,
+    "valorBase": 10000,
+    "id": "IQLOU",
+    "disponible": 30
+  },
+  {
+    "descripcion": "TrociPollo",
+    "vencimiento": "2025-01-01",
+    "tipo": "GOLOSINAS",
+    "iva": 19,
+    "subtotal": 185000,
+    "valorVenta": 7000,
+    "valorBase": 5000,
+    "id": "SCXSW",
+    "disponible": 37
   }
 ]

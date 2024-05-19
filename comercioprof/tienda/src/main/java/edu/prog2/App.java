@@ -19,12 +19,13 @@ public final class App {
     IService<Persona> clienteService = new PersonaService(Cliente.class);
     IService<Persona> provedorService = new PersonaService(Provedor.class);
     IService<Persona> vendedorService = new PersonaService(Vendedor.class);
-    IService<CompraVenta> ventaService = new CompraVentaService(Cliente.class,Vendedor.class);
-    IService<CompraVenta> compraService = new CompraVentaService(Provedor.class,Vendedor.class);
+    @SuppressWarnings("unchecked")
+    IService<CompraVenta> ventaService = new CompraVentaService(Cliente.class);
+    @SuppressWarnings("unchecked")
+    IService<CompraVenta> compraService = new CompraVentaService(Provedor.class);
     String message = String.format(
-       "%sIniciando la API Rest de Ventas. Use Ctrl+C para detener la ejecución%s",
-       Utils.CYAN, Utils.RESET
-    );
+        "%sIniciando la API Rest de Ventas. Use Ctrl+C para detener la ejecución%s",
+        Utils.CYAN, Utils.RESET);
     LOG.info(message);
 
     Utils.trace = true;
@@ -36,58 +37,51 @@ public final class App {
 
     if (Utils.trace) {
       LOG.info(String.format(
-         "%sHabilitada la traza de errores%s", Utils.YELLOW, Utils.RESET
-      ));
+          "%sHabilitada la traza de errores%s", Utils.YELLOW, Utils.RESET));
     } else {
       LOG.info(String.format(
-         "%sEnvíe un argumento true|false para habilitar|deshabilitar la traza de errores%s",
-         Utils.YELLOW, Utils.RESET
-      ));
+          "%sEnvíe un argumento true|false para habilitar|deshabilitar la traza de errores%s",
+          Utils.YELLOW, Utils.RESET));
     }
 
     Javalin
-    .create(config -> {
-      config.http.defaultContentType = "application/json";
-   
-         config.bundledPlugins.enableCors(cors -> {
-          cors.addRule(it -> it.anyHost());
-      });
-   
-   
-      config.router.apiBuilder(() -> {
-          new Controller<>(productoService);
-          new Controller<>(clienteService);
-          new Controller<>(vendedorService);
-          new Controller<>(provedorService);
-          new Controller<>(compraService);
-          new Controller<>(ventaService);
-      });
-   }  )
-    .start(7070)
-    .get("/", ctx -> ctx.json(
-         "{ \"data\": \"Bienvenido al servicio de ventas\", \"message\": \"ok\" }"
-     ))
-    .exception(
-      Exception.class,
-      (e, ctx) -> {
-          Utils.printStackTrace(e);
-          String error = Utils.keyValueToStrJson(
-            "message", e.getMessage(), "request", ctx.fullUrl()
-          );
-          ctx.json(error).status(400);
-      }
-   )
-  .error(404, ctx -> { /* nada por implementar aún */ });
+        .create(config -> {
+          config.http.defaultContentType = "application/json";
 
-  Runtime
-  .getRuntime()
-  .addShutdownHook(
-  new Thread(() -> {
-    LOG.info(String.format(
-      "%sEl servidor Jetty de Javalin ha sido detenido%s%n", 
-      Utils.RED, Utils.RESET
-    ));
-  })
-);
+          config.bundledPlugins.enableCors(cors -> {
+            cors.addRule(it -> it.anyHost());
+          });
+
+          config.router.apiBuilder(() -> {
+            new Controller<>(productoService);
+            new Controller<>(clienteService);
+            new Controller<>(vendedorService);
+            new Controller<>(provedorService);
+            new Controller<>(compraService);
+            new Controller<>(ventaService);
+          });
+        })
+        .start(7070)
+        .get("/", ctx -> ctx.json(
+            "{ \"data\": \"Bienvenido al servicio de ventas\", \"message\": \"ok\" }"))
+        .exception(
+            Exception.class,
+            (e, ctx) -> {
+              Utils.printStackTrace(e);
+              String error = Utils.keyValueToStrJson(
+                  "message", e.getMessage(), "request", ctx.fullUrl());
+              ctx.json(error).status(400);
+            })
+        .error(404, ctx -> {
+          /* nada por implementar aún */ });
+
+    Runtime
+        .getRuntime()
+        .addShutdownHook(
+            new Thread(() -> {
+              LOG.info(String.format(
+                  "%sEl servidor Jetty de Javalin ha sido detenido%s%n",
+                  Utils.RED, Utils.RESET));
+            }));
   }
 }

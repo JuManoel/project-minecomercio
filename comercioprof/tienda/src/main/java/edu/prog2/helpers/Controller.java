@@ -15,48 +15,46 @@ import org.json.JSONObject;
 public class Controller<T> {
 
   public Controller(final IService<T> service) {
-    String currentPath=service.getDataType().getSimpleName().toLowerCase();
+    String currentPath = service.getDataType().getSimpleName().toLowerCase();
     path(
-      currentPath,//isso permite pegar acessar as classes
-      () -> {
-        get("", (ctx) -> response(ctx, service.getAll()));//controla as solicitações de HTTP
+        currentPath, // isso permite pegar acessar as classes
+        () -> {
+          get("", (ctx) -> response(ctx, service.getAll()));// controla as solicitações de HTTP
 
-        get(
-          "/{param}",
-          ctx -> {
-            String arg = ctx.pathParam("param");
-            if (arg.equals("categorias")) {
-              response(ctx, TipoProducto.getAll());
-            } else if (arg.matches("-?\\d+")) {
-              // si es un número en base 10, buscar por índice
-              int i = Integer.parseInt(arg, 10);
-              response(ctx, service.get(i));
-            } else {
-              response(ctx, service.get(arg));
-            }
-          }
-        );
+          get(
+              "/{param}",
+              ctx -> {
+                String arg = ctx.pathParam("param");
+                if (arg.equals("categorias")) {
+                  response(ctx, TipoProducto.getAll());
+                } else if (arg.matches("-?\\d+")) {
+                  // si es un número en base 10, buscar por índice
+                  int i = Integer.parseInt(arg, 10);
+                  response(ctx, service.get(i));
+                } else {
+                  response(ctx, service.get(arg));
+                }
+              });
 
-        post("", ctx -> response(ctx, service.add(ctx.body())));
+          post("", ctx -> response(ctx, service.add(ctx.body())));
 
-        patch( // también hubiera podido ser put
-          "/{param}",
-          ctx -> {
-            String id = ctx.pathParam("param");
-            String newData = ctx.body();
-            response(ctx, service.update(id, newData));
-          }
-        );
+          patch( // también hubiera podido ser put
+              "/{param}",
+              ctx -> {
+                String id = ctx.pathParam("param");
+                String newData = ctx.body();
+                response(ctx, service.update(id, newData));
+              });
 
-        delete("/{param}", ctx -> response(ctx, service.remove(ctx.pathParam("param"))));
-      }
-    );
+          delete("/{param}", ctx -> response(ctx, service.remove(ctx.pathParam("param"))));
+        });
   }
 
   private Context response(@NotNull Context ctx, JSONObject json) {
     if (json == null) {
       ctx.status(404);
-      json = new JSONObject().put("request", ctx.fullUrl()).put("error", "La solicitud ha producido 'null' como respuesta");
+      json = new JSONObject().put("request", ctx.fullUrl()).put("error",
+          "La solicitud ha producido 'null' como respuesta");
     } else if (json.has("error")) {
       ctx.status(404);
       json.put("request", ctx.fullUrl());
@@ -65,13 +63,17 @@ public class Controller<T> {
   }
 
   /**
-   * Recibe un objeto Service<T> como parámetro y devuelve una cadena que representa el
-   * nombre de la clase del servicio, convertido a minúsculas y sin el sufijo "Service".
+   * Recibe un objeto Service<T> como parámetro y devuelve una cadena que
+   * representa el
+   * nombre de la clase del servicio, convertido a minúsculas y sin el sufijo
+   * "Service".
+   * 
    * @param service
    * @return
    */
+  @SuppressWarnings("unused")
   private String getClassName(final IService<T> service) {
-    //no voy deletar eso, sospechoso
+    // no voy deletar eso, sospechoso
     String serviceName = service.getClass().getSimpleName();
     int fin = serviceName.length() - 7;
     String className = serviceName.substring(0, fin).toLowerCase();

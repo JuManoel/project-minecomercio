@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Pruebas3",
+            "request": "launch",
+            "mainClass": "edu.prog2.Pruebas3",
+            "projectName": "tienda"
+        },
+        {
+            "type": "java",
             "name": "Pruebas1",
             "request": "launch",
             "mainClass": "edu.prog2.Pruebas1",

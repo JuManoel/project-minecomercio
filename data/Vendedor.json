@@ -22,5 +22,13 @@
     "id": "75H1I",
     "telefono": "1234567890",
     "nombre": "Fernanda Cristina de Miranda"
+  },
+  {
+    "password": "a60c36fc7c825e68bb5371a0e08f828a",
+    "correo": "Estrella@vendedor.com",
+    "admin": true,
+    "id": "BKF2D",
+    "telefono": "1234585324",
+    "nombre": "Vendedor Estrella"
   }
 ]

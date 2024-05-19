@@ -18,15 +18,16 @@ public final class Producto implements Format {
   private LocalDate vencimiento;
 
   public Producto() throws Exception {
-    this(Utils.getRandomKey(5), "Producto sin descripcion", TipoProducto.OTROS, Double.MAX_VALUE, Double.MAX_VALUE, Double.MIN_VALUE, Integer.MAX_VALUE, LocalDate.now());
+    this(Utils.getRandomKey(5), "Producto sin descripcion", TipoProducto.OTROS, 0, 0, 0, 0, LocalDate.now());
   }
 
-  public Producto(String id) throws Exception { //nuevo constructor
+  public Producto(String id) throws Exception { // nuevo constructor
     this();
     setId(id);
   }
 
-  public Producto(String id, String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva, int disponible, LocalDate vencimiento) throws Exception {
+  public Producto(String id, String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva,
+      int disponible, LocalDate vencimiento) throws Exception {
     setId(id);
     setDescripcion(descripcion);
     setTipo(tipo);
@@ -37,7 +38,8 @@ public final class Producto implements Format {
     setVencimiento(vencimiento);
   }
 
-  public Producto(String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva, int disponible, LocalDate vencimiento) throws Exception {
+  public Producto(String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva,
+      int disponible, LocalDate vencimiento) throws Exception {
     this(Utils.getRandomKey(5), descripcion, tipo, valorBase, valorVenta, iva, disponible, vencimiento);
   }
 
@@ -45,8 +47,10 @@ public final class Producto implements Format {
     this(p.id, p.descripcion, p.tipo, p.valorBase, p.valorVenta, p.iva, p.disponible, p.vencimiento);
   }
 
-  public Producto(JSONObject json) throws JSONException, Exception { //hacer ensayos de Json a Java
-    this(json.getString("id"), json.getString("descripcion"), TipoProducto.valueOf(json.optString("tipo")), json.getDouble("valorBase"), json.getDouble("valorVenta"), json.getDouble("iva"), json.getInt("disponible"), LocalDate.parse(json.getString("vencimiento"))); //transforma de string a localdatetime
+  public Producto(JSONObject json) throws JSONException, Exception { // hacer ensayos de Json a Java
+    this(json.getString("id"), json.getString("descripcion"), TipoProducto.valueOf(json.optString("tipo")),
+        json.getDouble("valorBase"), json.getDouble("valorVenta"), json.getDouble("iva"), json.getInt("disponible"),
+        LocalDate.parse(json.getString("vencimiento"))); // transforma de string a localdatetime
   }
 
   public String getId() {
@@ -110,12 +114,12 @@ public final class Producto implements Format {
   }
 
   public void setIva(double iva) {
-    if(iva<=40 && iva>=0){
+    if (iva <= 40 && iva >= 0) {
       this.iva = iva;
-    }else{
+    } else {
       throw new IllegalArgumentException("El iva generalmente no pasa del 40% y no es menor que 0%");
     }
-    
+
   }
 
   public int getDisponible() {
@@ -168,7 +172,8 @@ public final class Producto implements Format {
 
     String message;
     if (!id.equals(other.id) && (descripcion.equalsIgnoreCase(other.descripcion))) {
-      message = String.format("Error. Los productos con ID %s y %s tienen la descripción igual: \"%s\"", id, other.id, descripcion);
+      message = String.format("Error. Los productos con ID %s y %s tienen la descripción igual: \"%s\"", id, other.id,
+          descripcion);
       throw new IllegalArgumentException(message);
     }
 
@@ -177,7 +182,8 @@ public final class Producto implements Format {
 
   @Override
   public String toString() {
-    return String.format("%-6s%-30s%-20s%10.0f%5d%10.0f%12s\n", id, descripcion, tipo, valorBase, disponible, getSubtotal(), vencimiento);
+    return String.format("%-6s%-30s%-20s%10.0f%5d%10.0f%12s\n", id, descripcion, tipo, valorBase, disponible,
+        getSubtotal(), vencimiento);
   }
 
   @Override

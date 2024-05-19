@@ -182,7 +182,7 @@ Content-Type: application/json; charset=utf-8
       "cliente":"PI6KK",
       "vendedor":"91V8D" ,
       "total": 13000,
-      "fechaHora": "2024-04-23T00:00",
+      "fechaHora": "2024-09-20T00:00",
       "detalle": [
         {
           "producto": "X1SC9",
@@ -195,19 +195,31 @@ Content-Type: application/json; charset=utf-8
       ]
     }
 ### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
-PATCH http://localhost:7070/venta/B9A01
+PATCH http://localhost:7070/venta/RPXE6
 Content-Type: application/json; charset=utf-8
 
 {
-    "password": "123",
-    "correo": "Juan.juan@juan.com",
-    "admin": false,
-    "telefono": "3579815265",
-    "nombre": "machismo"
+    "cliente": "PI6KK",
+    "vendedor": "91V8D",
+    "fechaHora": "2024-05-18T00:00",
+    "detalle": [
+      {
+        "producto": "X1SC9",
+        "cantidad": 1
+      },
+      {
+        "producto": "X1EK9",
+        "cantidad": 2
+      },
+      {
+        "producto": "IQLOU",
+        "cantidad": 3
+      }
+    ]
   }
 
 ### Eliminar un cliente dado su ID
-DELETE http://localhost:7070/venta/B9A01
+DELETE http://localhost:7070/venta/L9PRY
 
 
 
@@ -243,16 +255,23 @@ Content-Type: application/json; charset=utf-8
       ]
     }
 ### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
-PATCH http://localhost:7070/compra/B9A01
+PATCH http://localhost:7070/compra/L6TCL
 Content-Type: application/json; charset=utf-8
 
 {
-    "password": "123",
-    "correo": "Juan.juan@juan.com",
-    "admin": false,
-    "telefono": "3579815265",
-    "nombre": "machismo"
-  }
+      "provedor":"SBSDT",
+      "vendedor":"75H1I" ,
+      "detalle": [
+        {
+          "producto": "IQLOU",
+          "cantidad": 20
+        },
+        {
+          "producto":"CU12G",
+          "cantidad": 10
+        }
+      ]
+    }
 
 ### Eliminar un cliente dado su ID
-DELETE http://localhost:7070/compra/B9A01
+DELETE http://localhost:7070/compra/PZ221

@@ -37,7 +37,8 @@ public final class Pruebas1 {
   }
 
   static void inicializar() throws Exception {
-    // esencial para estandarizar el formato monetario con separador de punto decimal, no con coma
+    // esencial para estandarizar el formato monetario con separador de punto
+    // decimal, no con coma
     Locale.setDefault(Locale.of("es_CO"));
     inicializarProductos();
     // inicializar clientes
@@ -48,22 +49,24 @@ public final class Pruebas1 {
 
   private static void inicializarProductos() throws Exception {
     productos = new ArrayList<>();
-    productos.add(new Producto("Yogurt fresa vaso x 120 ml", TipoProducto.LACTEOS, 2000, 2300, 19, 100, LocalDate.parse("2023-06-19")));
+    productos.add(new Producto("Yogurt fresa vaso x 120 ml", TipoProducto.LACTEOS, 2000, 2300, 19, 100,
+        LocalDate.parse("2023-06-19")));
 
-    productos.add(new Producto("Yogurt melocotón vaso x 120 ml", TipoProducto.LACTEOS, 2000, 2300, 19, 100, LocalDate.parse("2023-06-19")));
+    productos.add(new Producto("Yogurt melocotón vaso x 120 ml", TipoProducto.LACTEOS, 2000, 2300, 19, 100,
+        LocalDate.parse("2023-06-19")));
 
     // crear un JSON de producto con todos los datos menos con el ID
     JSONObject jsonObj = new JSONObject("""
-            {
-                "descripcion": "Yogurt melocotón vaso x 120 ml",
-                "tipo": "LACTEOS",
-                "valorBase": 2000,
-                "valorVenta": 2300,
-                "iva": 19,
-                "disponible": 100,
-                "vencimiento": "2023-06-19"
-            }
-            """);
+        {
+            "descripcion": "Yogurt melocotón vaso x 120 ml",
+            "tipo": "LACTEOS",
+            "valorBase": 2000,
+            "valorVenta": 2300,
+            "iva": 19,
+            "disponible": 100,
+            "vencimiento": "2023-06-19"
+        }
+        """);
     // Agregar el ID al JSONObject
     jsonObj.put("id", Utils.getRandomKey(5));
 
@@ -101,13 +104,13 @@ public final class Pruebas1 {
 
   static int leerOpcion() {
     String opciones = """
-            Men\u00fa de opciones:
-             1 - Probar referencias iguales (línea 173)
-             2 - Probar diferentes tipos (línea 181)
-             3 - Probar diferentes tipos (línea 187)
-             4 - Probar diferentes tipos (líneas 187 y 189)
+        Men\u00fa de opciones:
+         1 - Probar referencias iguales (línea 173)
+         2 - Probar diferentes tipos (línea 181)
+         3 - Probar diferentes tipos (línea 187)
+         4 - Probar diferentes tipos (líneas 187 y 189)
 
-            Elija una opci\u00f3n "0" para salir >\u00A0""";
+        Elija una opci\u00f3n "0" para salir >\u00A0""";
 
     int opcion = Keyboard.readInt(opciones);
     System.out.println();

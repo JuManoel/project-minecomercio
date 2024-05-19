@@ -1,18 +1,23 @@
 package edu.prog2.services;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.prog2.helpers.Utils;
-import edu.prog2.model.CompraVenta;
-import edu.prog2.model.Transaccion;
+import edu.prog2.model.*;
 
-public abstract class TransaccionService implements IService{
+@SuppressWarnings("rawtypes")
+public abstract class TransaccionService implements IService {
     protected ProductoService productoService;
     protected List<Transaccion> list;
     protected String fileName;
+    protected Class<? extends Transaccion> clase;
+
     @Override
     public JSONObject add(String strJson) throws Exception {
         // TODO Auto-generated method stub
@@ -25,20 +30,27 @@ public abstract class TransaccionService implements IService{
 
     @Override
     public JSONObject get(String id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        Transaccion transaccion = this.clase.getConstructor(String.class).newInstance(id);
+        int i = list.indexOf(transaccion);
+        return i > -1 ? get(i) : null;
     }
 
     @Override
-    public Object getItem(String id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getItem'");
+    public Transaccion getItem(String id) throws Exception {
+        JSONObject json = get(id);
+        Transaccion transaccion = this.clase.getConstructor(JSONObject.class).newInstance(json);
+        return transaccion;
     }
 
     @Override
     public JSONObject getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        try {
+            JSONArray data = new JSONArray(Utils.readText(fileName));
+            return new JSONObject().put("message", "ok").put("data", data);
+        } catch (IOException | JSONException e) {
+            Utils.printStackTrace(e);
+            return Utils.keyValueToJson("message", "Sin acceso a datos de productos", "error", e.getMessage());
+        }
     }
 
     @Override
@@ -61,16 +73,16 @@ public abstract class TransaccionService implements IService{
 
     @Override
     public JSONObject remove(String id) throws Exception {
-        Transaccion transaccion = (Transaccion)getItem(id);
-        if(transaccion == null){
+        Transaccion transaccion = (Transaccion) getItem(id);
+        if (transaccion == null) {
             throw new IllegalArgumentException("No existe esa transacion");
         }
-        if(this.list.remove(transaccion)){
-          Utils.writeJSON(list, fileName);
-        // devolver la instancia con los cambios realizados
-          return new JSONObject().put("message", "ok").put("data", transaccion.toJSONObject());
+        if (this.list.remove(transaccion)) {
+            Utils.writeJSON(list, fileName);
+            // devolver la instancia con los cambios realizados
+            return new JSONObject().put("message", "ok").put("data", transaccion.toJSONObject());
         }
-        throw new Exception("No se pudo remover la compraVenta con el ID:"+id);
+        throw new Exception("No se pudo remover la compraVenta con el ID:" + id);
     }
 
     @Override
@@ -78,6 +90,5 @@ public abstract class TransaccionService implements IService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getDataType'");
     }
-    
-    
+
 }

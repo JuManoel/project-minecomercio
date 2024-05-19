@@ -94,12 +94,14 @@ public class ProductoService implements IService<Producto> {
     }
 
     if (json.has("descripcion")) {
-      // sólo permitir el cambio de descripcion si no existe otro producto con la nueva descripcion
+      // sólo permitir el cambio de descripcion si no existe otro producto con la
+      // nueva descripcion
       String descripcion = json.getString("descripcion");
       if (!descripcion.equalsIgnoreCase(producto.getDescripcion())) {
         Producto aux = new Producto();
         aux.setDescripcion(descripcion);
-        // se generará una excepción si existe un producto con la descripción que se pretende utilizar para el cambio
+        // se generará una excepción si existe un producto con la descripción que se
+        // pretende utilizar para el cambio
         list.contains(aux);
       }
     }
@@ -133,16 +135,17 @@ public class ProductoService implements IService<Producto> {
   @Override
   public JSONObject remove(String id) throws Exception {
     Producto producto = getItem(id);
-    if(this.list.remove(producto)){
+    if (this.list.remove(producto)) {
       Utils.writeJSON(list, fileName);
-    // devolver la instancia con los cambios realizados
+      // devolver la instancia con los cambios realizados
       return new JSONObject().put("message", "ok").put("data", producto.toJSONObject());
     }
-    throw new Exception("No se pudo remover la persona con el ID:"+id);  }
+    throw new Exception("No se pudo remover la persona con el ID:" + id);
+  }
 
-    @Override
-    public Class<Producto> getDataType() {
-      return Producto.class;
-    }
+  @Override
+  public Class<Producto> getDataType() {
+    return Producto.class;
+  }
 
 }

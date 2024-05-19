@@ -30,5 +30,13 @@
     "id": "P66I3",
     "telefono": "3005896258",
     "nombre": "Juan Jose Gomez Arenas"
+  },
+  {
+    "password": "58907c27b5ac1ad7289a6a56657b9e90",
+    "intermediario": true,
+    "correo": "laura@ucaldas.edu.co",
+    "id": "9F5WG",
+    "telefono": "4008965126",
+    "nombre": "laura"
   }
 ]

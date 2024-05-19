@@ -21,7 +21,8 @@ public class Keyboard {
     private static Console con = System.console();
     public static Scanner sc = new Scanner(con.reader()).useDelimiter("[\n]+|[\r\n]+");
 
-    private Keyboard() {}  /////////////////////////////////////
+    private Keyboard() {
+    } /////////////////////////////////////
 
     public static String readString(String message) {
         message = String.format("%s%s%s", Utils.BLUE, message, Utils.RESET);
@@ -161,7 +162,6 @@ public class Keyboard {
         return value;
     }
 
-
     public static boolean readBoolean(String message) {
         message = String.format("%s%s%s", Utils.BLUE, message, Utils.RESET);
         boolean ok;
@@ -181,7 +181,8 @@ public class Keyboard {
                 }
             } catch (InputMismatchException e) {
                 ok = false;
-                System.out.printf("%s>> Se esperaba [si|s|true|t|yes|y|no|not|n|false|f]%s %s", Utils.RED, Utils.RESET, message);
+                System.out.printf("%s>> Se esperaba [si|s|true|t|yes|y|no|not|n|false|f]%s %s", Utils.RED, Utils.RESET,
+                        message);
             } finally {
                 // sc.nextLine();
             }
@@ -193,6 +194,7 @@ public class Keyboard {
     /**
      * Permite leer una fecha en cualquier formato válido. Si ingresa "hoy" se
      * asigna la fecha actual
+     * 
      * @param message La petición de la fecha o la fecha y la hora
      * @return Un objeto de tipo Calendar con la hora ingresada
      */
@@ -243,21 +245,24 @@ public class Keyboard {
 
     /**
      * Permite leer una fecha/hora en formato de 24 horas (AAAA-MM-DD HH:MM)
+     * 
      * @param message La petición que se hace al usuario
      * @return La fecha y la hora ingresada o la del momento si se ingresa "ahora"
-     *   --------------------------------------------------------------------------
-     *   IMPORTANTE: puede ser necesario especificar el formato teniendo en cuenta:  
-     *   String text = "2020-12-03T05:35:59.398+0000";
-     *   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX");
-     *   LocalDateTime ldt = LocalDateTime.parse(text, formatter);
-
-     *   text = "2020-12-03T05:35:59";
-     *   formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss");
-     *   ldt = LocalDateTime.parse(text, formatter);
-
-     *   text = "2020-12-03T05:35";
-     *   formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm");
-     *   ldt = LocalDateTime.parse(text, formatter);
+     *         --------------------------------------------------------------------------
+     *         IMPORTANTE: puede ser necesario especificar el formato teniendo en
+     *         cuenta:
+     *         String text = "2020-12-03T05:35:59.398+0000";
+     *         DateTimeFormatter formatter =
+     *         DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSX");
+     *         LocalDateTime ldt = LocalDateTime.parse(text, formatter);
+     * 
+     *         text = "2020-12-03T05:35:59";
+     *         formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss");
+     *         ldt = LocalDateTime.parse(text, formatter);
+     * 
+     *         text = "2020-12-03T05:35";
+     *         formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm");
+     *         ldt = LocalDateTime.parse(text, formatter);
      */
     public static LocalDateTime readDateTime(String message) {
         message = String.format("%s%s%s", Utils.BLUE, message, Utils.RESET);
@@ -349,14 +354,15 @@ public class Keyboard {
                 System.out.printf("%sRango inválido. %s", Utils.RED, Utils.RESET);
             }
         } while (value.compareTo(fromDuration) < 0 || value.compareTo(toDuration) > 0);
-        
+
         return value;
     }
 
     /**
      * Un poco de genéricos y Reflection para permitir elegir constantes enumeradas
+     * 
      * @param <T> El tipo de enum que se utiliza
-     * @param c Una referencia a la enumeración
+     * @param c   Una referencia a la enumeración
      * @return Uno de los elementos del enum
      */
     @SuppressWarnings("unchecked")
@@ -377,6 +383,5 @@ public class Keyboard {
 
         return (T) allItems[i - 1];
     }
-
 
 }

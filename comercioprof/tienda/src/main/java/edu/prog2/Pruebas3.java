@@ -5,9 +5,10 @@ import java.util.Locale;
 
 public class Pruebas3 {
 
-  public static void main(String[] args) {
-    // esencial para estandarizar el formato monetario con separador de punto decimal, no con coma
+  public static void main(String[] args) throws Exception {
+    // esencial para estandarizar el formato monetario con separador de punto
+    // decimal, no con coma
     Locale.setDefault(Locale.of("es_CO"));
-    Javalin.create(/*config*/).get("/", ctx -> ctx.result("Hola mundo")).start(7070);
+    Javalin.create(/* config */).get("/", ctx -> ctx.result("Hola mundo")).start(7070);
   }
 }

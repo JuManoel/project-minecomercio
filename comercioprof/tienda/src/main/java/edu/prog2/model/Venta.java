@@ -12,23 +12,30 @@ public final class Venta extends CompraVenta {
   private Cliente cliente;
 
   public Venta() throws Exception {
-    this(Utils.getRandomKey(5), new Cliente(), new Vendedor(), LocalDateTime.parse("2024-01-01T00:00"), new ArrayList<Detalle>());
+    this(Utils.getRandomKey(5));
+    this.cliente = new Cliente();
+    this.detalles = new ArrayList<>();
+    this.vendedor = new Vendedor();
+    this.fechaHora = LocalDateTime.now();
   }
 
   public Venta(String id) throws Exception {
-    this();
+
+    // this();
     setId(id);
   }
 
-  public Venta(String id, Cliente cliente, Vendedor vendedor, LocalDateTime fecha, ArrayList<Detalle> detalles) throws Exception {
+  public Venta(String id, Cliente cliente, Vendedor vendedor, LocalDateTime fechaHora, ArrayList<Detalle> detalles)
+      throws Exception {
     // Use mutadores para asignar los valores recibidos
-    super(id,vendedor,fecha,detalles);
+    super(id, vendedor, fechaHora, detalles);
     setCliente(cliente);
   }
 
-  public Venta(Cliente cliente, Vendedor vendedor, LocalDateTime fecha, ArrayList<Detalle> detalles) throws Exception {
+  public Venta(Cliente cliente, Vendedor vendedor, LocalDateTime fechaHora, ArrayList<Detalle> detalles)
+      throws Exception {
     // use el constructor parametrizado
-    super(vendedor,fecha);
+    super(vendedor, fechaHora);
     setCliente(cliente);
     setDetalles(detalles);
   }
@@ -58,14 +65,14 @@ public final class Venta extends CompraVenta {
 
   @Override
   public String toString() {
-    JSONObject json=this.toJSONObject();
+    JSONObject json = this.toJSONObject();
     json.put("vendedor", this.getVendedor().getId());
     return json.toString();
   }
 
   @Override
   public JSONObject toJSONObject() {
-    JSONObject json=super.toJSONObject();
+    JSONObject json = super.toJSONObject();
     json.put("cliente", this.cliente.getId());
     return json;
   }

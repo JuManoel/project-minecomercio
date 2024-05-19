@@ -23,9 +23,12 @@ public interface IService<T> {
   public JSONObject remove(String id) throws Exception;
 
   /**
-   * Permite conocer la clase del parámetro de tipo genérico T. Este método es importante
-   * sobre cuando se referencian subclases mediante superclaes y se desea conocer de
+   * Permite conocer la clase del parámetro de tipo genérico T. Este método es
+   * importante
+   * sobre cuando se referencian subclases mediante superclaes y se desea conocer
+   * de
    * forma fácil, el tipo con el que se está trabajando.
+   * 
    * @return Una instancia de tipo Class que representa la clase del parámetro T
    */
   public Class<T> getDataType();

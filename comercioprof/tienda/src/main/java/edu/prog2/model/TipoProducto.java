@@ -23,9 +23,9 @@ public enum TipoProducto {
   OTROS("Otros");
 
   /*
-    TipoProducto tp = TipoProducto.ASEO_GENERAL;
-    System.out.println(tp | tp.toString()); // ASEO_GENERAL
-    TipoProducto.valueOf("LACTEOS") // TipoProducto.LACTEOS
+   * TipoProducto tp = TipoProducto.ASEO_GENERAL;
+   * System.out.println(tp | tp.toString()); // ASEO_GENERAL
+   * TipoProducto.valueOf("LACTEOS") // TipoProducto.LACTEOS
    */
 
   private final String value;
@@ -37,6 +37,7 @@ public enum TipoProducto {
   /**
    * Devuelve el valor de un constante enumerada en formato humano
    * Ejemplo: System.out.println(tp.getValue()); // devuelve: Aseo general
+   * 
    * @return El valor del argumento value, recibido por el constructor
    */
   public String getValue() {
@@ -47,7 +48,9 @@ public enum TipoProducto {
    * Dado un string, devuelve la constante enumerada correspondiente. Ejemplo:
    * TipoProducto.getEnum("Aseo general") devuelve TipoProducto.ASEO_GENERAL
    * no confundir con TipoProducto.valueOf("CONSTANTE_ENUMERADA")
-   * @param value La expresión para humanos correspondiente a la constante enumerada
+   * 
+   * @param value La expresión para humanos correspondiente a la constante
+   *              enumerada
    * @return La constante enumerada
    */
   public static TipoProducto getEnum(String value) {
