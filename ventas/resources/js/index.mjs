@@ -100,7 +100,8 @@ class App {
         Ventas.init()
         break
       case 'Informe general de ventas':
-        console.log('ok')
+        const { default: Ventas1 } = await import('./ventas.js')
+        Ventas1.informeVentas()
         break
       case 'Acerca de...':
         Toast.show({ message: `No implementada la opción de ${option}`, mode: 'warning' })

@@ -12,7 +12,7 @@ public abstract class Transaccion implements Format {
 
   public Transaccion() {
     // el dato LocalDateTime.MIN se verá con un formato feo, pero déjelo así
-    this(Utils.getRandomKey(5), LocalDateTime.MIN);
+    this(Utils.getRandomKey(5), LocalDateTime.MAX);
   }
 
   public Transaccion(String id, LocalDateTime fechaHora) {
@@ -40,7 +40,7 @@ public abstract class Transaccion implements Format {
 
   public final void setFechaHora(LocalDateTime fechaHora) {
     LocalDateTime aux = LocalDateTime.parse("2024-01-01T00:00:00");
-    if (fechaHora.isBefore(aux)) {
+    if (fechaHora.isBefore(aux)) {  
       throw new IllegalArgumentException("Fecha inferior a 2024-01-01 00:00");
     }
 

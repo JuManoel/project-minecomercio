@@ -147,22 +147,25 @@ public class CompraVentaService extends TransaccionService {
         }
         // utilizar aux para actualizar el producto
         Persona per;
-        Vendedor ver = new Vendedor(serV.get(aux.getString("vendedor")));
+        Vendedor ven = new Vendedor(serV.get(aux.getString("vendedor")));
 
         ArrayList<Detalle> detalles = new ArrayList<>();
-        JSONArray jArray = json.getJSONArray("detalle");
-        for (int j = 0; j < jArray.length(); j++) {
-            JSONObject jsonFor = (JSONObject) jArray.get(j);
-            Producto pFor = new Producto(productoService.get(jsonFor.getString("producto")));
-            detalles.add(new Detalle(pFor, jsonFor.getInt("cantidad")));
+        if(json.has("detalle")){
+            JSONArray jArray = json.getJSONArray("detalle");
+            for (int j = 0; j < jArray.length(); j++) {
+                JSONObject jsonFor = (JSONObject) jArray.get(j);
+                Producto pFor = new Producto(productoService.get(jsonFor.getString("producto")));
+                detalles.add(new Detalle(pFor, jsonFor.getInt("cantidad")));
+            }
         }
+        
         if (compraVenta.equals("venta")) {
             per = new Cliente(serR.get(aux.getString("cliente")));
-            cv = new Venta(cv.getId(), (Cliente) per, ver, LocalDateTime.parse(aux.getString("fechaHora")), detalles);
+            cv = new Venta(cv.getId(), (Cliente) per, ven, LocalDateTime.parse(aux.getString("fechaHora")), detalles);
 
         } else {
             per = new Provedor(serR.get(aux.getString("provedor")));
-            cv = new Compra(cv.getId(), (Provedor) per, ver, LocalDateTime.parse(aux.getString("fechaHora")), detalles);
+            cv = new Compra(cv.getId(), (Provedor) per, ven, LocalDateTime.parse(aux.getString("fechaHora")), detalles);
 
         }
         list.set(i, cv);
@@ -188,6 +191,7 @@ public class CompraVentaService extends TransaccionService {
         productoService = new ProductoService();// actualiza los productos
         CompraVenta cv;
         JSONObject json = new JSONObject(strJson);
+        System.out.println(json.toString(2));
         json.put("id", Utils.getRandomKey(5));
         ArrayList<Detalle> detalles = new ArrayList<>();
         JSONArray jsonArray = json.getJSONArray("detalle");
@@ -198,11 +202,11 @@ public class CompraVentaService extends TransaccionService {
             detalles.add(new Detalle(p, jsonObject.getInt("cantidad")));
 
         }
-        if (compraVenta.equals("venta")) {
-
+        if (this.compraVenta.equals("venta")) {
+            System.out.println(json.getString("fechaHora"));
             cv = new Venta(new Cliente(this.serR.get(json.getString("cliente"))),
-                    new Vendedor(serV.get(json.getString("vendedor"))),
-                    LocalDateTime.parse(json.getString("fechaHora")), detalles);
+            new Vendedor(serV.get(json.getString("vendedor"))),
+            LocalDateTime.parse(json.getString("fechaHora")), detalles);
         } else if (compraVenta.equals("compra")) {
             Provedor prov = new Provedor(this.serR.get(json.getString("provedor")));
             cv = new Compra(prov, new Vendedor(serV.get(json.getString("vendedor"))),

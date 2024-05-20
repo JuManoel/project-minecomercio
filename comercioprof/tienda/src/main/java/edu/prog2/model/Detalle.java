@@ -46,7 +46,7 @@ public class Detalle implements Format {
     }
 
     public double getSubTotal() {
-        return (cantidad * producto.getValorVenta()) * (1 + (producto.getIva() / 100));
+        return (this.cantidad * this.producto.getValorVenta()) * (1 + (this.producto.getIva() / 100));
     }
 
     @Override

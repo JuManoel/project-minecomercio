@@ -37,11 +37,11 @@
     "vencimiento": "2024-08-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 200000,
+    "subtotal": 192000,
     "valorVenta": 5000,
     "valorBase": 4000,
     "id": "35G6E",
-    "disponible": 50
+    "disponible": 48
   },
   {
     "descripcion": "Yogurt piña vaso x 120 c.c.",
@@ -81,22 +81,22 @@
     "vencimiento": "2026-02-28",
     "tipo": "HARINAS",
     "iva": 20,
-    "subtotal": 805000,
+    "subtotal": 700000,
     "valorVenta": 25000,
     "valorBase": 17500,
     "id": "PHAKQ",
-    "disponible": 46
+    "disponible": 40
   },
   {
     "descripcion": "cafe",
     "vencimiento": "2026-05-05",
     "tipo": "BEBIDAS",
     "iva": 19,
-    "subtotal": 77600,
+    "subtotal": 76800,
     "valorVenta": 1000,
     "valorBase": 800,
     "id": "3S67B",
-    "disponible": 97
+    "disponible": 96
   },
   {
     "descripcion": "Pollitos",

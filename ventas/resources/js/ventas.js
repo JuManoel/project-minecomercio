@@ -44,10 +44,9 @@ export default class Ventas {
         text: 'nombre',
         firstOption: 'Seleccione un vendedor',
       })
-
-      // asignar a Ventas.#salesTable la instancia de Tabulator
+      //asignar a Ventas.#salesTable la instancia de Tabulator
       Ventas.#salesTable = new Tabulator('main #ventas > #table-container', {
-        height: 'calc(1% - 500px)', // establecer la altura de la tabla, esto habilita el DOM virtual y mejora drásticamente la velocidad de procesamiento
+        height: 'calc(100vh - 400px)', // establecer la altura de la tabla, esto habilita el DOM virtual y mejora drásticamente la velocidad de procesamiento
         data: [{ cantidad: null, producto: null, valorUnitario: null, iva: null, valorTotal: null }],
         layout: 'fitColumns', // ajustar columnas al ancho de la tabla (opcional)
         columns: [
@@ -68,7 +67,6 @@ export default class Ventas {
                     </div>
                 `.trim(),
       })
-
       Ventas.#salesTable.on('tableBuilt', () => {
         // asignar los listener de los botones del footer de la tabla
         document.querySelector('#save-sale').addEventListener('click', Ventas.#saveSale)
@@ -233,6 +231,7 @@ export default class Ventas {
       }
       i++
     })
+    console.log(json)
     const body = json
     try {
       let response = await Helpers.fetchData(`${urlAPI}/venta`, {
@@ -288,16 +287,21 @@ export default class Ventas {
     return salesLines.some(row => row.cantidad > 0 && row.producto)
   }
 
-  static async #registroVentas() {
+  static async informeVentas() {
     const response = await Helpers.fetchData(`${urlAPI}/venta`)
     let ventas = response.data
-    this.table(ventas)
+    await this.#table(ventas)
   }
 
-  static table(nestedData) {
+  
+  static async #table(nestedData) {
+    
     //define table
-    var table = new Tabulator('#example-table', {
-      height: '311px',
+    document.querySelector('main').innerHTML = await Helpers.loadPage('./resources/html/ventas.html')
+    document.querySelector('#form-ventas').innerHTML='';
+    console.log(nestedData);
+    var table = new Tabulator('main #ventas > #table-container', {
+      height: tableHeight,
       layout: 'fitColumns',
       columnDefaults: {
         resizable: true,
@@ -306,13 +310,14 @@ export default class Ventas {
       columns: [
         { title: 'Nor.', field: 'id' },
         { title: 'Fecha', field: 'fechaHora' },
-        { title: 'Cliente', field: 'cliente' },
-        { title: 'Vendedor', field: 'vendedor' },
+        { title: 'Cliente', field: 'cliente.nombre' },
+        { title: 'Vendedor', field: 'vendedor.nombre' },
         {title: 'Total', field: 'total'},
-        {title: '',field:deleteRowButton}
+        { formatter: deleteRowButton, width: 40, hozAlign: 'center', cellClick: (e, cell) => cell.getRow().delete() },
       ],
       rowFormatter: function (row) {
         //create and style holder elements
+        console.log(row.getData());
         var holderEl = document.createElement('div')
         var tableEl = document.createElement('div')
 
@@ -329,12 +334,12 @@ export default class Ventas {
 
         var subTable = new Tabulator(tableEl, {
           layout: 'fitColumns',
-          data: row.getData().serviceHistory,
+          data: row.getData().detalles,
           columns: [
             { title: 'Cant.', field: 'cantidad'},
-            { title: 'Nombre', field: 'descripcion' },
-            { title: 'Valor', field: 'valorVenta' },
-            { title: 'IVA', field: 'iva' },
+            { title: 'Nombre', field: 'producto.descripcion' },
+            { title: 'Valor', field: 'producto.valorVenta' },
+            { title: 'IVA', field: 'producto.iva' },
             { title: 'SubTotal', field: 'subTotal' },
           ],
         })
