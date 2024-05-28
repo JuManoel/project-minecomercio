@@ -4,8 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Detalle implements Format {
-    protected Producto producto;
-    protected int cantidad;
+    private Producto producto;
+    private int cantidad;
+    private double subTotal;
 
     public Detalle() {
         super();
@@ -26,6 +27,15 @@ public class Detalle implements Format {
         setProducto(new Producto(json.getString("producto")));
     }
 
+    public void setSubTotal(double precio) {
+        this.subTotal = this.cantidad*(precio*(1+this.producto.getIva()/100));
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+    
+
     public int getCantidad() {
         return cantidad;
     }
@@ -44,11 +54,6 @@ public class Detalle implements Format {
         }
         this.cantidad = cantidad;
     }
-
-    public double getSubTotal() {
-        return (this.cantidad * this.producto.getValorVenta()) * (1 + (this.producto.getIva() / 100));
-    }
-
     @Override
     public boolean equals(Object obj) {
         // las referencias this y obj apuntan a la misma instancia
@@ -74,7 +79,8 @@ public class Detalle implements Format {
 
     @Override
     public String toString() {
-        String str = "producto:" + producto.getId() + "\n" +
+        String str = 
+        "producto:" + producto.getId() + "\n" +
                 "Cantidad: " + this.cantidad + "\n";
         return str;
     }
@@ -90,5 +96,7 @@ public class Detalle implements Format {
         json = String.format(json, this.producto.getId(), this.getCantidad());
         return new JSONObject(json);
     }
+
+    
 
 }

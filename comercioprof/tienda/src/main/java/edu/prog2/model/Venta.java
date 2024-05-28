@@ -49,7 +49,11 @@ public final class Venta extends CompraVenta {
 
   public Venta(JSONObject json) throws JSONException, Exception {
     super(json);
-    setCliente(new Cliente(json.getString("cliente")));
+    if (json.get("cliente").getClass().equals(String.class)) {
+      this.setCliente(new Cliente(json.getString("cliente")));
+    } else {
+      this.setCliente(new Cliente(json.getJSONObject("cliente")));
+    }
   }
 
   public Cliente getCliente() {
@@ -61,6 +65,14 @@ public final class Venta extends CompraVenta {
       throw new NullPointerException("El cliente de una venta no puede ser nulo");
     }
     this.cliente = cliente;
+  }
+
+  @Override
+  public void setDetalles(ArrayList<Detalle> detalles) {
+      super.setDetalles(detalles);
+      for (Detalle detalle : this.detalles) {
+        detalle.setSubTotal(detalle.getProducto().getValorVenta());
+      }
   }
 
   @Override

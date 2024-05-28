@@ -4,11 +4,11 @@
     "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 78000,
+    "subtotal": 60000,
     "valorVenta": 4000,
-    "valorBase": 3000,
     "id": "PVEPR",
-    "disponible": 26
+    "valorBase": 3000,
+    "disponible": 20
   },
   {
     "descripcion": "Boliqueso",
@@ -17,8 +17,8 @@
     "iva": 19,
     "subtotal": 105000,
     "valorVenta": 1100,
-    "valorBase": 1000,
     "id": "LCB2M",
+    "valorBase": 1000,
     "disponible": 105
   },
   {
@@ -26,11 +26,11 @@
     "vencimiento": "2024-10-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 670000,
+    "subtotal": 700000,
     "valorVenta": 12000,
-    "valorBase": 10000,
     "id": "CU12G",
-    "disponible": 67
+    "valorBase": 10000,
+    "disponible": 70
   },
   {
     "descripcion": "Yogurt natural vaso x 120 ml.",
@@ -39,8 +39,8 @@
     "iva": 19,
     "subtotal": 192000,
     "valorVenta": 5000,
-    "valorBase": 4000,
     "id": "35G6E",
+    "valorBase": 4000,
     "disponible": 48
   },
   {
@@ -48,11 +48,11 @@
     "vencimiento": "2024-03-26",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 172000,
+    "subtotal": 160000,
     "valorVenta": 5000,
-    "valorBase": 4000,
     "id": "X1SC9",
-    "disponible": 43
+    "valorBase": 4000,
+    "disponible": 40
   },
   {
     "descripcion": "Arroz Diana x libra",
@@ -61,8 +61,8 @@
     "iva": 19,
     "subtotal": 149950,
     "valorVenta": 3999,
-    "valorBase": 2999,
     "id": "6NTFM",
+    "valorBase": 2999,
     "disponible": 50
   },
   {
@@ -72,8 +72,8 @@
     "iva": 19,
     "subtotal": 160000,
     "valorVenta": 15000,
-    "valorBase": 10000,
     "id": "EIV7B",
+    "valorBase": 10000,
     "disponible": 16
   },
   {
@@ -83,8 +83,8 @@
     "iva": 20,
     "subtotal": 700000,
     "valorVenta": 25000,
-    "valorBase": 17500,
     "id": "PHAKQ",
+    "valorBase": 17500,
     "disponible": 40
   },
   {
@@ -94,8 +94,8 @@
     "iva": 19,
     "subtotal": 76800,
     "valorVenta": 1000,
-    "valorBase": 800,
     "id": "3S67B",
+    "valorBase": 800,
     "disponible": 96
   },
   {
@@ -105,8 +105,8 @@
     "iva": 16,
     "subtotal": 900000,
     "valorVenta": 30000,
-    "valorBase": 20000,
     "id": "30JT7",
+    "valorBase": 20000,
     "disponible": 45
   },
   {
@@ -116,8 +116,8 @@
     "iva": 19,
     "subtotal": 100000,
     "valorVenta": 3500,
-    "valorBase": 2000,
     "id": "X1EK9",
+    "valorBase": 2000,
     "disponible": 50
   },
   {
@@ -127,8 +127,8 @@
     "iva": 19,
     "subtotal": 300000,
     "valorVenta": 15000,
-    "valorBase": 10000,
     "id": "IQLOU",
+    "valorBase": 10000,
     "disponible": 30
   },
   {
@@ -138,8 +138,8 @@
     "iva": 19,
     "subtotal": 185000,
     "valorVenta": 7000,
-    "valorBase": 5000,
     "id": "SCXSW",
+    "valorBase": 5000,
     "disponible": 37
   }
 ]

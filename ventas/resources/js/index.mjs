@@ -103,6 +103,17 @@ class App {
         const { default: Ventas1 } = await import('./ventas.js')
         Ventas1.informeVentas()
         break
+        case 'Compras':
+          // ...
+          break
+        case 'Registrar compras':
+          const { default: Compras } = await import('./compras.js')
+          Compras.init()
+          break
+        case 'Informe general de compras':
+          const { default: compras1 } = await import('./compras.js')
+          compras1.informeCompras()
+          break
       case 'Acerca de...':
         Toast.show({ message: `No implementada la opción de ${option}`, mode: 'warning' })
         break

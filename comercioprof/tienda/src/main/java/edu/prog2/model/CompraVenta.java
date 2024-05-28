@@ -42,15 +42,25 @@ public abstract class CompraVenta extends Transaccion {
     }
 
     public CompraVenta(JSONObject json) throws JSONException, Exception {
+        System.out.println(json.toString(2));
         setId(json.getString("id"));
-        setVendedor(new Vendedor(json.getString("vendedor")));
+        if(json.get("vendedor").getClass().equals(String.class)){
+            setVendedor(new Vendedor(json.getString("vendedor")));
+        }else{
+            setVendedor(new Vendedor(json.getJSONObject("vendedor")));
+        }
         setFechaHora(LocalDateTime.parse(json.getString("fechaHora")));
         detalles = new ArrayList<>();
-        JSONArray jsonArray = json.optJSONArray("detalle");
+        System.out.println(json.toString(2));
+        JSONArray jsonArray = json.optJSONArray("detalles");
         for (int i = 0; i < jsonArray.length(); i++) {
             Detalle detalle = new Detalle();
+            if(jsonArray.getJSONObject(i).get("producto").getClass().equals(String.class)){
+                detalle.setProducto(new Producto(jsonArray.getJSONObject(i).getString("producto")));
+            }else{
+                detalle.setProducto(new Producto(jsonArray.getJSONObject(i).getJSONObject("producto")));
+            }
             detalle.setCantidad(jsonArray.getJSONObject(i).getInt("cantidad"));
-            detalle.setProducto(new Producto(jsonArray.getJSONObject(i).getJSONObject("producto")));
             this.detalles.add(detalle);
         }
 
@@ -68,8 +78,8 @@ public abstract class CompraVenta extends Transaccion {
 
     public void setDetalles(ArrayList<Detalle> detalles) {
         this.detalles = new ArrayList<>();
-        for (Detalle detalle : detalles) {
-            this.detalles.add(detalle);
+        for (int i = 0; i < detalles.size(); i++) {
+            this.detalles.add(detalles.get(i));
         }
     }
 
@@ -83,8 +93,8 @@ public abstract class CompraVenta extends Transaccion {
 
     public double getTotal() {
         double total = 0;
-        for (Detalle detalle : detalles) {
-            total += detalle.getSubTotal();
+        for (int i = 0; i < this.detalles.size(); i++) {
+            total += detalles.get(i).getSubTotal();
         }
         return total;
     }
@@ -93,7 +103,7 @@ public abstract class CompraVenta extends Transaccion {
     public JSONObject toJSONObject() {
         JSONObject json = super.toJSONObject();
         json.put("vendedor", this.vendedor.getId());
-        json.put("detalle", detalles);
+        json.put("detalles", detalles);
         return json;
     }
 

@@ -28,6 +28,9 @@ public final class Producto implements Format {
 
   public Producto(String id, String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva,
       int disponible, LocalDate vencimiento) throws Exception {
+    if (valorBase > valorVenta) {
+      throw new IllegalArgumentException("Valor base tiene que ser menor que valor venta");
+    }
     setId(id);
     setDescripcion(descripcion);
     setTipo(tipo);

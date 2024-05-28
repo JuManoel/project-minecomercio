@@ -186,7 +186,7 @@ export default class Ventas {
     let json = {
       cliente: null,
       vendedor: null,
-      detalle: null,
+      detalles: null,
       fechaHora: fechaHora,
     }
     const idc = document.querySelector(`#form-ventas #cliente`).value
@@ -201,7 +201,7 @@ export default class Ventas {
       return
     }
     json.vendedor = idv
-    json.detalle = []
+    json.detalles = []
     let i = 0
     const response = await Helpers.fetchData(`${urlAPI}/producto`)
     let productos = response.data
@@ -225,7 +225,7 @@ export default class Ventas {
         Toast.show({ message: 'Ingrese un Producto que exista' })
         return
       }
-      json.detalle[i] = {
+      json.detalles[i] = {
         cantidad: detalle.cantidad,
         producto: id,
       }
@@ -293,13 +293,11 @@ export default class Ventas {
     await this.#table(ventas)
   }
 
-  
   static async #table(nestedData) {
-    
     //define table
     document.querySelector('main').innerHTML = await Helpers.loadPage('./resources/html/ventas.html')
-    document.querySelector('#form-ventas').innerHTML='';
-    console.log(nestedData);
+    document.querySelector('#form-ventas').innerHTML = ''
+    console.log(nestedData)
     var table = new Tabulator('main #ventas > #table-container', {
       height: tableHeight,
       layout: 'fitColumns',
@@ -312,12 +310,12 @@ export default class Ventas {
         { title: 'Fecha', field: 'fechaHora' },
         { title: 'Cliente', field: 'cliente.nombre' },
         { title: 'Vendedor', field: 'vendedor.nombre' },
-        {title: 'Total', field: 'total'},
+        { title: 'Total', field: 'total' },
         { formatter: deleteRowButton, width: 40, hozAlign: 'center', cellClick: (e, cell) => cell.getRow().delete() },
       ],
       rowFormatter: function (row) {
         //create and style holder elements
-        console.log(row.getData());
+        console.log(row.getData())
         var holderEl = document.createElement('div')
         var tableEl = document.createElement('div')
 
@@ -336,7 +334,7 @@ export default class Ventas {
           layout: 'fitColumns',
           data: row.getData().detalles,
           columns: [
-            { title: 'Cant.', field: 'cantidad'},
+            { title: 'Cant.', field: 'cantidad' },
             { title: 'Nombre', field: 'producto.descripcion' },
             { title: 'Valor', field: 'producto.valorVenta' },
             { title: 'IVA', field: 'producto.iva' },

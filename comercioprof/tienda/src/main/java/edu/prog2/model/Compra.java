@@ -49,26 +49,43 @@ public class Compra extends CompraVenta {
 
   public Compra(JSONObject json) throws JSONException, Exception {
     super(json);
-    System.out.println(json);
-    this.provedor = new Provedor(json.getString("provedor"));
+    if (json.get("provedor").getClass().equals(String.class)) {
+      this.setProvedor(new Provedor(json.getString("provedor")));
+    } else {
+      this.setProvedor(new Provedor(json.getJSONObject("provedor")));
+    }
+  }
+
+  @Override
+  public void setVendedor(Vendedor vendedor) throws Exception {
+      if(vendedor.getAdmin()){
+        super.setVendedor(vendedor);
+      }else{
+        throw new IllegalArgumentException("EL vendedor tiene que ser adiministrador");
+      }
   }
 
   public Provedor getProvedor() {
     return provedor;
   }
 
-  public void setProvedor(Provedor provedor) {
-    this.provedor = provedor;
+  public void setProvedor(Provedor provedor) throws Exception {
+    this.provedor = new Provedor(provedor);
+  }
+
+  @Override
+  public void setDetalles(ArrayList<Detalle> detalles) {
+      super.setDetalles(detalles);
+      for (Detalle detalle : this.detalles) {
+        detalle.setSubTotal(detalle.getProducto().getValorBase());
+      }
   }
 
   @Override
   public String toString() {
-    String str = super.toString();
-    str += String.format(
-        "Provedor: \n%s\n" +
-            "Vendedor: \n%s\n",
-        getProvedor().toString(), getVendedor().toString());
-    return str;
+    JSONObject json = this.toJSONObject();
+    json.put("vendedor", this.getVendedor().getId());
+    return json.toString();
   }
 
   @Override

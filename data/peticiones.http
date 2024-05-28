@@ -182,8 +182,8 @@ Content-Type: application/json; charset=utf-8
       "cliente":"PI6KK",
       "vendedor":"91V8D" ,
       "total": 13000,
-      "fechaHora": "2024-09-20T00:00",
-      "detalle": [
+      "fechaHora": "2024-05-22T00:00",
+      "detalles": [
         {
           "producto": "X1SC9",
           "cantidad": 1
@@ -195,31 +195,8 @@ Content-Type: application/json; charset=utf-8
       ]
     }
 ### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
-PATCH http://localhost:7070/venta/RPXE6
-Content-Type: application/json; charset=utf-8
-
-{
-    "cliente": "PI6KK",
-    "vendedor": "91V8D",
-    "fechaHora": "2024-05-18T00:00",
-    "detalle": [
-      {
-        "producto": "X1SC9",
-        "cantidad": 1
-      },
-      {
-        "producto": "X1EK9",
-        "cantidad": 2
-      },
-      {
-        "producto": "IQLOU",
-        "cantidad": 3
-      }
-    ]
-  }
-
 ### Eliminar un cliente dado su ID
-DELETE http://localhost:7070/venta/L9PRY
+DELETE http://localhost:7070/venta/BBOQ1
 
 
 
@@ -240,10 +217,10 @@ Content-Type: application/json; charset=utf-8
 
 {
       "provedor":"0IKPB",
-      "vendedor":"A798M" ,
+      "vendedor":"75H1I" ,
       "total": 13000,
-      "fechaHora": "2024-04-23T00:00",
-      "detalle": [
+      "fechaHora": "2024-04-22T00:00",
+      "detalles": [
         {
           "producto": "LCB2M",
           "cantidad": 10
@@ -255,23 +232,5 @@ Content-Type: application/json; charset=utf-8
       ]
     }
 ### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
-PATCH http://localhost:7070/compra/L6TCL
-Content-Type: application/json; charset=utf-8
-
-{
-      "provedor":"SBSDT",
-      "vendedor":"75H1I" ,
-      "detalle": [
-        {
-          "producto": "IQLOU",
-          "cantidad": 20
-        },
-        {
-          "producto":"CU12G",
-          "cantidad": 10
-        }
-      ]
-    }
-
 ### Eliminar un cliente dado su ID
-DELETE http://localhost:7070/compra/PZ221
+DELETE http://localhost:7070/compra/Y8KGV
