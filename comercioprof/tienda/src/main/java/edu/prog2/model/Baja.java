@@ -14,6 +14,17 @@ public class Baja extends Transaccion {
         super();
     }
 
+
+    public Baja(String id) {
+        super(id);
+    }
+
+
+    public Baja(String id, LocalDateTime fechaHora) {
+        super(id, fechaHora);
+    }
+
+
     public Baja(String id, LocalDateTime fechaHora, Producto producto, TipoBaja tipoBaja, int cantidad) {
         super(id, fechaHora);
         this.producto = producto;
@@ -23,7 +34,11 @@ public class Baja extends Transaccion {
 
     public Baja(JSONObject json) throws JSONException, Exception {
         super(json);
-        this.producto = new Producto(json.getString("producto"));
+        if(json.get("producto").getClass().equals(JSONObject.class)){
+            this.producto = new Producto(json.getJSONObject("producto"));
+        }else{
+            this.producto = new Producto(json.getString("producto"));
+        }
         this.tipoBaja = TipoBaja.getEnum(json.getString("tipoBaja"));
         this.cantidad = json.getInt("cantidad");
     }

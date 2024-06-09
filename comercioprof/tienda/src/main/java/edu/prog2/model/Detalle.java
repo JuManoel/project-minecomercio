@@ -6,7 +6,6 @@ import org.json.JSONObject;
 public class Detalle implements Format {
     private Producto producto;
     private int cantidad;
-    private double subTotal;
 
     public Detalle() {
         super();
@@ -27,14 +26,9 @@ public class Detalle implements Format {
         setProducto(new Producto(json.getString("producto")));
     }
 
-    public void setSubTotal(double precio) {
-        this.subTotal = this.cantidad*(precio*(1+this.producto.getIva()/100));
-    }
-
     public double getSubTotal() {
-        return subTotal;
+        return this.cantidad*(1+(this.producto.getIva()/100));
     }
-    
 
     public int getCantidad() {
         return cantidad;

@@ -13,6 +13,7 @@ export default class Productos {
     try {
       // intentar cargar los datos del enum TipoProducto
       Productos.#tipos = await Helpers.fetchData(`${urlAPI}/producto/categorias`)
+      
       if (Productos.#tipos.status === 404) {
         throw new Error(Productos.#tipos.title)
       }

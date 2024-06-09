@@ -4,44 +4,44 @@
     "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 60000,
+    "subtotal": 39000,
     "valorVenta": 4000,
     "id": "PVEPR",
     "valorBase": 3000,
-    "disponible": 20
+    "disponible": 13
   },
   {
     "descripcion": "Boliqueso",
     "vencimiento": "2024-12-10",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 105000,
+    "subtotal": 61000,
     "valorVenta": 1100,
     "id": "LCB2M",
     "valorBase": 1000,
-    "disponible": 105
+    "disponible": 61
   },
   {
     "descripcion": "Queso parmesano Alpina",
     "vencimiento": "2024-10-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 700000,
+    "subtotal": 660000,
     "valorVenta": 12000,
     "id": "CU12G",
     "valorBase": 10000,
-    "disponible": 70
+    "disponible": 66
   },
   {
     "descripcion": "Yogurt natural vaso x 120 ml.",
     "vencimiento": "2024-08-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 192000,
+    "subtotal": 172000,
     "valorVenta": 5000,
     "id": "35G6E",
     "valorBase": 4000,
-    "disponible": 48
+    "disponible": 43
   },
   {
     "descripcion": "Yogurt piña vaso x 120 c.c.",
@@ -70,33 +70,33 @@
     "vencimiento": "2025-01-01",
     "tipo": "CARNICOS",
     "iva": 19,
-    "subtotal": 160000,
+    "subtotal": 150000,
     "valorVenta": 15000,
     "id": "EIV7B",
     "valorBase": 10000,
-    "disponible": 16
+    "disponible": 15
   },
   {
     "descripcion": "Pizza conjelada Peperoni",
     "vencimiento": "2026-02-28",
     "tipo": "HARINAS",
     "iva": 20,
-    "subtotal": 700000,
+    "subtotal": 682500,
     "valorVenta": 25000,
     "id": "PHAKQ",
     "valorBase": 17500,
-    "disponible": 40
+    "disponible": 39
   },
   {
     "descripcion": "cafe",
     "vencimiento": "2026-05-05",
     "tipo": "BEBIDAS",
     "iva": 19,
-    "subtotal": 76800,
+    "subtotal": 37600,
     "valorVenta": 1000,
     "id": "3S67B",
     "valorBase": 800,
-    "disponible": 96
+    "disponible": 47
   },
   {
     "descripcion": "Pollitos",
@@ -114,11 +114,11 @@
     "vencimiento": "2028-01-01",
     "tipo": "BEBIDAS",
     "iva": 19,
-    "subtotal": 100000,
+    "subtotal": 102000,
     "valorVenta": 3500,
     "id": "X1EK9",
     "valorBase": 2000,
-    "disponible": 50
+    "disponible": 51
   },
   {
     "descripcion": "Peperoni",

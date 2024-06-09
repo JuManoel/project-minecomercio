@@ -1,0 +1,45 @@
+<!-- 
+    Formulario para la adición y edición de bajas
+    Note que cada <input> tiene un ID que lo identifica de manera única.
+    Consulte en https://www.w3schools.com/html/html_form_input_types.asp los tipos de cada <input>
+    Consulte también en https://www.w3schools.com/html/html_form_attributes.asp los atributos utlizados aquí
+    Con base en este formulario puede implementar los demás que se requieren
+ -->
+ <form id="form-bajas">
+    <fieldset>
+      <!-- IMPORTANTE: no es necesario mostrar el ID de los bajas, por eso type="hidden"  -->
+      <input type="hidden" id="id" name="id" />
+      
+        <div class="form-group mx-2">
+          <label for="producto" class="form-label mt-2">Producto</label>
+          <select class="form-select" id="producto" name="producto"></select>
+        </div>
+
+  
+      <div class="row mx-0">
+        <div class="col">
+          <div class="form-group">
+            <label for="cantidad" class="form-label mt-2">Cantidad de Baja</label>
+            <input type="number" class="form-control" id="cantidad" name="cantidad" min="0" max="1000" required />
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="form-group">
+            <label for="fechaBaja" class="form-label mt-2">Fecha de la Baja</label>
+            <input type="date" class="form-control" id="fechaBaja" name="fechaBaja" min="2022-01-01" required />
+          </div>
+        </div>
+  
+  
+      <div class="row mx-0">
+        <div class="col-5" >
+          <div class="form-group">
+            <label for="tipo" class="form-label mt-2">Tipo</label>
+            <select class="form-select" id="tipo" name="tipo"></select>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  

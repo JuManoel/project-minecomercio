@@ -76,9 +76,6 @@ public class Compra extends CompraVenta {
   @Override
   public void setDetalles(ArrayList<Detalle> detalles) {
       super.setDetalles(detalles);
-      for (Detalle detalle : this.detalles) {
-        detalle.setSubTotal(detalle.getProducto().getValorBase());
-      }
   }
 
   @Override

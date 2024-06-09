@@ -42,7 +42,6 @@ public abstract class CompraVenta extends Transaccion {
     }
 
     public CompraVenta(JSONObject json) throws JSONException, Exception {
-        System.out.println(json.toString(2));
         setId(json.getString("id"));
         if(json.get("vendedor").getClass().equals(String.class)){
             setVendedor(new Vendedor(json.getString("vendedor")));
@@ -51,7 +50,6 @@ public abstract class CompraVenta extends Transaccion {
         }
         setFechaHora(LocalDateTime.parse(json.getString("fechaHora")));
         detalles = new ArrayList<>();
-        System.out.println(json.toString(2));
         JSONArray jsonArray = json.optJSONArray("detalles");
         for (int i = 0; i < jsonArray.length(); i++) {
             Detalle detalle = new Detalle();

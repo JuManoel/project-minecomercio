@@ -305,7 +305,13 @@ export default class compras {
       //define table
       document.querySelector('main').innerHTML = await Helpers.loadPage('./resources/html/compras.html')
       document.querySelector('#form-compras').innerHTML = ''
-      console.log(nestedData)
+      for (let index = 0; index < nestedData.length; index++) {
+        let deta = nestedData[index].detalles
+        for (let j = 0; j < deta.length; j++) {
+          let iva = deta[j].subTotal-(deta[j].producto.valorBase*deta[j].cantidad)
+          nestedData[index].detalles[j].producto.iva = iva
+        }
+      }
       var table = new Tabulator('main #compras > #table-container', {
         height: tableHeight,
         layout: 'fitColumns',
@@ -323,7 +329,6 @@ export default class compras {
         ],
         rowFormatter: function (row) {
           //create and style holder elements
-          console.log(row.getData())
           var holderEl = document.createElement('div')
           var tableEl = document.createElement('div')
   
@@ -337,7 +342,6 @@ export default class compras {
           holderEl.appendChild(tableEl)
   
           row.getElement().appendChild(holderEl)
-            console.log(row.getData().detalles)
           var subTable = new Tabulator(tableEl, {
             layout: 'fitColumns',
             data: row.getData().detalles,

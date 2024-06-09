@@ -1,0 +1,53 @@
+[
+  {
+    "fechaHora": "2024-04-22T00:00",
+    "tipoBaja": "DAÑADO",
+    "producto": {
+      "descripcion": "Boliqueso",
+      "vencimiento": "2024-12-10",
+      "tipo": "GOLOSINAS",
+      "iva": 19,
+      "subtotal": 81000,
+      "valorVenta": 1100,
+      "id": "LCB2M",
+      "valorBase": 1000,
+      "disponible": 81
+    },
+    "cantidad": 10,
+    "id": "1JM22"
+  },
+  {
+    "fechaHora": "2024-04-22T00:00",
+    "tipoBaja": "DAÑADO",
+    "producto": {
+      "descripcion": "Boliqueso",
+      "vencimiento": "2024-12-10",
+      "tipo": "GOLOSINAS",
+      "iva": 19,
+      "subtotal": 71000,
+      "valorVenta": 1100,
+      "id": "LCB2M",
+      "valorBase": 1000,
+      "disponible": 71
+    },
+    "cantidad": 10,
+    "id": "Q1SH5"
+  },
+  {
+    "fechaHora": "2024-05-22T00:00",
+    "tipoBaja": "DAÑADO",
+    "producto": {
+      "descripcion": "Boliqueso",
+      "vencimiento": "2024-12-10",
+      "tipo": "GOLOSINAS",
+      "iva": 19,
+      "subtotal": 61000,
+      "valorVenta": 1100,
+      "id": "LCB2M",
+      "valorBase": 1000,
+      "disponible": 61
+    },
+    "cantidad": 10,
+    "id": "GMT7L"
+  }
+]

@@ -231,6 +231,24 @@ Content-Type: application/json; charset=utf-8
         }
       ]
     }
-### actualizar los datos de un cliente (buscar por ID y modificar algunos o todos los datos)
-### Eliminar un cliente dado su ID
-DELETE http://localhost:7070/compra/Y8KGV
+###-----------------baja-------------------
+
+### Listar todos los clientes
+GET http://localhost:7070/baja 
+
+### Buscar un cliente dado su índice
+GET http://localhost:7070/baja/0 
+
+### Buscar un cliente dado su ID
+GET http://localhost:7070/baja/1 
+
+### agregar un cliente (crear al menos 5)
+POST http://localhost:7070/baja 
+Content-Type: application/json; charset=utf-8
+
+{
+      "fechaHora": "2024-05-22T00:00",
+      "producto": "LCB2M",
+      "cantidad": 10,
+      "tipoBaja": "Dañado"
+    }

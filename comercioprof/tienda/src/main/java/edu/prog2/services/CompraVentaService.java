@@ -20,10 +20,10 @@ public class CompraVentaService extends TransaccionService {
         this.receptor = receptor;
         this.productoService = new ProductoService();
         if (this.receptor.equals(Cliente.class)) {
-            compraVenta = "venta";
+            compraVenta = "Venta";
             this.clase = Venta.class;
         } else if (this.receptor.equals(Provedor.class)) {
-            compraVenta = "compra";
+            compraVenta = "Compra";
             this.clase = Compra.class;
         } else {
             throw new Exception("Intentas crear una cosa que no existe");
@@ -55,7 +55,7 @@ public class CompraVentaService extends TransaccionService {
     public CompraVenta getItem(String id) throws Exception {
         CompraVenta cv = (CompraVenta) super.getItem(id);
         
-        if (this.compraVenta.equals("venta")) {
+        if (this.compraVenta.equals("Venta")) {
             return (Venta) cv;
         }
         return (Compra) cv;
@@ -84,12 +84,14 @@ public class CompraVentaService extends TransaccionService {
     }
 
     private CompraVenta creatCompraVenta(String strJson) throws Exception {
-        
         int sumRest=0;
-        if(this.compraVenta.equals("venta")){
+        Class<? extends Detalle> tipoD;
+        if(this.compraVenta.equals("Venta")){
             sumRest=-1;
+            tipoD =DetalleVenta.class;
         }else{
             sumRest=1;
+            tipoD = DetalleCompra.class;
         }
         productoService = new ProductoService();// actualiza los productos
         CompraVenta cv;
@@ -104,7 +106,8 @@ public class CompraVentaService extends TransaccionService {
         for (int i = 0; i < array.length(); i++) {
             Producto pro = new Producto(productoService.get(array.getJSONObject(i).getString("producto")));
             pro.setDisponible(pro.getDisponible()+(array.getJSONObject(i).getInt("cantidad")*sumRest));
-            deta.add(new Detalle(pro, array.getJSONObject(i).getInt("cantidad")));
+            Detalle d = tipoD.getConstructor(Producto.class,int.class).newInstance(pro, array.getJSONObject(i).getInt("cantidad"));
+            deta.add(d);
             productoService.update(pro.getId(), pro.toJSONObject().toString());
         }
         Object id;

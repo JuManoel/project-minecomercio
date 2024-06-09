@@ -6,6 +6,7 @@ import static io.javalin.apibuilder.ApiBuilder.patch;
 import static io.javalin.apibuilder.ApiBuilder.path;
 import static io.javalin.apibuilder.ApiBuilder.post;
 
+import edu.prog2.model.TipoBaja;
 import edu.prog2.model.TipoProducto;
 import edu.prog2.services.IService;
 import io.javalin.http.Context;
@@ -31,7 +32,9 @@ public class Controller<T> {
                   // si es un número en base 10, buscar por índice
                   int i = Integer.parseInt(arg, 10);
                   response(ctx, service.get(i));
-                } else {
+                } else if(arg.equals("categoriasBaja")){
+                  response(ctx, TipoBaja.getAll());
+                }else {
                   response(ctx, service.get(arg));
                 }
               });

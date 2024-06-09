@@ -231,7 +231,6 @@ export default class Ventas {
       }
       i++
     })
-    console.log(json)
     const body = json
     try {
       let response = await Helpers.fetchData(`${urlAPI}/venta`, {
@@ -298,6 +297,14 @@ export default class Ventas {
     document.querySelector('main').innerHTML = await Helpers.loadPage('./resources/html/ventas.html')
     document.querySelector('#form-ventas').innerHTML = ''
     console.log(nestedData)
+    for (let index = 0; index < nestedData.length; index++) {
+      let deta = nestedData[index].detalles
+      for (let j = 0; j < deta.length; j++) {
+        let iva = deta[j].subTotal-(deta[j].producto.valorVenta*deta[j].cantidad)
+        nestedData[index].detalles[j].producto.iva = iva
+      }
+    }
+    
     var table = new Tabulator('main #ventas > #table-container', {
       height: tableHeight,
       layout: 'fitColumns',
@@ -315,7 +322,6 @@ export default class Ventas {
       ],
       rowFormatter: function (row) {
         //create and style holder elements
-        console.log(row.getData())
         var holderEl = document.createElement('div')
         var tableEl = document.createElement('div')
 

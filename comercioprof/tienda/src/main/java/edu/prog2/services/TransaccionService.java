@@ -45,7 +45,7 @@ public abstract class TransaccionService implements IService {
     @Override
     public JSONObject getAll() {
         try {
-            JSONArray data = new JSONArray(Utils.readText(fileName));
+            JSONArray data = new JSONArray(Utils.readText(this.fileName));
             return new JSONObject().put("message", "ok").put("data", data);
         } catch (IOException | JSONException e) {
             Utils.printStackTrace(e);
@@ -73,16 +73,7 @@ public abstract class TransaccionService implements IService {
 
     @Override
     public JSONObject remove(String id) throws Exception {
-        Transaccion transaccion = (Transaccion) getItem(id);
-        if (transaccion == null) {
-            throw new IllegalArgumentException("No existe esa transacion");
-        }
-        if (this.list.remove(transaccion)) {
-            Utils.writeJSON(list, fileName);
-            // devolver la instancia con los cambios realizados
-            return new JSONObject().put("message", "ok").put("data", transaccion.toJSONObject());
-        }
-        throw new Exception("No se pudo remover la compraVenta con el ID:" + id);
+        throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
 
     @Override
