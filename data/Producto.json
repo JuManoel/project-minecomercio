@@ -4,10 +4,10 @@
     "vencimiento": "2024-12-12",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 39000,
     "valorVenta": 4000,
-    "id": "PVEPR",
+    "subtotal": 39000,
     "valorBase": 3000,
+    "id": "PVEPR",
     "disponible": 13
   },
   {
@@ -15,21 +15,21 @@
     "vencimiento": "2024-12-10",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 61000,
     "valorVenta": 1100,
-    "id": "LCB2M",
+    "subtotal": 51000,
     "valorBase": 1000,
-    "disponible": 61
+    "id": "LCB2M",
+    "disponible": 51
   },
   {
     "descripcion": "Queso parmesano Alpina",
     "vencimiento": "2024-10-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 660000,
     "valorVenta": 12000,
-    "id": "CU12G",
+    "subtotal": 660000,
     "valorBase": 10000,
+    "id": "CU12G",
     "disponible": 66
   },
   {
@@ -37,10 +37,10 @@
     "vencimiento": "2024-08-01",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 172000,
     "valorVenta": 5000,
-    "id": "35G6E",
+    "subtotal": 172000,
     "valorBase": 4000,
+    "id": "35G6E",
     "disponible": 43
   },
   {
@@ -48,10 +48,10 @@
     "vencimiento": "2024-03-26",
     "tipo": "LACTEOS",
     "iva": 19,
-    "subtotal": 160000,
     "valorVenta": 5000,
-    "id": "X1SC9",
+    "subtotal": 160000,
     "valorBase": 4000,
+    "id": "X1SC9",
     "disponible": 40
   },
   {
@@ -59,10 +59,10 @@
     "vencimiento": "2024-03-26",
     "tipo": "CEREALES",
     "iva": 19,
-    "subtotal": 149950,
     "valorVenta": 3999,
-    "id": "6NTFM",
+    "subtotal": 149950,
     "valorBase": 2999,
+    "id": "6NTFM",
     "disponible": 50
   },
   {
@@ -70,10 +70,10 @@
     "vencimiento": "2025-01-01",
     "tipo": "CARNICOS",
     "iva": 19,
-    "subtotal": 150000,
     "valorVenta": 15000,
-    "id": "EIV7B",
+    "subtotal": 150000,
     "valorBase": 10000,
+    "id": "EIV7B",
     "disponible": 15
   },
   {
@@ -81,32 +81,32 @@
     "vencimiento": "2026-02-28",
     "tipo": "HARINAS",
     "iva": 20,
-    "subtotal": 682500,
     "valorVenta": 25000,
-    "id": "PHAKQ",
+    "subtotal": 647500,
     "valorBase": 17500,
-    "disponible": 39
+    "id": "PHAKQ",
+    "disponible": 37
   },
   {
     "descripcion": "cafe",
     "vencimiento": "2026-05-05",
     "tipo": "BEBIDAS",
     "iva": 19,
-    "subtotal": 37600,
     "valorVenta": 1000,
-    "id": "3S67B",
+    "subtotal": 36800,
     "valorBase": 800,
-    "disponible": 47
+    "id": "3S67B",
+    "disponible": 46
   },
   {
     "descripcion": "Pollitos",
     "vencimiento": "2024-05-31",
     "tipo": "CARNICOS",
     "iva": 16,
-    "subtotal": 900000,
     "valorVenta": 30000,
-    "id": "30JT7",
+    "subtotal": 900000,
     "valorBase": 20000,
+    "id": "30JT7",
     "disponible": 45
   },
   {
@@ -114,10 +114,10 @@
     "vencimiento": "2028-01-01",
     "tipo": "BEBIDAS",
     "iva": 19,
-    "subtotal": 102000,
     "valorVenta": 3500,
-    "id": "X1EK9",
+    "subtotal": 102000,
     "valorBase": 2000,
+    "id": "X1EK9",
     "disponible": 51
   },
   {
@@ -125,10 +125,10 @@
     "vencimiento": "2024-05-16",
     "tipo": "CARNICOS",
     "iva": 19,
-    "subtotal": 300000,
     "valorVenta": 15000,
-    "id": "IQLOU",
+    "subtotal": 300000,
     "valorBase": 10000,
+    "id": "IQLOU",
     "disponible": 30
   },
   {
@@ -136,10 +136,10 @@
     "vencimiento": "2025-01-01",
     "tipo": "GOLOSINAS",
     "iva": 19,
-    "subtotal": 185000,
     "valorVenta": 7000,
-    "id": "SCXSW",
+    "subtotal": 185000,
     "valorBase": 5000,
+    "id": "SCXSW",
     "disponible": 37
   }
 ]

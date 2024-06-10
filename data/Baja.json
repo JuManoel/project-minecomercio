@@ -2,52 +2,103 @@
   {
     "fechaHora": "2024-04-22T00:00",
     "tipoBaja": "DAÑADO",
+    "cantidad": 10,
     "producto": {
       "descripcion": "Boliqueso",
       "vencimiento": "2024-12-10",
       "tipo": "GOLOSINAS",
       "iva": 19,
-      "subtotal": 81000,
       "valorVenta": 1100,
-      "id": "LCB2M",
+      "subtotal": 81000,
       "valorBase": 1000,
+      "id": "LCB2M",
       "disponible": 81
     },
-    "cantidad": 10,
     "id": "1JM22"
   },
   {
     "fechaHora": "2024-04-22T00:00",
     "tipoBaja": "DAÑADO",
+    "cantidad": 10,
     "producto": {
       "descripcion": "Boliqueso",
       "vencimiento": "2024-12-10",
       "tipo": "GOLOSINAS",
       "iva": 19,
-      "subtotal": 71000,
       "valorVenta": 1100,
-      "id": "LCB2M",
+      "subtotal": 71000,
       "valorBase": 1000,
+      "id": "LCB2M",
       "disponible": 71
     },
-    "cantidad": 10,
     "id": "Q1SH5"
   },
   {
     "fechaHora": "2024-05-22T00:00",
     "tipoBaja": "DAÑADO",
+    "cantidad": 10,
     "producto": {
       "descripcion": "Boliqueso",
       "vencimiento": "2024-12-10",
       "tipo": "GOLOSINAS",
       "iva": 19,
-      "subtotal": 61000,
       "valorVenta": 1100,
-      "id": "LCB2M",
+      "subtotal": 61000,
       "valorBase": 1000,
+      "id": "LCB2M",
       "disponible": 61
     },
-    "cantidad": 10,
     "id": "GMT7L"
+  },
+  {
+    "fechaHora": "2024-06-22T00:00",
+    "tipoBaja": "DAÑADO",
+    "cantidad": 10,
+    "producto": {
+      "descripcion": "Boliqueso",
+      "vencimiento": "2024-12-10",
+      "tipo": "GOLOSINAS",
+      "iva": 19,
+      "valorVenta": 1100,
+      "subtotal": 51000,
+      "valorBase": 1000,
+      "id": "LCB2M",
+      "disponible": 51
+    },
+    "id": "AT7RU"
+  },
+  {
+    "fechaHora": "2024-06-09T23:04:08.081",
+    "tipoBaja": "PERDIDO_HURTO",
+    "cantidad": 1,
+    "producto": {
+      "descripcion": "cafe",
+      "vencimiento": "2026-05-05",
+      "tipo": "BEBIDAS",
+      "iva": 19,
+      "valorVenta": 1000,
+      "subtotal": 36800,
+      "valorBase": 800,
+      "id": "3S67B",
+      "disponible": 46
+    },
+    "id": "844EV"
+  },
+  {
+    "fechaHora": "2024-06-09T23:29:08.326",
+    "tipoBaja": "INDEFINIDO",
+    "cantidad": 2,
+    "producto": {
+      "descripcion": "Pizza conjelada Peperoni",
+      "vencimiento": "2026-02-28",
+      "tipo": "HARINAS",
+      "iva": 20,
+      "valorVenta": 25000,
+      "subtotal": 647500,
+      "valorBase": 17500,
+      "id": "PHAKQ",
+      "disponible": 37
+    },
+    "id": "DNQMM"
   }
 ]

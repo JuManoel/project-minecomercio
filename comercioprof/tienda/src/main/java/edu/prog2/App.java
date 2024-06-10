@@ -23,6 +23,7 @@ public final class App {
     IService<CompraVenta> ventaService = new CompraVentaService(Cliente.class);
     @SuppressWarnings("unchecked")
     IService<CompraVenta> compraService = new CompraVentaService(Provedor.class);
+    @SuppressWarnings("unchecked")
     IService<Baja> bajaService = new BajaService();
     String message = String.format(
         "%sIniciando la API Rest de Ventas. Use Ctrl+C para detener la ejecución%s",

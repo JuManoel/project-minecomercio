@@ -9,11 +9,8 @@ import org.json.JSONObject;
 
 import edu.prog2.helpers.Utils;
 import edu.prog2.model.Baja;
-import edu.prog2.model.Compra;
-import edu.prog2.model.CompraVenta;
 import edu.prog2.model.Producto;
 import edu.prog2.model.Transaccion;
-import edu.prog2.model.Venta;
 
 public class BajaService extends TransaccionService {
 

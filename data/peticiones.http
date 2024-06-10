@@ -247,7 +247,7 @@ POST http://localhost:7070/baja
 Content-Type: application/json; charset=utf-8
 
 {
-      "fechaHora": "2024-05-22T00:00",
+      "fechaHora": "2024-06-22T00:00",
       "producto": "LCB2M",
       "cantidad": 10,
       "tipoBaja": "Dañado"
