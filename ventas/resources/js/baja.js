@@ -4,8 +4,7 @@ export default class bajas {
     static #currentOption
     static #form
     static #tipos
-    static #producto
-    static #idProductos
+    static #products
   
     constructor() {
       throw new Error('No utilice el constructor. Use bajas.init()')
@@ -18,29 +17,16 @@ export default class bajas {
         if (bajas.#tipos.status === 404) {
           throw new Error(bajas.#tipos.title)
         }
-        const productos = await Helpers.fetchData(`${urlAPI}/producto`)
-        console.log(productos)
-        if(productos.status === 404){
-            throw new Error(bajas.#producto.title)
-        }
-        bajas.#producto = []
-        bajas.#idProductos = []
-        let i = 0
-        productos.data.forEach(prod => {
-            bajas.#producto[i]=prod.descripcion
-            bajas.#idProductos[i]=prod.id
-            i+=1
-        });
         // intentar cargar el formulario de edición de bajas
-        bajas.#form = await Helpers.loadPage('./resources/html/bajas.html')     
+        bajas.#form = await Helpers.loadPage('./resources/html/bajas.html')  
   
         // intentar cargar los datos de los bajas
         const response = await Helpers.fetchData(`${urlAPI}/baja`)
-        console.log(response.data)
         if (response.message !== 'ok') {
           throw new Error(response.message)
         }
-  
+        await bajas.#getProducts()
+
         // agregar al <main> de index.html la capa que contendrá la tabla
         document.querySelector('main').innerHTML = `
           <div class="p-2 w-full">
@@ -57,7 +43,7 @@ export default class bajas {
           columns: [
             // definir las columnas de la tabla
             { title: 'CÓDIGO', field: 'id', width: 100, hozAlign: 'center' },
-            { title: 'NOMBRE', field: 'producto.descripcion', hozAlign: 'left' }, // No se indica width, utilizar el ancho remanente
+            { title: 'Producto', field: 'producto.descripcion',width: 100, hozAlign: 'center' },
             { title: 'TIPO', field: 'tipoBaja', hozAlign: 'left' }, // No se indica width, utilizar el ancho remanente
             { title: 'DISP.', field: 'cantidad', width: 70, hozAlign: 'left', hozAlign: 'center' },
             { title: 'VENCIMIENTO', field: 'producto.vencimiento', width: 135, hozAlign: 'center' },
@@ -76,6 +62,19 @@ export default class bajas {
   
       return this
     }
+
+    static async #getProducts() {
+      // asignar a Ventas.#products la data de clientes obtenida mediante fetchData(), excluir los vencidos y los no disponibles
+      const response = await Helpers.fetchData(`${urlAPI}/producto`)
+      bajas.#products = response.data
+      // el siguiente filtro reduce la comparación a días para evitar imprecisiones
+  
+      // en la variable local listProducts mapear Ventas.#products.map para obtener un array con los nombres de los productos
+      return bajas.#products
+    }
+
+
+
     static async #addRow() {
       bajas.#currentOption = 'add'
       bajas.#modal = new Modal({
@@ -88,6 +87,12 @@ export default class bajas {
         ],
         doSomething: bajas.#toComplete,
       })
+      document.querySelector("#producto").innerHTML = Helpers.toOptionList({
+        items: bajas.#products,
+        value: 'id',
+        text: 'descripcion',
+      })
+      document.querySelector('#fechaBaja').value = DateTime.now().toISO({ includeOffset: false })
       bajas.#modal.show()
     }
   
@@ -101,13 +106,14 @@ export default class bajas {
         const body = bajas.#getFormData()
   
         // enviar la solicitud de creación con los datos del formulario
+        console.log(body)
         let response = await Helpers.fetchData(`${urlAPI}/baja`, {
           method: 'POST',
           body,
         })
   
         if (response.message === 'ok') {
-          bajas.#table.addRow(response.data) // agregar el baja a la tabla
+          bajas.init()
           bajas.#modal.close()
           Toast.show({ message: 'baja agregado exitosamente' })
         } else {
@@ -122,7 +128,7 @@ export default class bajas {
       // crear una lista de opciones a partir del enum tipoBaja
       const tipos = Helpers.toOptionList({
         items: bajas.#tipos.data,
-        value: 'key',
+        value: 'value',
         text: 'value',
         selected: bajas.#currentOption === 'edit' ? rowData.tipo : '',
       })
@@ -147,16 +153,13 @@ export default class bajas {
      * @returns Un objeto con los datos del baja
      */
     static #getFormData() {
-      const id = document.querySelector(`#${bajas.#modal.id} #id`).value
-      const descripcion = document.querySelector(`#${bajas.#modal.id} #descripcion`).value
+      console.log(bajas.#modal.id)
+      const producto = document.querySelector(`#${bajas.#modal.id} #producto`).value
       const cantidad = document.querySelector(`#${bajas.#modal.id} #cantidad`).value
-      const vencimiento = document.querySelector(`#${bajas.#modal.id} #vencimiento`).value
-      const valorBase = document.querySelector(`#${bajas.#modal.id} #valor-base`).value
-      const valorVenta = document.querySelector(`#${bajas.#modal.id} #valor-venta`).value
-      const tipo = document.querySelector(`#${bajas.#modal.id} #tipo`).value
-      const iva = document.querySelector(`#${bajas.#modal.id} #iva`).value
+      const fechaHora = document.querySelector(`#${bajas.#modal.id} #fechaBaja`).value
+      const tipoBaja = document.querySelector(`#${bajas.#modal.id} #tipo`).value
   
-      return { id, descripcion, tipo, valorBase, valorVenta, iva, cantidad, vencimiento }
+      return { producto, tipoBaja, cantidad, fechaHora }
     }
   }
   
