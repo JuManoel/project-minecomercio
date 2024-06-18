@@ -2,7 +2,7 @@ package edu.prog2.model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+//los tipos de producto
 public enum TipoProducto {
   ASEO_PERSONAL("Aseo personal"),
   ASEO_GENERAL("Aseo general"),

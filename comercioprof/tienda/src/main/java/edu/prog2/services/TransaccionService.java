@@ -13,6 +13,10 @@ import edu.prog2.model.*;
 
 @SuppressWarnings("rawtypes")
 public abstract class TransaccionService implements IService {
+    // la classe transaccion service solo sirve para ser padre de las demas service
+    // que son hijas de
+    // transaccion. ya que todas tienem atributos muy en comun y metodos que hacen
+    // lo mismo
     protected ProductoService productoService;
     protected List<Transaccion> list;
     protected String fileName;

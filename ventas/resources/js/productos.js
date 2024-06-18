@@ -4,7 +4,8 @@ export default class Productos {
   static #currentOption
   static #form
   static #tipos
-
+//classe responsable de mostrar, modificar y crear productos
+//haciendo coneccion con el service (el backend) utilizan Helpers.fetchData
   constructor() {
     throw new Error('No utilice el constructor. Use Productos.init()')
   }
@@ -67,6 +68,7 @@ export default class Productos {
   }
 
   static async #addRow() {
+    //adicionar una linea
     Productos.#currentOption = 'add'
     Productos.#modal = new Modal({
       classes: 'col-12 col-sm-10 col-md-9 col-lg-8 col-xl-7',
@@ -82,6 +84,7 @@ export default class Productos {
   }
 
   static async #add() {
+    //adicionar el producto
     try {
       // verificar si los datos cumplen con las restricciones indicadas en el formulario HTML
       if (!Helpers.okForm('#form-productos')) {

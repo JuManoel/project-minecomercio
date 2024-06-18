@@ -11,9 +11,16 @@ public abstract class Persona implements Format {
   protected String nombre;
   protected String correo;
   protected String telefono;
-  protected String password; // anglicismo
+  protected String password; // anglicismo significa:
+  /*
+   * Anglicismo é um termo ou expressão da língua inglesa introduzido a outra
+   * língua, seja devido à necessidade de designar objetos ou fenómenos novos,
+   * para os quais não existe designação adequada na língua alvo, seja por
+   * qualquer motivo.
+   */
 
   public Persona(String id, String nombre, String correo, String telefono, String password) throws Exception {
+    // id con todo
     setCorreo(correo);
     setId(id);
     setNombre(nombre);
@@ -22,10 +29,13 @@ public abstract class Persona implements Format {
   }
 
   public Persona(String id) throws Exception {
+    // solo id
+    // ese modelo hizo carlos cuesta si no me falla la memoria
     this(id, "NN", "", "", "");
   }
 
   public Persona(String nombre, String correo, String telefono, String password) throws Exception {
+    // sin el id
     setCorreo(correo);
     setId(Utils.getRandomKey(5));
     setNombre(nombre);
@@ -34,6 +44,7 @@ public abstract class Persona implements Format {
   }
 
   public Persona(Persona persona) throws Exception {
+    // copia
     setCorreo(persona.getCorreo());
     setId(persona.getId());
     setNombre(persona.getNombre());
@@ -42,14 +53,17 @@ public abstract class Persona implements Format {
   }
 
   public Persona() {
+    // por defecto
     super();
   }
 
   public Persona(JSONObject json) throws JSONException, Exception {
+    // con json
     this(json.getString("id"), json.getString("nombre"), json.optString("correo"), json.getString("telefono"),
         json.getString("password")); // transforma de string a localdatetime
   }
 
+  // acessores y modificadores
   public String getCorreo() {
     return correo;
   }
@@ -118,7 +132,7 @@ public abstract class Persona implements Format {
   }
 
   @Override
-  public String toString() {
+  public String toString() {// to string
     String str = String.format(
         "Id: %s\n" +
             "Nombre: %s\n" +
@@ -130,7 +144,7 @@ public abstract class Persona implements Format {
   }
 
   @Override
-  public JSONObject toJSONObject() {
+  public JSONObject toJSONObject() {// to json
     return new JSONObject(this);
   }
 }

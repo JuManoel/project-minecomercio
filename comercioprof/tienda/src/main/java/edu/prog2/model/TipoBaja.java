@@ -2,6 +2,7 @@ package edu.prog2.model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+//los tipos de baja que pueden ocurrir
 
 public enum TipoBaja {
     AJUSTE("Ajuste"),

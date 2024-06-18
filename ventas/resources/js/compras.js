@@ -77,7 +77,7 @@ export default class compras {
         })
         compras.#salesTable.on('tableBuilt', () => {
           // asignar los listener de los botones del footer de la tabla
-          document.querySelector('#save-sale').addEventListener('click', compras.#saveSale)
+          document.querySelector('#save-sale').addEventListener('click', compras.#saveBuy)
           document.querySelector('#add-row').addEventListener('click', compras.#addRow)
           document.querySelector('#new-sale').addEventListener('click', compras.#newSale)
         })
@@ -189,7 +189,9 @@ export default class compras {
     /**
      * Verifica que los datos del formulario y de la tabla sean correctos y envía una solicitud POST con dichos datos
      */
-    static async #saveSale() {
+    static async #saveBuy() {
+      //por la misma razon que venta. compra no es muy sencilla, entonces toca primero organizar los datos
+      //para despues mandarlos correctamente para el service
       const fechaHora = document.querySelector(`#form-compras #fecha`).value
       let json = {
         provedor: null,

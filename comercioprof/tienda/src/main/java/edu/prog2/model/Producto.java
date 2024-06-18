@@ -18,6 +18,7 @@ public final class Producto implements Format {
   private LocalDate vencimiento;
 
   public Producto() throws Exception {
+    // por defecto con todo
     this(Utils.getRandomKey(5), "Producto sin descripcion", TipoProducto.OTROS, 0, 0, 0, 0, LocalDate.now());
   }
 
@@ -28,6 +29,7 @@ public final class Producto implements Format {
 
   public Producto(String id, String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva,
       int disponible, LocalDate vencimiento) throws Exception {
+    // con todo
     if (valorBase > valorVenta) {
       throw new IllegalArgumentException("Valor base tiene que ser menor que valor venta");
     }
@@ -43,19 +45,23 @@ public final class Producto implements Format {
 
   public Producto(String descripcion, TipoProducto tipo, double valorBase, double valorVenta, double iva,
       int disponible, LocalDate vencimiento) throws Exception {
+    // sin el id
     this(Utils.getRandomKey(5), descripcion, tipo, valorBase, valorVenta, iva, disponible, vencimiento);
   }
 
   public Producto(Producto p) throws Exception {
+    // copia
     this(p.id, p.descripcion, p.tipo, p.valorBase, p.valorVenta, p.iva, p.disponible, p.vencimiento);
   }
 
   public Producto(JSONObject json) throws JSONException, Exception { // hacer ensayos de Json a Java
+    // con json
     this(json.getString("id"), json.getString("descripcion"), TipoProducto.valueOf(json.optString("tipo")),
         json.getDouble("valorBase"), json.getDouble("valorVenta"), json.getDouble("iva"), json.getInt("disponible"),
         LocalDate.parse(json.getString("vencimiento"))); // transforma de string a localdatetime
   }
 
+  // acessores y modificadores
   public String getId() {
     return id;
   }
@@ -184,13 +190,13 @@ public final class Producto implements Format {
   }
 
   @Override
-  public String toString() {
+  public String toString() {// to string
     return String.format("%-6s%-30s%-20s%10.0f%5d%10.0f%12s\n", id, descripcion, tipo, valorBase, disponible,
         getSubtotal(), vencimiento);
   }
 
   @Override
-  public JSONObject toJSONObject() {
+  public JSONObject toJSONObject() {// to json object
     return new JSONObject(this);
   }
 }

@@ -4,6 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DetalleVenta extends Detalle {
+    // de la misma forma que el DetalleCompra, detalleVenta tiene la misma mission,
+    // solo para hacer el
+    // calculo del subtotal para ventas
     public DetalleVenta() {
         super();
     }
@@ -19,8 +22,9 @@ public class DetalleVenta extends Detalle {
     public DetalleVenta(JSONObject json) throws JSONException, Exception {
         super(json);
     }
+
     @Override
-    public double getSubTotal() {
-        return Math.round(super.getSubTotal()*this.getProducto().getValorVenta());
+    public double getSubTotal() {// contemplem el metodo getSubTotal completo
+        return Math.round(super.getSubTotal() * this.getProducto().getValorVenta());
     }
 }

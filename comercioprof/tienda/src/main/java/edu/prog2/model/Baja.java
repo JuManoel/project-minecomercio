@@ -11,21 +11,23 @@ public class Baja extends Transaccion {
     private int cantidad;
 
     public Baja() {
+        // constructor por defecto
         super();
     }
 
-
     public Baja(String id) {
+        // constructor solo con id
         super(id);
     }
 
-
     public Baja(String id, LocalDateTime fechaHora) {
+        // constructor con id y fecha
         super(id, fechaHora);
     }
 
-
     public Baja(String id, LocalDateTime fechaHora, Producto producto, TipoBaja tipoBaja, int cantidad) {
+        // constructor con todo. id, el producto que estamos dando baja, el tipo baja y
+        // la cantidad
         super(id, fechaHora);
         this.producto = producto;
         this.tipoBaja = tipoBaja;
@@ -33,10 +35,13 @@ public class Baja extends Transaccion {
     }
 
     public Baja(JSONObject json) throws JSONException, Exception {
+        /*
+         * Constructor con el jsononject
+         */
         super(json);
-        if(json.get("producto").getClass().equals(JSONObject.class)){
+        if (json.get("producto").getClass().equals(JSONObject.class)) {
             this.producto = new Producto(json.getJSONObject("producto"));
-        }else{
+        } else {
             this.producto = new Producto(json.getString("producto"));
         }
         this.tipoBaja = TipoBaja.getEnum(json.getString("tipoBaja"));
@@ -44,6 +49,7 @@ public class Baja extends Transaccion {
     }
 
     public Baja(String id, Producto producto, TipoBaja tipoBaja, int cantidad) {
+        // constructo que no recibe la fecha
         super(id);
         this.producto = producto;
         this.tipoBaja = tipoBaja;
@@ -51,6 +57,7 @@ public class Baja extends Transaccion {
     }
 
     public Baja(Baja baja) {
+        // comstructor copia
         super((Transaccion) baja);
         this.producto = baja.getProducto();
         this.tipoBaja = baja.getTipoBaja();
@@ -58,10 +65,14 @@ public class Baja extends Transaccion {
     }
 
     public Baja(Producto producto, TipoBaja tipoBaja) {
+        // constructo de solo producto y tipo de baja
         this.producto = producto;
         this.tipoBaja = tipoBaja;
     }
 
+    /*
+     * Acessores y modificadores de los atributos
+     */
     public Producto getProducto() {
         return producto;
     }
@@ -85,6 +96,7 @@ public class Baja extends Transaccion {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+    // converter en JSONObject
 
     @Override
     public JSONObject toJSONObject() {

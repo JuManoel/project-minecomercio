@@ -10,6 +10,8 @@ import Toast from '../utils/own/toast.js'
 
 class App {
   static async main() {
+    //clase principal de todo el proyecto, sera responsable de inicializar las demas clases y 
+    //mostrar las cositas de forma como le gunta el maestro
     // Ver: https://javascript.info/browser-environment (DOM|BOM|JavaScript)
     // Las clases importadas se asignan a referencias de la ventana actual:
     window.icons = icons

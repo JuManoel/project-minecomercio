@@ -71,6 +71,7 @@ public class PersonaService implements IService<Persona> {
 
   @Override
   public JSONObject get(String id) throws Exception {
+    //coje dado el id y devuelve un json
     Persona persona = this.clase.getConstructor(String.class).newInstance(id);
     int i = list.indexOf(persona);
     return i > -1 ? get(i) : null;
@@ -78,12 +79,14 @@ public class PersonaService implements IService<Persona> {
 
   @Override
   public Persona getItem(String id) throws Exception {
+    //ya devuelve el objeto
     JSONObject json = get(id);
     return this.clase.getConstructor(JSONObject.class).newInstance(json);
   }
 
   @Override
   public JSONObject getAll() {
+    //coje todos las personas
     try {
       JSONArray data = new JSONArray(Utils.readText(fileName));
       return new JSONObject().put("message", "ok").put("data", data);
@@ -95,6 +98,7 @@ public class PersonaService implements IService<Persona> {
 
   @Override
   public final List<Persona> load() throws Exception {
+    //inicializa el arraylist y ya coje todos las personas
     list = new ArrayList<>();
 
     String data = Utils.readText(fileName);
@@ -173,6 +177,7 @@ public class PersonaService implements IService<Persona> {
   }
 
   private boolean canRemove(ArrayList<CompraVentaService> cv, String id) {
+    //calidar si puedo remover una persona
     for (CompraVentaService compraVentaService : cv) {
       JSONArray jsonArray = compraVentaService.getAll().getJSONArray("data");
       for (int i = 0; i < jsonArray.length(); i++) {
@@ -188,6 +193,7 @@ public class PersonaService implements IService<Persona> {
 
   @Override
   public JSONObject remove(String id) throws Exception {
+    //remover persona
     Persona persona = getItem(id);
     ArrayList<CompraVentaService> cv = compraVenta();
     if (!canRemove(cv, id)) {
@@ -205,6 +211,7 @@ public class PersonaService implements IService<Persona> {
   @SuppressWarnings("unchecked")
   @Override
   public Class<Persona> getDataType() {
+    //cojo el tipo de persona
     return (Class<Persona>) this.clase;
   }
 

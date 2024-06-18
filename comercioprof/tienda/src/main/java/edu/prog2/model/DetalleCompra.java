@@ -3,8 +3,10 @@ package edu.prog2.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DetalleCompra extends Detalle{
-
+public class DetalleCompra extends Detalle {
+    // el detalle de compra tiene como unico proposito hacer el calculo del
+    // subtotal.
+    // pero por supuesto el nescesita los constructores
     public DetalleCompra() {
         super();
     }
@@ -21,9 +23,8 @@ public class DetalleCompra extends Detalle{
         super(json);
     }
 
-
     @Override
-    public double getSubTotal() {
-        return Math.round(super.getSubTotal()*this.getProducto().getValorBase());
+    public double getSubTotal() {// la continuacion del metodo subtotal
+        return Math.round(super.getSubTotal() * this.getProducto().getValorBase());
     }
 }

@@ -5,7 +5,9 @@ export default class Usuarios {
   static #form
   static #tipoUsuario
   static #modo
-
+  //una idea que tenia antes era ir crear hijos de usuario y ir haciendo javascript orientado a objetos
+  //pero parece que el maestro puso un if al principio y con eso fue possible hacer los 3 tipos de usuarios
+  //possible
   constructor() {
     throw new Error('No utilice el constructor. Use Usuarios.init()')
   }

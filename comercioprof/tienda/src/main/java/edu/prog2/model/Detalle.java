@@ -8,28 +8,34 @@ public class Detalle implements Format {
     private int cantidad;
 
     public Detalle() {
+        // por defecto
         super();
     }
 
     public Detalle(Producto producto, int cantidad) throws Exception {
+        // producto y cantidad
         setCantidad(cantidad);
         setProducto(producto);
     }
 
     public Detalle(Detalle detalle) throws Exception {
+        // copia
         setCantidad(detalle.getCantidad());
         setProducto(detalle.getProducto());
     }
 
     public Detalle(JSONObject json) throws JSONException, Exception {
+        // json
         setCantidad(json.getInt("cantidad"));
         setProducto(new Producto(json.getString("producto")));
     }
 
     public double getSubTotal() {
-        return this.cantidad*(1+(this.producto.getIva()/100));
+        // el subtotal incopleto
+        return this.cantidad * (1 + (this.producto.getIva() / 100));
     }
 
+    // acesores y modificadores
     public int getCantidad() {
         return cantidad;
     }
@@ -48,7 +54,8 @@ public class Detalle implements Format {
         }
         this.cantidad = cantidad;
     }
-    @Override
+
+    @Override // el equals
     public boolean equals(Object obj) {
         // las referencias this y obj apuntan a la misma instancia
         if (this == obj) {
@@ -66,20 +73,19 @@ public class Detalle implements Format {
         return this.producto.equals(((Detalle) obj).producto) && this.cantidad == ((Detalle) obj).cantidad;
     }
 
-    @Override
+    @Override // sirve para cojer el "codigo del la classe" como su memory posicion
     public int hashCode() {
         return super.hashCode();
     }
 
-    @Override
+    @Override // to string
     public String toString() {
-        String str = 
-        "producto:" + producto.getId() + "\n" +
+        String str = "producto:" + producto.getId() + "\n" +
                 "Cantidad: " + this.cantidad + "\n";
         return str;
     }
 
-    @Override
+    @Override // to json
     public JSONObject toJSONObject() {
         String json = """
                 {
@@ -90,7 +96,5 @@ public class Detalle implements Format {
         json = String.format(json, this.producto.getId(), this.getCantidad());
         return new JSONObject(json);
     }
-
-    
 
 }

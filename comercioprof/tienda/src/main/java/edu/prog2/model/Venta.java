@@ -12,6 +12,7 @@ public final class Venta extends CompraVenta {
   private Cliente cliente;
 
   public Venta() throws Exception {
+    // por defecto
     this(Utils.getRandomKey(5));
     this.cliente = new Cliente();
     this.detalles = new ArrayList<>();
@@ -20,14 +21,14 @@ public final class Venta extends CompraVenta {
   }
 
   public Venta(String id) throws Exception {
-
-    // this();
+    // solo id
     setId(id);
   }
 
   public Venta(String id, Cliente cliente, Vendedor vendedor, LocalDateTime fechaHora, ArrayList<Detalle> detalles)
       throws Exception {
     // Use mutadores para asignar los valores recibidos
+    // con todo
     super(id, vendedor, fechaHora, detalles);
     setCliente(cliente);
   }
@@ -35,12 +36,14 @@ public final class Venta extends CompraVenta {
   public Venta(Cliente cliente, Vendedor vendedor, LocalDateTime fechaHora, ArrayList<Detalle> detalles)
       throws Exception {
     // use el constructor parametrizado
+    // sin el id
     super(vendedor, fechaHora);
     setCliente(cliente);
     setDetalles(detalles);
   }
 
   public Venta(Venta v) throws Exception {
+    // copia
     setCliente(v.getCliente());
     setFechaHora(v.getFechaHora());
     setId(v.getId());
@@ -48,6 +51,7 @@ public final class Venta extends CompraVenta {
   }
 
   public Venta(JSONObject json) throws JSONException, Exception {
+    // json
     super(json);
     if (json.get("cliente").getClass().equals(String.class)) {
       this.setCliente(new Cliente(json.getString("cliente")));
@@ -56,6 +60,7 @@ public final class Venta extends CompraVenta {
     }
   }
 
+  // acessores y modificadores
   public Cliente getCliente() {
     return cliente;
   }
@@ -69,18 +74,18 @@ public final class Venta extends CompraVenta {
 
   @Override
   public void setDetalles(ArrayList<Detalle> detalles) {
-      super.setDetalles(detalles);
+    super.setDetalles(detalles);
   }
 
   @Override
-  public String toString() {
+  public String toString() {// to string
     JSONObject json = this.toJSONObject();
     json.put("vendedor", this.getVendedor().getId());
     return json.toString();
   }
 
   @Override
-  public JSONObject toJSONObject() {
+  public JSONObject toJSONObject() {// to json
     JSONObject json = super.toJSONObject();
     json.put("cliente", this.cliente.getId());
     return json;

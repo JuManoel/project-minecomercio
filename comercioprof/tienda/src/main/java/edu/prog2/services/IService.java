@@ -4,6 +4,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 public interface IService<T> {
+  //la interface service que todos tienen que implementar
   public JSONObject add(String strJson) throws Exception;
 
   public JSONObject get(int index);

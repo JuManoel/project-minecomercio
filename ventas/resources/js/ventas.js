@@ -4,7 +4,7 @@ export default class Ventas {
   static #products // el array con la información de productos
   static #customer // el array de clientes
   static #seller // el array de vendedores
-
+  //la clase para crear ventas
   constructor() {
     throw new Error('No utilice el constructor. Use Ventas.init()')
   }
@@ -182,6 +182,8 @@ export default class Ventas {
    * Verifica que los datos del formulario y de la tabla sean correctos y envía una solicitud POST con dichos datos
    */
   static async #saveSale() {
+    //por venta tener que relacionar varios objetos
+    //esa classe primero organiza de tal forma que mande para el service exactamente lo el nescesita recibir
     const fechaHora = document.querySelector(`#form-ventas #fecha`).value
     let json = {
       cliente: null,
@@ -232,6 +234,7 @@ export default class Ventas {
       i++
     })
     const body = json
+    //y solo aca guardo la venta
     try {
       let response = await Helpers.fetchData(`${urlAPI}/venta`, {
         method: 'POST',
@@ -294,17 +297,18 @@ export default class Ventas {
 
   static async #table(nestedData) {
     //define table
+    //utilizando el tabulator para dejar todo organizado
     document.querySelector('main').innerHTML = await Helpers.loadPage('./resources/html/ventas.html')
     document.querySelector('#form-ventas').innerHTML = ''
     console.log(nestedData)
     for (let index = 0; index < nestedData.length; index++) {
       let deta = nestedData[index].detalles
       for (let j = 0; j < deta.length; j++) {
-        let iva = deta[j].subTotal-(deta[j].producto.valorVenta*deta[j].cantidad)
+        let iva = deta[j].subTotal - deta[j].producto.valorVenta * deta[j].cantidad
         nestedData[index].detalles[j].producto.iva = iva
       }
     }
-    
+
     var table = new Tabulator('main #ventas > #table-container', {
       height: tableHeight,
       layout: 'fitColumns',

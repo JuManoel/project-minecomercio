@@ -8,7 +8,7 @@ import io.javalin.Javalin;
 import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+//classe responsable por hacer las conecciones http, tiene todos los service
 public final class App {
 
   private static final Logger LOG = LoggerFactory.getLogger(App.class);
